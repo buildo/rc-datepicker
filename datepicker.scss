@@ -1,0 +1,178 @@
+
+.datepicker {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .container {
+    // position: relative;
+    margin-top: 5px;
+    margin-left: 5px;
+    border: 1px solid #AEAEAE;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    width: 200px;
+    z-index: 10;
+  }
+
+  .top {
+    text-align: center;
+    background-color: #F0F0F0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: 1px solid #AEAEAE;
+
+    .week-days {
+      display: inline-block;
+      height: 20px;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      .week-day {
+        float: left;
+        width: 24px;
+        margin-left: 1px;
+        margin-right: 1px;
+        cursor: default;
+      }
+    }
+
+    .display {
+      width: 200px;
+      height: 35px;
+      padding: 5px;
+      .button.left {
+        float: left;
+        width: 35px;
+        height: 100%;
+        cursor: pointer;
+        .slow {
+          margin-left: 10px;
+        }
+      }
+      .button.right {
+        float: left;
+        width: 35px;
+        height: 100%;
+        display: block;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        text-decoration: none;
+        padding: 4px;
+        .fast {
+          margin-left: 10px;
+        }
+      }
+      .button.label {
+        float: left;
+        display: block;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        text-decoration: none;
+        padding: 4px;
+        width: 119px;
+      }
+      .button.label.fixed:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+      .label:hover {
+        background-color: #DDDDDD;
+      }
+    }
+  }
+
+  .year {
+    .top {
+    }
+  }
+
+  .month.top {
+    height: 30px;
+  }
+
+  .day.top {
+    height: 50px;
+  }
+
+  .body {
+    padding: 0.5em;
+    padding-bottom: 0.3em;
+  }
+
+  .row {
+    display: inline-block;
+    margin-top: 0px;
+    width: 100%;
+  }
+
+  .picker {
+    float: left;
+    display: block;
+    text-align: center;
+    color: #BBBBBB;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 2px;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+
+  .picker.day {
+    width: 24px;
+    height: 24px;
+  }
+
+  .picker.month {
+    width: 23%;
+    margin: 1%;
+    height: 55px;
+    align: center;
+    line-height: 52px;
+  }
+
+  .picker.year {
+    width: 23%;
+    margin: 1%;
+    height: 55px;
+    align: center;
+    line-height: 52px;
+  }
+
+  .picker.button:hover {
+    background-color: #EAEAEA;
+  }
+  .picker.button.selected {
+    color: #F7F7F7;
+    background-color: #3B83C0;
+  }
+  .picker.current {
+    color: #000000;
+  }
+  .picker.selected.current {
+    color: #F7F7F7;
+  }
+  .button {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 4px;
+  }
+  .button:hover {
+    background-color: #DDDDDD;
+  }
+}
+
+.ui.action.input.datepicker-input {
+  // width: 19.3rem;
+}
+
