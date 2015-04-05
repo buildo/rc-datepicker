@@ -1,12 +1,10 @@
-/** @jsx React.DOM */
-
 'use strict';
 
 const React = require('react'),
-  DayPickerTop = require('./DayPickerTop.jsx'),
-  DayPickerBody = require('./DayPickerBody.jsx');
+  MonthPickerTop = require('./MonthPickerTop.jsx'),
+  MonthPickerBody = require('./MonthPickerBody.jsx');
 
-const DayPicker = React.createClass({
+const MonthPicker = React.createClass({
 
   propTypes: {
     visibleDate: React.PropTypes.any.isRequired,
@@ -21,20 +19,24 @@ const DayPicker = React.createClass({
   },
 
   _onSelectDate: function(date) {
-    this.props.onSelectDate(date);
+    if (this.props.fixed) {
+      this.props.onSelectDate(date);
+    } else {
+      this.props.onChangeDate(date);
+      this.props.onChangeMode('day');
+    }
   },
 
   render: function () {
     return (
-      <div className={this.props.classNamePrefix + ' container day'}>
-        <DayPickerTop
+      <div className={this.props.classNamePrefix + ' container month'}>
+        <MonthPickerTop
           visibleDate={this.props.visibleDate}
           onChangeDate={this.props.onChangeDate}
           onChangeMode={this.props.onChangeMode}
-          location={this.props.location}
           fixed={this.props.fixed}
           classNamePrefix={this.props.classNamePrefix} />
-        <DayPickerBody
+        <MonthPickerBody
           visibleDate={this.props.visibleDate}
           selectedDate={this.props.selectedDate}
           onSelectDate={this._onSelectDate}
@@ -46,4 +48,4 @@ const DayPicker = React.createClass({
   }
 });
 
-module.exports = DayPicker;
+module.exports = MonthPicker;

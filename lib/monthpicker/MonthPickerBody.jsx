@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 'use strict';
 
 const React = require('react'),
@@ -9,7 +7,7 @@ const React = require('react'),
   Row = require('../Row.jsx'),
   DateUtils = require('../utils/DateUtils');
 
-const DayPicker = React.createClass(/** @lends {React.ReactComponent.prototype} */{
+const MonthPicker = React.createClass(/** @lends {React.ReactComponent.prototype} */{
 
     propTypes: {
       visibleDate: React.PropTypes.any.isRequired,
@@ -25,30 +23,23 @@ const DayPicker = React.createClass(/** @lends {React.ReactComponent.prototype} 
         return <InvalidDate invalidDate={this.props.visibleDate.format()} />;
       }
       const year = this.props.visibleDate.year();
-      const month = this.props.visibleDate.month();
-      const selectedMillis = this.props.selectedDate ? this.props.selectedDate.format('x') : -1;
-      const visibleDays = DateUtils.getVisibleDays(month, year, this.props.location);
-
-      const days = visibleDays.days.map((dayOfMonth, index) => {
-        const _date = this.props.visibleDate.clone();
-        const isCurrent = index >= visibleDays.startCurrent && index <= visibleDays.endCurrent;
-        if (!isCurrent) {
-          _date.add(index < visibleDays.startCurrent ? -1 : 1, 'M');
-        }
-        _date.date(dayOfMonth);
+      const selectedMonth = this.props.selectedDate ? this.props.selectedDate.month() : -1;
+      const selectedYear = this.props.selectedDate ? this.props.selectedDate.year() : -1;
+      const months = moment.months().map((_month, index) => {
         return <Picker
-          date={_date}
-          isSelected={_date.format('x') === selectedMillis}
-          isCurrent={isCurrent}
+          date={moment([year, index, 1])}
+          isSelected={selectedMonth === index && selectedYear === year}
+          isCurrent={true}
           onSelectDate={this.props.onSelectDate}
+          location={this.props.location}
           mode={this.props.mode}
           key={index}
         />;
       });
-      const nColumns = 7;
-      const nRows = 6;
+      const nColumns = 4;
+      const nRows = 3;
       const rows = Array.apply(null, Array(nRows)).map((n, index) =>
-        <Row pickers={days.slice(nColumns * index, nColumns * (index + 1))} mode={this.props.mode} key={index} />);
+        <Row pickers={months.slice(nColumns * index, nColumns * (index + 1))} mode={this.props.mode} key={index} />);
 
       return (
         <div className='body'>
@@ -58,4 +49,4 @@ const DayPicker = React.createClass(/** @lends {React.ReactComponent.prototype} 
     }
 });
 
-module.exports = DayPicker;
+module.exports = MonthPicker;
