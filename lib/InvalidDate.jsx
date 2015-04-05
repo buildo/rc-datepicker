@@ -1,11 +1,11 @@
 'use strict';
 
-import React, {PropTypes} from 'react';
+import React from 'react';
 
-export const InvalidDate = React.createClass({
+const InvalidDate = React.createClass({
 
   propTypes: {
-    invalidDate: PropTypes.string
+    invalidDate: React.PropTypes.string
   },
 
   render() {
@@ -16,3 +16,5 @@ export const InvalidDate = React.createClass({
     );
   }
 });
+
+export default InvalidDate;

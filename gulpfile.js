@@ -52,26 +52,15 @@ gulp.task('styles', function() {
 });
 
 gulp.task('bundle', function(cb) {
-  var started = false;
-  var config = require(PATHS.webpackConfig);
-  var bundler = webpack(config);
+    var config = require(PATHS.webpackConfig);
 
-  function bundle(err, stats) {
-    if (err) {
-      throw new $.util.PluginError('webpack', err);
-    }
-
-    if (argv.verbose) {
-      $.util.log('[webpack]', stats.toString({colors: true}));
-    }
-
-    if (!started) {
-      started = true;
-      return cb();
-    }
-  }
-
-  bundler.run(bundle);
+    webpack(config, function(err, stats) {
+        if(err) throw new $.util.PluginError("webpack:build", err);
+        $.util.log("[webpack:build]", stats.toString({
+            colors: true
+        }));
+        cb();
+    });
 });
 
 gulp.task('build', ['clean'], function(cb) {

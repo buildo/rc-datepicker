@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var webpack = require('webpack');
 var argv = require('minimist')(process.argv.slice(2));
+var path = require('path');
 
 var DEBUG = !argv.release;
 
@@ -22,7 +23,7 @@ var config = {
   output: {
     path: './dist/',
     filename: 'react-semantic-datepicker.min.js',
-    library: 'react-semantic-datepicker',
+    library: 'SemanticDatePicker',
     libraryTarget: 'umd'
   },
 
@@ -35,42 +36,39 @@ var config = {
   },
 
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     //new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
 
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
+    alias: {
+      moment: path.join(__dirname, 'node_modules/moment/moment.js')
+    }
   },
 
   module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader!' + AUTOPREFIXER_LOADER
-      },
-      {
-        test: /\.gif/,
-        loader: 'url-loader?limit=10000&mimetype=image/gif'
-      },
-      {
-        test: /\.jpg/,
-        loader: 'url-loader?limit=10000&mimetype=image/jpg'
-      },
-      {
-        test: /\.png/,
-        loader: 'url-loader?limit=10000&mimetype=image/png'
-      },
-      {
-        test: /\.svg/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
-      }
-    ]
+    loaders: [{
+      test: /\.css$/,
+      loader: 'style-loader!css-loader!' + AUTOPREFIXER_LOADER
+    }, {
+      test: /\.gif$/,
+      loader: 'url-loader?limit=10000&mimetype=image/gif'
+    }, {
+      test: /\.jpg$/,
+      loader: 'url-loader?limit=10000&mimetype=image/jpg'
+    }, {
+      test: /\.png$/,
+      loader: 'url-loader?limit=10000&mimetype=image/png'
+    }, {
+      test: /\.svg$/,
+      loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+    }, {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader'
+    }]
   }
 };
 

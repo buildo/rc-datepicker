@@ -1,19 +1,19 @@
 'use strict';
 
-import React, {PropTypes} from 'react';
+import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
 import DateUtils from '../utils/DateUtils.js';
 
-export const MonthPicker = React.createClass({
+const DayPickerTop = React.createClass({
 
   propTypes: {
-    visibleDate:      PropTypes.any.isRequired,
-    onChangeDate:     PropTypes.func.isRequired,
-    onChangeMode:     PropTypes.func.isRequired,
-    classNamePrefix:  PropTypes.string.isRequired,
-    fixed:            PropTypes.bool,
-    location:         PropTypes.string.isRequired
+    visibleDate:      React.PropTypes.any.isRequired,
+    onChangeDate:     React.PropTypes.func.isRequired,
+    onChangeMode:     React.PropTypes.func.isRequired,
+    classNamePrefix:  React.PropTypes.string.isRequired,
+    fixed:            React.PropTypes.bool,
+    location:         React.PropTypes.string.isRequired
   },
 
   changeMonth(month) {
@@ -58,3 +58,5 @@ export const MonthPicker = React.createClass({
     );
   }
 });
+
+export default DayPickerTop;

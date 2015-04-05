@@ -1,24 +1,24 @@
 'use strict';
 
-import React, {PropTypes} from 'react/addons';
+import React from 'react/addons';
 import moment from 'moment';
 import DatePicker from './DatePicker.jsx';
 import DateUtils from './utils/DateUtils.js';
 import Locales from './utils/Locales.js';
 
-export const DatePickerInput = React.createClass({
+const DatePickerInput = React.createClass({
 
   mixins: [React.addons.LinkedStateMixin],
 
   propTypes: {
-    date:           PropTypes.any,
-    onChangeDate:   PropTypes.func.isRequired,
-    placeholder:    PropTypes.string,
-    format:         PropTypes.string,
-    location:       PropTypes.string,
-    startMode:      PropTypes.string,
-    fixed:          PropTypes.bool,
-    autoClose:      PropTypes.bool
+    date:           React.PropTypes.any,
+    onChangeDate:   React.PropTypes.func.isRequired,
+    placeholder:    React.PropTypes.string,
+    format:         React.PropTypes.string,
+    location:       React.PropTypes.string,
+    startMode:      React.PropTypes.string,
+    fixed:          React.PropTypes.bool,
+    autoClose:      React.PropTypes.bool
   },
 
   getDefaultProps() {
@@ -36,6 +36,7 @@ export const DatePickerInput = React.createClass({
     const parsedDate = moment(this.props.date, this.getFormat(this.props.date));
     return {
       date: this.props.date,
+      visibleDate: this.props.date,
       datePickerDate: parsedDate.isValid() ? parsedDate : moment(),
       show: false
     };
@@ -88,14 +89,14 @@ export const DatePickerInput = React.createClass({
       datePickerDate: moment(),
       show: false
     });
-    this.refs.datePicker.onChangeVisibleDate(this.state.datePickerDate);
+    this.setState({visibleDate: this.state.datePickerDate});
   },
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.date !== this.state.date) {
-      const parsedDate = moment(nextState.date, this.getFormat(nextState.date));
+      const parsedDate = moment(nextState.date, this.getFormat(nextState.date), true);
       if (parsedDate.isValid()) {
-        this.refs.datePicker.onChangeVisibleDate(parsedDate);
+        this.setState({visibleDate: parsedDate});
       }
       const jsDate = parsedDate.isValid() ? parsedDate.toDate() : false;
       this.props.onChangeDate(nextState.date, jsDate);
@@ -118,7 +119,7 @@ export const DatePickerInput = React.createClass({
           startMode={this.props.startMode}
           fixed={this.props.fixed}
           onChange={this._onChangeDate}
-          ref='datePicker'/>
+          visibleDate={this.state.visibleDate}/>
       </div>
     );
   },
@@ -180,3 +181,4 @@ export const DatePickerInput = React.createClass({
   }
 });
 
+export default DatePickerInput;

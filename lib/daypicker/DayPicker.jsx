@@ -1,21 +1,21 @@
 'use strict';
 
-import React, {PropTypes} from 'react';
-import DayPickerTop './DayPickerTop.jsx';
-import DayPickerBody './DayPickerBody.jsx';
+import React from 'react';
+import DayPickerTop from './DayPickerTop.jsx';
+import DayPickerBody from './DayPickerBody.jsx';
 
-export const DayPicker = React.createClass({
+const DayPicker = React.createClass({
 
   propTypes: {
-    visibleDate:      PropTypes.any.isRequired,
-    selectedDate:     PropTypes.any,
-    onChangeDate:     PropTypes.func.isRequired,
-    onSelectDate:     PropTypes.func.isRequired,
-    onChangeMode:     PropTypes.func.isRequired,
-    location:         PropTypes.string.isRequired,
-    mode:             PropTypes.string.isRequired,
-    fixed:            PropTypes.bool,
-    classNamePrefix:  PropTypes.string.isRequired
+    visibleDate:      React.PropTypes.any.isRequired,
+    selectedDate:     React.PropTypes.any,
+    onChangeDate:     React.PropTypes.func.isRequired,
+    onSelectDate:     React.PropTypes.func.isRequired,
+    onChangeMode:     React.PropTypes.func.isRequired,
+    location:         React.PropTypes.string.isRequired,
+    mode:             React.PropTypes.string.isRequired,
+    fixed:            React.PropTypes.bool,
+    classNamePrefix:  React.PropTypes.string.isRequired
   },
 
   _onSelectDate(date) {
@@ -43,3 +43,5 @@ export const DayPicker = React.createClass({
     );
   }
 });
+
+export default DayPicker;

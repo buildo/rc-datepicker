@@ -1,20 +1,20 @@
 'use strict';
 
-import React, {PropTypes} from 'react';
+import React from 'react';
 import moment from 'moment';
 import InvalidDate from '../InvalidDate.jsx';
 import Picker from '../Picker.jsx';
 import Row from '../Row.jsx';
 import DateUtils from '../utils/DateUtils';
 
-export const MonthPicker = React.createClass({
+const YearPickerBody = React.createClass({
 
     propTypes: {
-      visibleDate:      PropTypes.any.isRequired,
-      selectedDate:     PropTypes.any,
-      onSelectDate:     PropTypes.func.isRequired,
-      mode:             PropTypes.string.isRequired,
-      classNamePrefix:  PropTypes.string.isRequired
+      visibleDate:      React.PropTypes.any.isRequired,
+      selectedDate:     React.PropTypes.any,
+      onSelectDate:     React.PropTypes.func.isRequired,
+      mode:             React.PropTypes.string.isRequired,
+      classNamePrefix:  React.PropTypes.string.isRequired
     },
 
     render() {
@@ -48,3 +48,5 @@ export const MonthPicker = React.createClass({
       );
     }
 });
+
+export default YearPickerBody;

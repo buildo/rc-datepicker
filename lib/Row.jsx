@@ -1,12 +1,12 @@
 'use strict';
 
-import React, {PropTypes} from 'react';
+import React from 'react';
 
-export const Row = React.createClass({
+const Row = React.createClass({
 
   propTypes: {
-    pickers:  PropTypes.array.isRequired,
-    mode:     PropTypes.string.isRequired
+    pickers:  React.PropTypes.array.isRequired,
+    mode:     React.PropTypes.string.isRequired
   },
 
   render() {
@@ -18,3 +18,5 @@ export const Row = React.createClass({
   }
 
 });
+
+export default Row;

@@ -1,21 +1,22 @@
 'use strict';
 
-import React, {PropTypes} from 'react';
+import React from 'react';
 import moment from 'moment';
 import DayPicker from './daypicker/DayPicker.jsx';
 import MonthPicker from './monthpicker/MonthPicker.jsx';
-import YearPicker './yearpicker/YearPicker.jsx';
+import YearPicker from './yearpicker/YearPicker.jsx';
 
-export const DatePicker = React.createClass({
+const DatePicker = React.createClass({
 
   propTypes: {
-    onChange:         PropTypes.func.isRequired,
-    startDate:        PropTypes.any,
-    show:             PropTypes.bool,
-    location:         PropTypes.string,
-    startMode:        PropTypes.string,
-    fixed:            PropTypes.bool,
-    classNamePrefix:  PropTypes.string
+    onChange:         React.PropTypes.func.isRequired,
+    startDate:        React.PropTypes.any,
+    show:             React.PropTypes.bool,
+    location:         React.PropTypes.string,
+    startMode:        React.PropTypes.string,
+    fixed:            React.PropTypes.bool,
+    classNamePrefix:  React.PropTypes.string,
+    visibleDate:      React.PropTypes.any
   },
 
   onChangeVisibleDate(date) {
@@ -125,3 +126,5 @@ export const DatePicker = React.createClass({
     );
   }
 });
+
+export default DatePicker;
