@@ -1,24 +1,24 @@
 'use strict';
 
-const React = require('react'),
-  moment = require('moment'),
-  InvalidDate = require('../InvalidDate.jsx'),
-  Picker = require('../Picker.jsx'),
-  Row = require('../Row.jsx'),
-  DateUtils = require('../utils/DateUtils');
+import React, {PropTypes} from 'react';
+import moment from 'moment';,
+import InvalidDate from '../InvalidDate.jsx';
+import Picker from '../Picker.jsx';
+import Row '../Row.jsx';
+import DateUtils '../utils/DateUtils';
 
-const DayPicker = React.createClass(/** @lends {React.ReactComponent.prototype} */{
+export const DayPicker = React.createClass({
 
     propTypes: {
-      visibleDate: React.PropTypes.any.isRequired,
-      selectedDate: React.PropTypes.any,
-      onSelectDate: React.PropTypes.func.isRequired,
-      location: React.PropTypes.string.isRequired,
-      mode: React.PropTypes.string.isRequired,
-      classNamePrefix: React.PropTypes.string.isRequired
+      visibleDate:      PropTypes.any.isRequired,
+      selectedDate:     PropTypes.any,
+      onSelectDate:     PropTypes.func.isRequired,
+      location:         PropTypes.string.isRequired,
+      mode:             PropTypes.string.isRequired,
+      classNamePrefix:  PropTypes.string.isRequired
     },
 
-    render: function (){
+    render(){
       if (!this.props.visibleDate.isValid()) {
         return <InvalidDate invalidDate={this.props.visibleDate.format()} />;
       }
@@ -55,5 +55,3 @@ const DayPicker = React.createClass(/** @lends {React.ReactComponent.prototype} 
       );
     }
 });
-
-module.exports = DayPicker;

@@ -1,23 +1,23 @@
 'use strict';
 
-const React = require('react'),
-  YearPickerTop = require('./YearPickerTop.jsx'),
-  YearPickerBody = require('./YearPickerBody.jsx');
+import React, {PropTypes} from 'react';
+import YearPickerTop from './YearPickerTop.jsx';
+import YearPickerBody from './YearPickerBody.jsx';
 
-const YearPicker = React.createClass({
+export const YearPicker = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
-    selectedDate: React.PropTypes.any,
-    onChangeDate: React.PropTypes.func.isRequired,
-    onSelectDate: React.PropTypes.func.isRequired,
-    onChangeMode: React.PropTypes.func.isRequired,
-    mode: React.PropTypes.string.isRequired,
-    fixed: React.PropTypes.bool,
-    classNamePrefix: React.PropTypes.string.isRequired
+    visibleDate:      PropTypes.any.isRequired,
+    selectedDate:     PropTypes.any,
+    onChangeDate:     PropTypes.func.isRequired,
+    onSelectDate:     PropTypes.func.isRequired,
+    onChangeMode:     PropTypes.func.isRequired,
+    mode:             PropTypes.string.isRequired,
+    fixed:            PropTypes.bool,
+    classNamePrefix:  PropTypes.string.isRequired
   },
 
-  _onSelectDate: function(date) {
+  _onSelectDate(date) {
     if (this.props.fixed) {
       this.props.onSelectDate(date);
     } else {
@@ -26,7 +26,7 @@ const YearPicker = React.createClass({
     }
   },
 
-  render: function () {
+  render() {
     return (
       <div className={this.props.classNamePrefix + ' container year'}>
         <YearPickerTop
@@ -43,5 +43,3 @@ const YearPicker = React.createClass({
     );
   }
 });
-
-module.exports = YearPicker;

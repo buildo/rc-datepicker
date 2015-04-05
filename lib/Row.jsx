@@ -1,15 +1,15 @@
 'use strict';
 
-const React = require('react');
+import React, {PropTypes} from 'react';
 
-const Row = React.createClass(/** @lends {React.ReactComponent.prototype} */{
+export const Row = React.createClass({
 
   propTypes: {
-    pickers: React.PropTypes.array.isRequired,
-    mode: React.PropTypes.string.isRequired
+    pickers:  PropTypes.array.isRequired,
+    mode:     PropTypes.string.isRequired
   },
 
-  render: function() {
+  render() {
     return (
       <div className={'row ' + this.props.mode}>
         {this.props.pickers}
@@ -18,5 +18,3 @@ const Row = React.createClass(/** @lends {React.ReactComponent.prototype} */{
   }
 
 });
-
-module.exports = Row;

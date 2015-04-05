@@ -1,38 +1,38 @@
 'use strict';
 
-const React = require('react');
-const _ = require('lodash');
-const moment = require('moment');
-const DateUtils = require('../utils/DateUtils.js');
+import React, {PropTypes} from 'react';
+import _ from 'lodash';
+import moment from 'moment';
+import DateUtils from '../utils/DateUtils.js';
 
-const MonthPicker = React.createClass({
+export const MonthPicker = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
-    onChangeDate: React.PropTypes.func.isRequired,
-    onChangeMode: React.PropTypes.func.isRequired,
-    classNamePrefix: React.PropTypes.string.isRequired,
-    fixed: React.PropTypes.bool,
-    location: React.PropTypes.string.isRequired
+    visibleDate:      PropTypes.any.isRequired,
+    onChangeDate:     PropTypes.func.isRequired,
+    onChangeMode:     PropTypes.func.isRequired,
+    classNamePrefix:  PropTypes.string.isRequired,
+    fixed:            PropTypes.bool,
+    location:         PropTypes.string.isRequired
   },
 
-  changeMonth: function(month) {
+  changeMonth(month) {
     this.props.visibleDate.month(month);
     this.props.onChangeDate(this.props.visibleDate);
   },
 
-  changeYear: function(year) {
+  changeYear(year) {
     this.props.visibleDate.year(year);
     this.props.onChangeDate(this.props.visibleDate);
   },
 
-  changeMode: function() {
+  changeMode() {
     if (!this.props.fixed) {
       this.props.onChangeMode('month');
     }
   },
 
-  render: function() {
+  render() {
     const month = this.props.visibleDate.month();
     const daysMin = moment.weekdaysMin().map((dayMin, index) => <p className='week-day' key={index}>{dayMin}</p>);
 
@@ -58,5 +58,3 @@ const MonthPicker = React.createClass({
     );
   }
 });
-
-module.exports = MonthPicker;

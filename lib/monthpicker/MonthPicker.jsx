@@ -1,24 +1,24 @@
 'use strict';
 
-const React = require('react'),
-  MonthPickerTop = require('./MonthPickerTop.jsx'),
-  MonthPickerBody = require('./MonthPickerBody.jsx');
+import React, {PropTypes} from 'react';
+import MonthPickerTop from './MonthPickerTop.jsx';
+import MonthPickerBody from './MonthPickerBody.jsx';
 
-const MonthPicker = React.createClass({
+export const MonthPicker = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
-    selectedDate: React.PropTypes.any,
-    onChangeDate: React.PropTypes.func.isRequired,
-    onSelectDate: React.PropTypes.func.isRequired,
-    onChangeMode: React.PropTypes.func.isRequired,
-    location: React.PropTypes.string.isRequired,
-    mode: React.PropTypes.string.isRequired,
-    fixed: React.PropTypes.bool,
-    classNamePrefix: React.PropTypes.string.isRequired
+    visibleDate:      PropTypes.any.isRequired,
+    selectedDate:     PropTypes.any,
+    onChangeDate:     PropTypes.func.isRequired,
+    onSelectDate:     PropTypes.func.isRequired,
+    onChangeMode:     PropTypes.func.isRequired,
+    location:         PropTypes.string.isRequired,
+    mode:             PropTypes.string.isRequired,
+    fixed:            PropTypes.bool,
+    classNamePrefix:  PropTypes.string.isRequired
   },
 
-  _onSelectDate: function(date) {
+  _onSelectDate(date) {
     if (this.props.fixed) {
       this.props.onSelectDate(date);
     } else {
@@ -27,7 +27,7 @@ const MonthPicker = React.createClass({
     }
   },
 
-  render: function () {
+  render() {
     return (
       <div className={this.props.classNamePrefix + ' container month'}>
         <MonthPickerTop
@@ -47,5 +47,3 @@ const MonthPicker = React.createClass({
     );
   }
 });
-
-module.exports = MonthPicker;

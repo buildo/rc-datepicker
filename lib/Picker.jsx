@@ -1,25 +1,25 @@
 'use strict';
 
-const React = require('react');
-const DateUtils = require('./utils/DateUtils.js');
+import React, {PropTypes} from 'react';
+import DateUtils from './utils/DateUtils.js';
 
-const Day = React.createClass(/** @lends {React.ReactComponent.prototype} */{
+export const Day = React.createClass({
 
   propTypes: {
-    date: React.PropTypes.any.isRequired,
-    isSelected: React.PropTypes.bool.isRequired,
-    isCurrent: React.PropTypes.bool.isRequired,
-    onSelectDate: React.PropTypes.func.isRequired,
-    mode: React.PropTypes.string.isRequired,
-    location: React.PropTypes.string
+    date:         PropTypes.any.isRequired,
+    isSelected:   PropTypes.bool.isRequired,
+    isCurrent:    PropTypes.bool.isRequired,
+    onSelectDate: PropTypes.func.isRequired,
+    mode:         PropTypes.string.isRequired,
+    location:     PropTypes.string
   },
 
-  handleClick: function(e) {
+  handleClick(e) {
     e.preventDefault();
     this.props.onSelectDate(this.props.date);
   },
 
-  render: function() {
+  render() {
     let formatMode;
 
     switch (this.props.mode) {
@@ -46,5 +46,3 @@ const Day = React.createClass(/** @lends {React.ReactComponent.prototype} */{
     );
   }
 });
-
-module.exports = Day;

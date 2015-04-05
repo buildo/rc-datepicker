@@ -1,28 +1,28 @@
 'use strict';
 
-const React = require('react'),
-  moment = require('moment'),
-  DayPicker = require('./daypicker/DayPicker.jsx'),
-  MonthPicker = require('./monthpicker/MonthPicker.jsx'),
-  YearPicker = require('./yearpicker/YearPicker.jsx');
+import React, {PropTypes} from 'react';
+import moment from 'moment';
+import DayPicker from './daypicker/DayPicker.jsx';
+import MonthPicker from './monthpicker/MonthPicker.jsx';
+import YearPicker './yearpicker/YearPicker.jsx';
 
-const DatePicker = React.createClass({
+export const DatePicker = React.createClass({
 
   propTypes: {
-    onChange: React.PropTypes.func.isRequired,
-    startDate: React.PropTypes.any,
-    show: React.PropTypes.bool,
-    location: React.PropTypes.string,
-    startMode: React.PropTypes.string,
-    fixed: React.PropTypes.bool,
-    classNamePrefix: React.PropTypes.string
+    onChange:         PropTypes.func.isRequired,
+    startDate:        PropTypes.any,
+    show:             PropTypes.bool,
+    location:         PropTypes.string,
+    startMode:        PropTypes.string,
+    fixed:            PropTypes.bool,
+    classNamePrefix:  PropTypes.string
   },
 
-  onChangeVisibleDate: function(date) {
+  onChangeVisibleDate(date) {
     this.setState({visibleDate: date});
   },
 
-  onChangeSelectedDate: function(date) {
+  onChangeSelectedDate(date) {
     this.setState({
       visibleDate: date.clone(), // must be copy, otherwise they get linked
       date: date
@@ -30,11 +30,11 @@ const DatePicker = React.createClass({
     this.props.onChange(date);
   },
 
-  onChangeMode: function(newMode) {
-    this.setState({mode: newMode});
+  onChangeMode(mode) {
+    this.setState({ mode });
   },
 
-  getInitialState: function() {
+  getInitialState() {
     moment.locale(this.props.location);
     return {
       visibleDate: this.props.startDate ? moment(this.props.startDate) : moment(),
@@ -42,7 +42,7 @@ const DatePicker = React.createClass({
     };
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       classNamePrefix: 'datepicker',
       show: true,
@@ -50,7 +50,7 @@ const DatePicker = React.createClass({
     };
   },
 
-  getDayPicker: function() {
+  getDayPicker() {
     return (
       <DayPicker
         visibleDate={this.state.visibleDate}
@@ -66,7 +66,7 @@ const DatePicker = React.createClass({
     );
   },
 
-  getMonthPicker: function() {
+  getMonthPicker() {
     return (
       <MonthPicker
         visibleDate={this.state.visibleDate}
@@ -82,7 +82,7 @@ const DatePicker = React.createClass({
     );
   },
 
-  getYearPicker: function() {
+  getYearPicker() {
     return (
       <YearPicker
         visibleDate={this.state.visibleDate}
@@ -98,7 +98,7 @@ const DatePicker = React.createClass({
     );
   },
 
-  render: function () {
+  render() {
     if (!this.props.show) {
       return <div/>;
     }
@@ -125,5 +125,3 @@ const DatePicker = React.createClass({
     );
   }
 });
-
-module.exports = DatePicker;

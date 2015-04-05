@@ -1,27 +1,27 @@
 'use strict';
 
-const React = require('react/addons');
-const moment = require('moment');
-const DatePicker = require('./DatePicker.jsx');
-const DateUtils = require('./utils/DateUtils.js');
-const Locales = require('./utils/Locales.js');
+import React, {PropTypes} from 'react/addons';
+import moment from 'moment';
+import DatePicker from './DatePicker.jsx';
+import DateUtils from './utils/DateUtils.js';
+import Locales from './utils/Locales.js';
 
-const DatePickerInput = React.createClass({
+export const DatePickerInput = React.createClass({
 
   mixins: [React.addons.LinkedStateMixin],
 
   propTypes: {
-    date: React.PropTypes.any,
-    onChangeDate: React.PropTypes.func.isRequired,
-    placeholder: React.PropTypes.string,
-    format: React.PropTypes.string,
-    location: React.PropTypes.string,
-    startMode: React.PropTypes.string,
-    fixed: React.PropTypes.bool,
-    autoClose: React.PropTypes.bool
+    date:           PropTypes.any,
+    onChangeDate:   PropTypes.func.isRequired,
+    placeholder:    PropTypes.string,
+    format:         PropTypes.string,
+    location:       PropTypes.string,
+    startMode:      PropTypes.string,
+    fixed:          PropTypes.bool,
+    autoClose:      PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       location: 'en',
       autoClose: true,
@@ -31,7 +31,7 @@ const DatePickerInput = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     this.temporaryHardcodedLocale();
     const parsedDate = moment(this.props.date, this.getFormat(this.props.date));
     return {
@@ -41,19 +41,19 @@ const DatePickerInput = React.createClass({
     };
   },
 
-  showDatePicker: function() {
+  showDatePicker() {
     this.setState({show: true});
   },
 
-  hideDatePicker: function() {
+  hideDatePicker() {
     this.setState({show: false});
   },
 
-  toggleDatePicker: function() {
+  toggleDatePicker() {
     this.setState({show: !this.state.show});
   },
 
-  _onChangeDate: function (date) {
+  _onChangeDate(date) {
     this.setState({
       date: date.format(this.getFormat()),
       datePickerDate: date,
@@ -61,7 +61,7 @@ const DatePickerInput = React.createClass({
     });
   },
 
-  getFormat: function(dateString) {
+  getFormat(dateString) {
     if (this.props.format) {
       return this.props.format;
     }
@@ -82,7 +82,7 @@ const DatePickerInput = React.createClass({
     return 'L';
   },
 
-  resetDate: function() {
+  resetDate() {
     this.replaceState({
       date: '',
       datePickerDate: moment(),
@@ -91,7 +91,7 @@ const DatePickerInput = React.createClass({
     this.refs.datePicker.onChangeVisibleDate(this.state.datePickerDate);
   },
 
-  componentWillUpdate: function(nextProps, nextState) {
+  componentWillUpdate(nextProps, nextState) {
     if (nextState.date !== this.state.date) {
       const parsedDate = moment(nextState.date, this.getFormat(nextState.date));
       if (parsedDate.isValid()) {
@@ -102,7 +102,7 @@ const DatePickerInput = React.createClass({
     }
   },
 
-  render: function() {
+  render() {
     return (
       <div>
         <div className='ui action input datepicker-input'>
@@ -123,7 +123,7 @@ const DatePickerInput = React.createClass({
     );
   },
 
-  temporaryHardcodedLocale: function() {
+  temporaryHardcodedLocale() {
     moment.defineLocale('it', {
         months : 'gennaio_febbraio_marzo_aprile_maggio_giugno_luglio_agosto_settembre_ottobre_novembre_dicembre'.split('_'),
         monthsShort : 'gen_feb_mar_apr_mag_giu_lug_ago_set_ott_nov_dic'.split('_'),
@@ -180,4 +180,3 @@ const DatePickerInput = React.createClass({
   }
 });
 
-module.exports = DatePickerInput;

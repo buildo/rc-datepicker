@@ -1,28 +1,28 @@
 'use strict';
 
-const React = require('react'),
-  DayPickerTop = require('./DayPickerTop.jsx'),
-  DayPickerBody = require('./DayPickerBody.jsx');
+import React, {PropTypes} from 'react';
+import DayPickerTop './DayPickerTop.jsx';
+import DayPickerBody './DayPickerBody.jsx';
 
-const DayPicker = React.createClass({
+export const DayPicker = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
-    selectedDate: React.PropTypes.any,
-    onChangeDate: React.PropTypes.func.isRequired,
-    onSelectDate: React.PropTypes.func.isRequired,
-    onChangeMode: React.PropTypes.func.isRequired,
-    location: React.PropTypes.string.isRequired,
-    mode: React.PropTypes.string.isRequired,
-    fixed: React.PropTypes.bool,
-    classNamePrefix: React.PropTypes.string.isRequired
+    visibleDate:      PropTypes.any.isRequired,
+    selectedDate:     PropTypes.any,
+    onChangeDate:     PropTypes.func.isRequired,
+    onSelectDate:     PropTypes.func.isRequired,
+    onChangeMode:     PropTypes.func.isRequired,
+    location:         PropTypes.string.isRequired,
+    mode:             PropTypes.string.isRequired,
+    fixed:            PropTypes.bool,
+    classNamePrefix:  PropTypes.string.isRequired
   },
 
-  _onSelectDate: function(date) {
+  _onSelectDate(date) {
     this.props.onSelectDate(date);
   },
 
-  render: function () {
+  render() {
     return (
       <div className={this.props.classNamePrefix + ' container day'}>
         <DayPickerTop
@@ -43,5 +43,3 @@ const DayPicker = React.createClass({
     );
   }
 });
-
-module.exports = DayPicker;

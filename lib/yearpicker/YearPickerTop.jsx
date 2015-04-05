@@ -1,22 +1,22 @@
 'use strict';
 
-const React = require('react');
-const _ = require('lodash');
+import React, {PropTypes} from 'react';
+import _ from 'lodash';
 
-const MonthPickerTop = React.createClass({
+export const MonthPickerTop = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
-    onChangeDate: React.PropTypes.func.isRequired,
-    classNamePrefix: React.PropTypes.string.isRequired
+    visibleDate:      PropTypes.any.isRequired,
+    onChangeDate:     PropTypes.func.isRequired,
+    classNamePrefix:  PropTypes.string.isRequired
   },
 
-  changeYear : function(year) {
+  changeYear(year) {
     this.props.visibleDate.year(year);
     this.props.onChangeDate(this.props.visibleDate);
   },
 
-  render: function() {
+  render() {
     const year = this.props.visibleDate.year();
     const startDecadeYear = parseInt(year / 10, 10) * 10;
     const endDecadeYear = startDecadeYear + 9;
@@ -37,5 +37,3 @@ const MonthPickerTop = React.createClass({
     );
   }
 });
-
-module.exports = MonthPickerTop;
