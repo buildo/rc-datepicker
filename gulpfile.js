@@ -23,8 +23,8 @@ var AUTOPREFIXER_BROWSERS = [
 var PATHS = {
   dist: './dist',
   templates: './index.html',
-  assets: 'src/**/*.{png,jpg,jpeg,gif,svg,woff,ttf}',
-  scss: './src/**/*.scss',
+  assets: 'lib/**/*.{png,jpg,jpeg,gif,svg,woff,ttf}',
+  scss: './lib/**/*.scss',
   webpackConfig: './webpack.config.js'
 };
 
@@ -48,7 +48,7 @@ gulp.task('styles', function() {
     .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
     .pipe($.csscomb())
     .pipe($.minifyCss())
-    .pipe(gulp.dest(PATHS.dist + '/css'))
+    .pipe(gulp.dest(PATHS.dist))
 });
 
 gulp.task('bundle', function(cb) {

@@ -42,10 +42,7 @@ var config = {
   ],
 
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
-    alias: {
-      moment: path.join(__dirname, 'node_modules/moment/moment.js')
-    }
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
   },
 
   module: {
