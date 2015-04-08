@@ -11,58 +11,82 @@ const DatePickerInput = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
 
   propTypes: {
-    date:           React.PropTypes.any,
-    onChangeDate:   React.PropTypes.func.isRequired,
+    onChange:       React.PropTypes.func.isRequired,
+    date:           React.PropTypes.oneOfType([
+                      React.PropTypes.string,
+                      React.PropTypes.instanceOf(Date)
+                    ]),
+    initialDate:    React.PropTypes.oneOfType([
+                      React.PropTypes.string,
+                      React.PropTypes.instanceOf(Date)
+                    ]),
+    minDate:        React.PropTypes.oneOfType([
+                      React.PropTypes.string,
+                      React.PropTypes.instanceOf(Date)
+                    ]),
+    maxDate:        React.PropTypes.oneOfType([
+                      React.PropTypes.string,
+                      React.PropTypes.instanceOf(Date)
+                    ]),
     placeholder:    React.PropTypes.string,
     format:         React.PropTypes.string,
-    location:       React.PropTypes.string,
+    locale:         React.PropTypes.string,
     startMode:      React.PropTypes.string,
-    fixed:          React.PropTypes.bool,
+    fixedMode:      React.PropTypes.bool,
+    readOnly:       React.PropTypes.bool,
     autoClose:      React.PropTypes.bool
   },
 
   getDefaultProps() {
     return {
-      location: 'en',
+      locale: 'en',
       autoClose: true,
       readOnly: false,
       startMode: 'day',
-      fixed: false
+      fixedMode: false
     };
   },
 
   getInitialState() {
     this.temporaryHardcodedLocale();
-    const parsedDate = moment(this.props.date, this.getFormat(this.props.date));
+    const _date = this.props.date || this.props.initialDate;
+    const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
     return {
-      date: this.props.date,
-      visibleDate: this.props.date,
-      datePickerDate: parsedDate.isValid() ? parsedDate : moment(),
-      show: false
+      date: _date ? date : undefined,
+      dateString: date.format(this.getFormat()),
+      showing: false
     };
   },
 
-  showDatePicker() {
-    this.setState({show: true});
-  },
-
-  hideDatePicker() {
-    this.setState({show: false});
-  },
-
   toggleDatePicker() {
-    this.setState({show: !this.state.show});
+    this.setState({showing: !this.state.showing});
   },
 
-  _onChangeDate(date) {
-    this.setState({
-      date: date.format(this.getFormat()),
-      datePickerDate: date,
-      show: !this.props.autoClose
-    });
+  _onChangeDate(jsDate) {
+    const newDate = moment(jsDate);
+    const newDateString = newDate.format(this.getFormat());
+    console.log(newDateString);
+    if (newDateString !== this.state.dateString) {
+      this.setState({
+        date: newDate,
+        dateString: newDateString,
+        showing: !this.props.autoClose
+      });
+    }
+    this.props.onChange(jsDate, newDateString);
   },
 
-  getFormat(dateString) {
+  onChangeInput(dateString) {
+    this.setState({ dateString });
+    const parsedDate = moment(dateString, this.getFormat(dateString), true);
+    if (parsedDate.isValid()) {
+      this.setState({date: parsedDate});
+    }
+    const jsDate = parsedDate.isValid() ? parsedDate.toDate() : undefined;
+    this.props.onChange(jsDate, dateString);
+  },
+
+  getFormat() {
     if (this.props.format) {
       return this.props.format;
     }
@@ -74,32 +98,26 @@ const DatePickerInput = React.createClass({
           return 'YYYY';
       }
     }
-    if (dateString) {
-      const array = dateString.match(/\d+/g);
-      if (Array.isArray(array) && array.length === 3 && array.filter((x) => x.length > 2).length === 0) {
-        return this.props.location === 'it' ? 'DD MM YY' : 'MM DD YY';
-      }
-    }
+    // if (dateString) {
+    //   const array = dateString.match(/\d+/g);
+    //   if (Array.isArray(array) && array.length === 3 && array.filter((x) => x.length > 2).length === 0) {
+    //     return this.props.locale === 'it' ? 'DD MM YY' : 'MM DD YY';
+    //   }
+    // }
     return 'L';
   },
 
-  resetDate() {
-    this.replaceState({
-      date: '',
-      datePickerDate: moment(),
-      show: false
-    });
-    this.setState({visibleDate: this.state.datePickerDate});
-  },
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.date !== this.state.date) {
-      const parsedDate = moment(nextState.date, this.getFormat(nextState.date), true);
-      if (parsedDate.isValid()) {
-        this.setState({visibleDate: parsedDate});
-      }
-      const jsDate = parsedDate.isValid() ? parsedDate.toDate() : false;
-      this.props.onChangeDate(nextState.date, jsDate);
+  getDatePicker() {
+    if (this.state.showing) {
+      return (
+        <DatePicker
+          date={this.state.date ? this.state.date.toDate() : undefined}
+          initialDate={this.props.initialDate}
+          locale={this.props.locale}
+          startMode={this.props.startMode}
+          fixedMode={this.props.fixedMode}
+          onChange={this._onChangeDate} />
+        );
     }
   },
 
@@ -107,21 +125,28 @@ const DatePickerInput = React.createClass({
     return (
       <div>
         <div className='ui action input datepicker-input'>
-          <input type="text" placeholder={this.props.placeholder} valueLink={this.linkState('date')} readOnly={this.props.readOnly}/>
-          <div className={'ui icon button' + (this.state.show ? ' active' : '')} onClick={this.toggleDatePicker}>
+          <input
+            type="text"
+            placeholder={this.props.placeholder}
+            valueLink={{value: this.state.dateString || '', requestChange: this.onChangeInput}}
+            readOnly={this.props.readOnly} />
+          <div className={'ui icon button' + (this.state.showing ? ' active' : '')} onClick={this.toggleDatePicker}>
             <i className='calendar icon'></i>
           </div>
         </div>
-        <DatePicker
-          startDate={this.state.datePickerDate}
-          show={this.state.show}
-          location={this.props.location}
-          startMode={this.props.startMode}
-          fixed={this.props.fixed}
-          onChange={this._onChangeDate}
-          visibleDate={this.state.visibleDate}/>
+        {this.getDatePicker()}
       </div>
     );
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.date) {
+      const _date = nextProps.date || nextProps.initialDate;
+      const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
+      this.setState({
+        date: _date ? date : undefined
+      });
+    }
   },
 
   temporaryHardcodedLocale() {

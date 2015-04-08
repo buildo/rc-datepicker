@@ -10,12 +10,12 @@ import DateUtils from '../utils/DateUtils';
 const MonthPickerBody = React.createClass({
 
     propTypes: {
-      visibleDate:      React.PropTypes.any.isRequired,
-      selectedDate:     React.PropTypes.any,
-      onSelectDate:     React.PropTypes.func.isRequired,
-      location:         React.PropTypes.string.isRequired,
-      mode:             React.PropTypes.string.isRequired,
-      classNamePrefix:  React.PropTypes.string.isRequired
+      visibleDate:  React.PropTypes.any.isRequired,
+      date:         React.PropTypes.any,
+      onSelectDate: React.PropTypes.func.isRequired,
+      locale:       React.PropTypes.string.isRequired,
+      mode:         React.PropTypes.string.isRequired,
+      className:    React.PropTypes.string.isRequired
     },
 
     render() {
@@ -23,15 +23,15 @@ const MonthPickerBody = React.createClass({
         return <InvalidDate invalidDate={this.props.visibleDate.format()} />;
       }
       const year = this.props.visibleDate.year();
-      const selectedMonth = this.props.selectedDate ? this.props.selectedDate.month() : -1;
-      const selectedYear = this.props.selectedDate ? this.props.selectedDate.year() : -1;
+      const selectedMonth = this.props.date ? this.props.date.month() : -1;
+      const selectedYear = this.props.date ? this.props.date.year() : -1;
       const months = moment.months().map((_month, index) => {
         return <Picker
           date={moment([year, index, 1])}
           isSelected={selectedMonth === index && selectedYear === year}
           isCurrent={true}
           onSelectDate={this.props.onSelectDate}
-          location={this.props.location}
+          locale={this.props.locale}
           mode={this.props.mode}
           key={index}
         />;

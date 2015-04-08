@@ -7,38 +7,38 @@ import YearPickerBody from './YearPickerBody.jsx';
 const YearPicker = React.createClass({
 
   propTypes: {
-    visibleDate:      React.PropTypes.any.isRequired,
-    selectedDate:     React.PropTypes.any,
-    onChangeDate:     React.PropTypes.func.isRequired,
-    onSelectDate:     React.PropTypes.func.isRequired,
-    onChangeMode:     React.PropTypes.func.isRequired,
-    mode:             React.PropTypes.string.isRequired,
-    fixed:            React.PropTypes.bool,
-    classNamePrefix:  React.PropTypes.string.isRequired
+    visibleDate:         React.PropTypes.any.isRequired,
+    date:                React.PropTypes.any,
+    onChangeVisibleDate: React.PropTypes.func.isRequired,
+    onSelectDate:        React.PropTypes.func.isRequired,
+    onChangeMode:        React.PropTypes.func.isRequired,
+    mode:                React.PropTypes.string.isRequired,
+    fixedMode:           React.PropTypes.bool,
+    className:           React.PropTypes.string.isRequired
   },
 
   _onSelectDate(date) {
-    if (this.props.fixed) {
+    if (this.props.fixedMode) {
       this.props.onSelectDate(date);
     } else {
-      this.props.onChangeDate(date);
+      this.props.onChangeVisibleDate(date);
       this.props.onChangeMode('month');
     }
   },
 
   render() {
     return (
-      <div className={this.props.classNamePrefix + ' container year'}>
+      <div className={this.props.className + ' container year'}>
         <YearPickerTop
           visibleDate={this.props.visibleDate}
-          onChangeDate={this.props.onChangeDate}
-          classNamePrefix={this.props.classNamePrefix} />
+          onChangeVisibleDate={this.props.onChangeVisibleDate}
+          className={this.props.className} />
         <YearPickerBody
           visibleDate={this.props.visibleDate}
-          selectedDate={this.props.selectedDate}
+          date={this.props.date}
           onSelectDate={this._onSelectDate}
           mode={this.props.mode}
-          classNamePrefix={this.props.classNamePrefix} />
+          className={this.props.className} />
       </div>
     );
   }

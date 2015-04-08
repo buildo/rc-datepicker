@@ -10,11 +10,11 @@ import DateUtils from '../utils/DateUtils';
 const YearPickerBody = React.createClass({
 
     propTypes: {
-      visibleDate:      React.PropTypes.any.isRequired,
-      selectedDate:     React.PropTypes.any,
-      onSelectDate:     React.PropTypes.func.isRequired,
-      mode:             React.PropTypes.string.isRequired,
-      classNamePrefix:  React.PropTypes.string.isRequired
+      visibleDate:  React.PropTypes.any.isRequired,
+      date:         React.PropTypes.any,
+      onSelectDate: React.PropTypes.func.isRequired,
+      mode:         React.PropTypes.string.isRequired,
+      className:    React.PropTypes.string.isRequired
     },
 
     render() {
@@ -22,7 +22,7 @@ const YearPickerBody = React.createClass({
         return <InvalidDate invalidDate={this.props.visibleDate.format()} />;
       }
       const year = this.props.visibleDate.year();
-      const selectedYear = this.props.selectedDate ? this.props.selectedDate.year() : -1;
+      const selectedYear = this.props.date ? this.props.date.year() : -1;
 
       const visibleYears = DateUtils.getVisibleYears(year);
       const years = visibleYears.years.map((_year, index) => {

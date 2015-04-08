@@ -9,9 +9,9 @@ const Picker = React.createClass({
     date:         React.PropTypes.any.isRequired,
     isSelected:   React.PropTypes.bool.isRequired,
     isCurrent:    React.PropTypes.bool.isRequired,
+    isDisabled:   React.PropTypes.bool,
     onSelectDate: React.PropTypes.func.isRequired,
-    mode:         React.PropTypes.string.isRequired,
-    location:     React.PropTypes.string
+    mode:         React.PropTypes.string.isRequired
   },
 
   handleClick(e) {

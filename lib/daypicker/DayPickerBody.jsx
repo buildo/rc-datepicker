@@ -10,12 +10,12 @@ import DateUtils from '../utils/DateUtils';
 const DayPickerBody = React.createClass({
 
     propTypes: {
-      visibleDate:      React.PropTypes.any.isRequired,
-      selectedDate:     React.PropTypes.any,
-      onSelectDate:     React.PropTypes.func.isRequired,
-      location:         React.PropTypes.string.isRequired,
-      mode:             React.PropTypes.string.isRequired,
-      classNamePrefix:  React.PropTypes.string.isRequired
+      visibleDate:  React.PropTypes.any.isRequired,
+      date:         React.PropTypes.any,
+      onSelectDate: React.PropTypes.func.isRequired,
+      locale:       React.PropTypes.string.isRequired,
+      mode:         React.PropTypes.string.isRequired,
+      className:    React.PropTypes.string.isRequired
     },
 
     render(){
@@ -24,9 +24,9 @@ const DayPickerBody = React.createClass({
       }
       const year = this.props.visibleDate.year();
       const month = this.props.visibleDate.month();
-      const selectedMillis = this.props.selectedDate ? this.props.selectedDate.format('x') : -1;
-      const visibleDays = DateUtils.getVisibleDays(month, year, this.props.location);
+      const date = this.props.date ? this.props.date.format('DD/MM/YYYY') : undefined;
 
+      const visibleDays = DateUtils.getVisibleDays(month, year, this.props.locale);
       const days = visibleDays.days.map((dayOfMonth, index) => {
         const _date = this.props.visibleDate.clone();
         const isCurrent = index >= visibleDays.startCurrent && index <= visibleDays.endCurrent;
@@ -36,7 +36,7 @@ const DayPickerBody = React.createClass({
         _date.date(dayOfMonth);
         return <Picker
           date={_date}
-          isSelected={_date.format('x') === selectedMillis}
+          isSelected={_date.format('DD/MM/YYYY') === date}
           isCurrent={isCurrent}
           onSelectDate={this.props.onSelectDate}
           mode={this.props.mode}

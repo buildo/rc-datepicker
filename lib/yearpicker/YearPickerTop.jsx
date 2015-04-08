@@ -6,14 +6,14 @@ import _ from 'lodash';
 const YearPickerTop = React.createClass({
 
   propTypes: {
-    visibleDate:      React.PropTypes.any.isRequired,
-    onChangeDate:     React.PropTypes.func.isRequired,
-    classNamePrefix:  React.PropTypes.string.isRequired
+    visibleDate:         React.PropTypes.any.isRequired,
+    onChangeVisibleDate: React.PropTypes.func.isRequired,
+    className:           React.PropTypes.string.isRequired
   },
 
   changeYear(year) {
     this.props.visibleDate.year(year);
-    this.props.onChangeDate(this.props.visibleDate);
+    this.props.onChangeVisibleDate(this.props.visibleDate);
   },
 
   render() {
