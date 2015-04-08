@@ -132,7 +132,8 @@ const DatePickerInput = React.createClass({
       const _date = nextProps.date || nextProps.initialDate;
       const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
       this.setState({
-        date: _date ? date : undefined
+        date: _date ? date : undefined,
+        dateString: date.isValid() ? date.format(this.getFormat()) : this.state.dateString
       });
     }
   },
