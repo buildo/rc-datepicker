@@ -12,6 +12,8 @@ const YearPickerBody = React.createClass({
     propTypes: {
       visibleDate:  React.PropTypes.any.isRequired,
       date:         DateUtils.evaluateDateProp,
+      minDate:      DateUtils.evaluateDateProp,
+      maxDate:      DateUtils.evaluateDateProp,
       onSelectDate: React.PropTypes.func.isRequired,
       mode:         React.PropTypes.string.isRequired,
       className:    React.PropTypes.string.isRequired
@@ -26,11 +28,13 @@ const YearPickerBody = React.createClass({
 
       const visibleYears = DateUtils.getVisibleYears(year);
       const years = visibleYears.years.map((_year, index) => {
+        const date = moment([_year, 0, 1]);
         const isCurrent = index >= visibleYears.startCurrent && index <= visibleYears.endCurrent;
         return <Picker
-          date={moment([_year, 0, 1])}
+          date={date}
           isSelected={selectedYear === _year}
           isCurrent={isCurrent}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.minDate, this.props.maxDate)}
           onSelectDate={this.props.onSelectDate}
           mode={this.props.mode}
           key={index}

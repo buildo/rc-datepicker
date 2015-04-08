@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react/addons';
+import React from 'react';
 import moment from 'moment';
 import DatePicker from './DatePicker.jsx';
 import DateUtils from './utils/DateUtils.js';
@@ -8,19 +8,17 @@ import Locales from './utils/Locales.js';
 
 const DatePickerInput = React.createClass({
 
-  mixins: [React.addons.LinkedStateMixin],
-
   propTypes: {
     onChange:       React.PropTypes.func.isRequired,
     date:           DateUtils.evaluateDateProp,
     initialDate:    DateUtils.evaluateDateProp,
     minDate:        DateUtils.evaluateDateProp,
     maxDate:        DateUtils.evaluateDateProp,
-    placeholder:    React.PropTypes.string,
-    format:         React.PropTypes.string,
     locale:         React.PropTypes.string,
     startMode:      React.PropTypes.string,
     fixedMode:      React.PropTypes.bool,
+    placeholder:    React.PropTypes.string,
+    format:         React.PropTypes.string,
     readOnly:       React.PropTypes.bool,
     autoClose:      React.PropTypes.bool
   },
@@ -101,6 +99,8 @@ const DatePickerInput = React.createClass({
         <DatePicker
           date={this.state.date ? this.state.date.toDate() : undefined}
           initialDate={this.props.initialDate}
+          minDate={this.props.minDate}
+          maxDate={this.props.maxDate}
           locale={this.props.locale}
           startMode={this.props.startMode}
           fixedMode={this.props.fixedMode}

@@ -159,6 +159,14 @@
   .picker.selected.current {
     color: #F7F7F7;
   }
+  .picker.button.disabled {
+    color: #BBBBBB;
+  }
+  .picker.button.disabled:hover {
+    color: #BBBBBB;
+    background-color: rgba(0,0,0,0);
+    cursor: default;
+  }
   .button {
     display: block;
     text-align: center;

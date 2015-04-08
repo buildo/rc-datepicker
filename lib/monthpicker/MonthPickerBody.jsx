@@ -12,6 +12,8 @@ const MonthPickerBody = React.createClass({
     propTypes: {
       visibleDate:  React.PropTypes.any.isRequired,
       date:         DateUtils.evaluateDateProp,
+      minDate:      DateUtils.evaluateDateProp,
+      maxDate:      DateUtils.evaluateDateProp,
       onSelectDate: React.PropTypes.func.isRequired,
       locale:       React.PropTypes.string.isRequired,
       mode:         React.PropTypes.string.isRequired,
@@ -26,10 +28,12 @@ const MonthPickerBody = React.createClass({
       const selectedMonth = this.props.date ? this.props.date.month() : -1;
       const selectedYear = this.props.date ? this.props.date.year() : -1;
       const months = moment.months().map((_month, index) => {
+        const date = moment([year, index, 1]);
         return <Picker
-          date={moment([year, index, 1])}
+          date={date}
           isSelected={selectedMonth === index && selectedYear === year}
           isCurrent={true}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.minDate, this.props.maxDate)}
           onSelectDate={this.props.onSelectDate}
           locale={this.props.locale}
           mode={this.props.mode}

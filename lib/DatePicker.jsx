@@ -66,6 +66,8 @@ const DatePicker = React.createClass({
       <DayPicker
         date={this.state.date}
         visibleDate={this.state.visibleDate}
+        minDate={this.props.minDate}
+        maxDate={this.props.maxDate}
         onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
         onChangeMode={this.onChangeMode}
@@ -82,6 +84,8 @@ const DatePicker = React.createClass({
       <MonthPicker
         date={this.state.date}
         visibleDate={this.state.visibleDate}
+        minDate={this.props.minDate}
+        maxDate={this.props.maxDate}
         onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
         onChangeMode={this.onChangeMode}
@@ -98,6 +102,8 @@ const DatePicker = React.createClass({
       <YearPicker
         date={this.state.date}
         visibleDate={this.state.visibleDate}
+        minDate={this.props.minDate}
+        maxDate={this.props.maxDate}
         onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
         onChangeMode={this.onChangeMode}

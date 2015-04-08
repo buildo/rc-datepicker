@@ -12,6 +12,8 @@ const DayPickerBody = React.createClass({
     propTypes: {
       visibleDate:  React.PropTypes.any.isRequired,
       date:         DateUtils.evaluateDateProp,
+      minDate:      DateUtils.evaluateDateProp,
+      maxDate:      DateUtils.evaluateDateProp,
       onSelectDate: React.PropTypes.func.isRequired,
       locale:       React.PropTypes.string.isRequired,
       mode:         React.PropTypes.string.isRequired,
@@ -24,20 +26,22 @@ const DayPickerBody = React.createClass({
       }
       const year = this.props.visibleDate.year();
       const month = this.props.visibleDate.month();
-      const date = this.props.date ? this.props.date.format('DD/MM/YYYY') : undefined;
+      const selectedDate = this.props.date ? this.props.date.format('DD/MM/YYYY') : undefined;
 
       const visibleDays = DateUtils.getVisibleDays(month, year, this.props.locale);
       const days = visibleDays.days.map((dayOfMonth, index) => {
-        const _date = this.props.visibleDate.clone();
+        const date = this.props.visibleDate.clone();
         const isCurrent = index >= visibleDays.startCurrent && index <= visibleDays.endCurrent;
         if (!isCurrent) {
-          _date.add(index < visibleDays.startCurrent ? -1 : 1, 'M');
+          date.add(index < visibleDays.startCurrent ? -1 : 1, 'M');
         }
-        _date.date(dayOfMonth);
+        date.date(dayOfMonth);
+        console.log('BREAK_LINE');
         return <Picker
-          date={_date}
-          isSelected={_date.format('DD/MM/YYYY') === date}
+          date={date}
+          isSelected={date.format('DD/MM/YYYY') === selectedDate}
           isCurrent={isCurrent}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.minDate, this.props.maxDate)}
           onSelectDate={this.props.onSelectDate}
           mode={this.props.mode}
           key={index}
