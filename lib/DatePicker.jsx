@@ -2,6 +2,7 @@
 
 import React from 'react';
 import moment from 'moment';
+import DateUtils from './utils/DateUtils.js';
 import DayPicker from './daypicker/DayPicker.jsx';
 import MonthPicker from './monthpicker/MonthPicker.jsx';
 import YearPicker from './yearpicker/YearPicker.jsx';
@@ -10,22 +11,10 @@ const DatePicker = React.createClass({
 
   propTypes: {
     onChange:         React.PropTypes.func.isRequired,
-    date:             React.PropTypes.oneOfType([
-                        React.PropTypes.string,
-                        React.PropTypes.instanceOf(Date)
-                      ]),
-    initialDate:      React.PropTypes.oneOfType([
-                        React.PropTypes.string,
-                        React.PropTypes.instanceOf(Date)
-                      ]),
-    minDate:          React.PropTypes.oneOfType([
-                        React.PropTypes.string,
-                        React.PropTypes.instanceOf(Date)
-                      ]),
-    maxDate:          React.PropTypes.oneOfType([
-                        React.PropTypes.string,
-                        React.PropTypes.instanceOf(Date)
-                      ]),
+    date:             DateUtils.evaluateDateProp,
+    initialDate:      DateUtils.evaluateDateProp,
+    minDate:          DateUtils.evaluateDateProp,
+    maxDate:          DateUtils.evaluateDateProp,
     locale:           React.PropTypes.string,
     startMode:        React.PropTypes.string,
     fixedMode:        React.PropTypes.bool,

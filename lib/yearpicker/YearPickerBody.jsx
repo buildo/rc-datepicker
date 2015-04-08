@@ -11,7 +11,7 @@ const YearPickerBody = React.createClass({
 
     propTypes: {
       visibleDate:  React.PropTypes.any.isRequired,
-      date:         React.PropTypes.any,
+      date:         DateUtils.evaluateDateProp,
       onSelectDate: React.PropTypes.func.isRequired,
       mode:         React.PropTypes.string.isRequired,
       className:    React.PropTypes.string.isRequired

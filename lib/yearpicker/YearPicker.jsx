@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import DateUtils from '../utils/DateUtils.js';
 import YearPickerTop from './YearPickerTop.jsx';
 import YearPickerBody from './YearPickerBody.jsx';
 
@@ -8,7 +9,7 @@ const YearPicker = React.createClass({
 
   propTypes: {
     visibleDate:         React.PropTypes.any.isRequired,
-    date:                React.PropTypes.any,
+    date:                DateUtils.evaluateDateProp,
     onChangeVisibleDate: React.PropTypes.func.isRequired,
     onSelectDate:        React.PropTypes.func.isRequired,
     onChangeMode:        React.PropTypes.func.isRequired,

@@ -12,22 +12,10 @@ const DatePickerInput = React.createClass({
 
   propTypes: {
     onChange:       React.PropTypes.func.isRequired,
-    date:           React.PropTypes.oneOfType([
-                      React.PropTypes.string,
-                      React.PropTypes.instanceOf(Date)
-                    ]),
-    initialDate:    React.PropTypes.oneOfType([
-                      React.PropTypes.string,
-                      React.PropTypes.instanceOf(Date)
-                    ]),
-    minDate:        React.PropTypes.oneOfType([
-                      React.PropTypes.string,
-                      React.PropTypes.instanceOf(Date)
-                    ]),
-    maxDate:        React.PropTypes.oneOfType([
-                      React.PropTypes.string,
-                      React.PropTypes.instanceOf(Date)
-                    ]),
+    date:           DateUtils.evaluateDateProp,
+    initialDate:    DateUtils.evaluateDateProp,
+    minDate:        DateUtils.evaluateDateProp,
+    maxDate:        DateUtils.evaluateDateProp,
     placeholder:    React.PropTypes.string,
     format:         React.PropTypes.string,
     locale:         React.PropTypes.string,
