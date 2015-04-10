@@ -46,7 +46,6 @@
     "gulp-util": "^3.0.4",
     "gulp-webpack": "^1.3.1",
     "minimist": "^1.1.1",
-    "react": "0.13.x",
     "run-sequence": "^1.0.2",
     "style-loader": "^0.9.0",
     "url-loader": "^0.5.5",
@@ -55,6 +54,9 @@
     "del": "^1.1.1",
     "run-sequence": "^1.0.2",
     "webpack-dev-server": "^1.8.0"
+  },
+  "peerDependencies": {
+    "react": ">= 0.12.x"
   },
   "dependencies": {
     "lodash": "^3.6.0",

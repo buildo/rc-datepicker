@@ -31,6 +31,22 @@ var config = {
     extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
   },
 
+  externals: [{
+    "react": {
+      root: "react",
+      commonjs2: "react",
+      commonjs: "react",
+      amd: "react"
+    }
+  }, {
+    "react/addons": {
+      root: "react/addons",
+      commonjs2: "react/addons",
+      commonjs: "react/addons",
+      amd: "react/addons"
+    }
+  }],
+
   module: {
     loaders: [{
       test: /\.css$/,
