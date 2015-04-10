@@ -39,7 +39,7 @@ const DatePickerInput = React.createClass({
     const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
     return {
       date: _date ? date : undefined,
-      dateString: date.format(this.getFormat()),
+      dateString: _date ? date.format(this.getFormat()) : undefined,
       showing: false
     };
   },
