@@ -36,12 +36,11 @@ const DayPickerBody = React.createClass({
           date.add(index < visibleDays.startCurrent ? -1 : 1, 'M');
         }
         date.date(dayOfMonth);
-        console.log('BREAK_LINE');
         return <Picker
           date={date}
           isSelected={date.format('DD/MM/YYYY') === selectedDate}
           isCurrent={isCurrent}
-          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.minDate, this.props.maxDate)}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
           onSelectDate={this.props.onSelectDate}
           mode={this.props.mode}
           key={index}

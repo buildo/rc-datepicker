@@ -34,7 +34,7 @@ const YearPickerBody = React.createClass({
           date={date}
           isSelected={selectedYear === _year}
           isCurrent={isCurrent}
-          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.minDate, this.props.maxDate)}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
           onSelectDate={this.props.onSelectDate}
           mode={this.props.mode}
           key={index}

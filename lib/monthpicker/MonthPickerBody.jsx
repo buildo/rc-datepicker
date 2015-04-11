@@ -33,7 +33,7 @@ const MonthPickerBody = React.createClass({
           date={date}
           isSelected={selectedMonth === index && selectedYear === year}
           isCurrent={true}
-          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.minDate, this.props.maxDate)}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
           onSelectDate={this.props.onSelectDate}
           locale={this.props.locale}
           mode={this.props.mode}
