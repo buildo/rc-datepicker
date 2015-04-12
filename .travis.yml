@@ -5,3 +5,7 @@ node_js:
 before_script:
     - npm install -g gulp
 script: gulp
+notifications:
+    slack:
+      rooms:
+        - buildo:iVeL8b7n4t8Mkif5nJmHmsix#frontends
