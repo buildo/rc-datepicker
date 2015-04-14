@@ -69,7 +69,7 @@
   },
   "config": {
     "blanket": {
-      "pattern": "src",
+      "pattern": "dist",
       "data-cover-never": [
         "dist",
         "node_modules",
