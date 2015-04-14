@@ -5,6 +5,8 @@ node_js:
 # before_script:
 #    - npm install -g gulp
 #script: gulp
+before_script:
+  - npm install -g react-tools
 script: ./travis-test.sh
 
 notifications:
