@@ -26,4 +26,28 @@ describe('DatePickerInput', function() {
     expect(datePickers.lenght).toBe(1, "DatePicker was not displayed after clicking on the calendar button");
 
   });
+
+  it('presents the DatePicker when clicking on the input area', function() {
+    var React = require('react/addons');
+    var {DatePickerInput, DatePicker} = require('../dist/react-semantic-datepicker.min.js');
+    var TestUtils = React.addons.TestUtils;
+
+    var inputWrapper = TestUtils.renderIntoDocument(
+      <div className='ui input'>
+        <DatePickerInput onChange={() => {}} />
+      </div>
+    );
+
+    var datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    expect(datePickers.length).toBe(0);
+
+    var datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
+    TestUtils.Simulate.click(datePickerInputArea);
+
+    var datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    expect(datePickers.lenght).toBe(1, "DatePicker was not displayed after clicking on the input area");
+
+  });
+
+
 });
