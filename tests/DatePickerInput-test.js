@@ -1,12 +1,13 @@
 var jsdom = require('mocha-jsdom');
-var assert = require('assert');
+var expect = require('expect');
+var $ = require('jquery');
 
 describe('DatePickerInput', function() {
   jsdom();
 
   it('presents the DatePicker when clicking on the calendar button', function() {
     var React = require('react/addons');
-    var {DatePickerInput} = require('../dist/react-semantic-datepicker.min.js');
+    var {DatePickerInput, DatePicker} = require('../dist/react-semantic-datepicker.min.js');
     var TestUtils = React.addons.TestUtils;
 
     var inputWrapper = TestUtils.renderIntoDocument(
@@ -15,14 +16,14 @@ describe('DatePickerInput', function() {
       </div>
     );
 
-    var datePickers = TestUtils.scryRenderedDOMComponentsWithClass(inputWrapper, 'datepicker');
-    assert(datePickers.length === 0);
+    var datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    expect(datePickers.length).toBe(0);
 
     var calendarButton = TestUtils.findRenderedDOMComponentWithClass(inputWrapper, 'ui icon button');
     TestUtils.Simulate.click(calendarButton);
 
-    var datePickers = TestUtils.scryRenderedDOMComponentsWithClass(inputWrapper, 'datepicker');
-    assert(datePickers.length > 0);
+    var datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    expect(datePickers.lenght).toBe(1, "DatePicker was not displayed after clicking on the calendar button");
 
   });
 });
