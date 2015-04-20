@@ -23,7 +23,7 @@ describe('DatePickerInput', function() {
     TestUtils.Simulate.click(calendarButton);
 
     var datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.lenght).toBe(1, "DatePicker was not displayed after clicking on the calendar button");
+    expect(datePickers.length).toBe(1, "DatePicker was not displayed after clicking on the calendar button");
 
   });
 
@@ -34,7 +34,7 @@ describe('DatePickerInput', function() {
 
     var inputWrapper = TestUtils.renderIntoDocument(
       <div className='ui input'>
-        <DatePickerInput onChange={() => {}} />
+        <DatePickerInput onChange={() => {}} showOnInputClick={true} />
       </div>
     );
 
@@ -45,7 +45,7 @@ describe('DatePickerInput', function() {
     TestUtils.Simulate.click(datePickerInputArea);
 
     var datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.lenght).toBe(1, "DatePicker was not displayed after clicking on the input area");
+    expect(datePickers.length).toBe(1, "DatePicker was not displayed after clicking on the input area");
 
   });
 
