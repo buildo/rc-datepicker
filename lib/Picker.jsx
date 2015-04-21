@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import classNames from 'classnames';
 import DateUtils from './utils/DateUtils.js';
 
 const Picker = React.createClass({
@@ -43,7 +44,13 @@ const Picker = React.createClass({
     const string = this.props.date.format(formatMode);
     const value = string.charAt(0).toUpperCase() + string.slice(1); // first letter always uppercase
 
-    const classes = (this.props.mode + (this.props.isCurrent ? ' current' : '') + (this.props.isSelected ? ' selected' : '') + (!this.props.isEnabled ? ' disabled' : ''));
+    const classes = classNames({
+        this.props.mode: true,
+        current: this.props.isCurrent,
+        selected: this.props.isSelected,
+        disabled: !this.props.isEnabled
+      });
+
     return (
       <div className={'picker button ' + classes} onClick={this.handleClick}>
         <span>{value}</span>
