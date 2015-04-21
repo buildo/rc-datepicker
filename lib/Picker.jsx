@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import classNames from 'classnames'
+import classNames from 'classnames';
 import DateUtils from './utils/DateUtils.js';
 
 const Picker = React.createClass({
