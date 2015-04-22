@@ -45,7 +45,7 @@ const Picker = React.createClass({
     const value = string.charAt(0).toUpperCase() + string.slice(1); // first letter always uppercase
 
     const classes = classNames({
-        this.props.mode: true,
+        [this.props.mode]: true,
         current: this.props.isCurrent,
         selected: this.props.isSelected,
         disabled: !this.props.isEnabled
