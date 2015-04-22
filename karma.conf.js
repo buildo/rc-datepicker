@@ -17,7 +17,7 @@ module.exports = function (config) {
 
     preprocessors: {
       'tests.webpack.js': [ 'webpack', 'sourcemap' ],
-      'lib/**/*.jsx': ['coverage']
+      'lib/**/*.jsx': [ 'coverage' ]
     },
 
     reporters: [ 'nyan' ],
@@ -25,9 +25,11 @@ module.exports = function (config) {
     webpack: {
       devtool: 'inline-source-map',
       module: {
-        loaders: [
-          { test: /\.jsx?$/, loader: 'babel-loader' }
-        ]
+        loaders: [{
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader'
+        }]
       },
       plugins: [
         new webpack.DefinePlugin({
@@ -40,9 +42,9 @@ module.exports = function (config) {
       noInfo: true //please don't spam the console when running in karma!
     },
 
-    // coverageReporter: {
-    //   type: 'lcov',
-    //   dir: 'coverage/'
-    // }
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'coverage/'
+    }
   });
 };
