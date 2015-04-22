@@ -49,5 +49,21 @@ describe('DatePickerInput', function() {
 
   });
 
+  it('should pass the name prop down to the underlying input field', function() {
+    var React = require('react/addons');
+    var {DatePickerInput} = require('../dist/react-semantic-datepicker.min.js');
+    var TestUtils = React.addons.TestUtils;
+
+    var inputWrapper = TestUtils.renderIntoDocument(
+      <div className='ui input'>
+        <DatePickerInput onChange={() => {}} name='foobar' />
+      </div>
+    );
+
+    var datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
+    expect(datePickerInputArea.props.name).toBe('foobar', 'Underlying input\'s \'name\' prop is \'' + datePickerInputArea.props.name + '\' intead of \'foobar\'');
+
+  });
+
 
 });

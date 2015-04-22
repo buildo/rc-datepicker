@@ -21,7 +21,8 @@ const DatePickerInput = React.createClass({
     format:           React.PropTypes.string,
     readOnly:         React.PropTypes.bool,
     showOnInputClick: React.PropTypes.bool,
-    autoClose:        React.PropTypes.bool
+    autoClose:        React.PropTypes.bool,
+    name:             React.PropTypes.string
   },
 
   getDefaultProps() {
@@ -120,6 +121,7 @@ const DatePickerInput = React.createClass({
         <div className='ui action input datepicker-input'>
           <input
             type="text"
+            name={this.props.name}
             placeholder={this.props.placeholder}
             valueLink={{value: this.state.dateString || '', requestChange: this.onChangeInput}}
             readOnly={this.props.readOnly}
