@@ -5,11 +5,11 @@ set -o errexit
 # messages when a test fails.
 npm test
 
-# Now that the tests have passed, gather coverage data.
-set +o errexit
-NODE_ENV=test
-./node_modules/.bin/mocha \
-  --require blanket \
-  --reporter mocha-lcov-reporter \
-  tests/*test.js \
-  | ./node_modules/coveralls/bin/coveralls.js
+# # Now that the tests have passed, gather coverage data.
+# set +o errexit
+# NODE_ENV=test
+# ./node_modules/.bin/mocha \
+#   --require blanket \
+#   --reporter mocha-lcov-reporter \
+#   tests/*test.js \
+#   | ./node_modules/coveralls/bin/coveralls.js
