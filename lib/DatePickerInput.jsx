@@ -9,18 +9,20 @@ import Locales from './utils/Locales.js';
 const DatePickerInput = React.createClass({
 
   propTypes: {
-    onChange:       React.PropTypes.func.isRequired,
-    date:           DateUtils.evaluateDateProp,
-    initialDate:    DateUtils.evaluateDateProp,
-    minDate:        DateUtils.evaluateDateProp,
-    maxDate:        DateUtils.evaluateDateProp,
-    locale:         React.PropTypes.string,
-    startMode:      React.PropTypes.string,
-    fixedMode:      React.PropTypes.bool,
-    placeholder:    React.PropTypes.string,
-    format:         React.PropTypes.string,
-    readOnly:       React.PropTypes.bool,
-    autoClose:      React.PropTypes.bool
+    onChange:         React.PropTypes.func.isRequired,
+    date:             DateUtils.evaluateDateProp,
+    initialDate:      DateUtils.evaluateDateProp,
+    minDate:          DateUtils.evaluateDateProp,
+    maxDate:          DateUtils.evaluateDateProp,
+    locale:           React.PropTypes.string,
+    startMode:        React.PropTypes.string,
+    fixedMode:        React.PropTypes.bool,
+    placeholder:      React.PropTypes.string,
+    format:           React.PropTypes.string,
+    readOnly:         React.PropTypes.bool,
+    showOnInputClick: React.PropTypes.bool,
+    autoClose:        React.PropTypes.bool,
+    name:             React.PropTypes.string
   },
 
   getDefaultProps() {
@@ -109,15 +111,21 @@ const DatePickerInput = React.createClass({
     }
   },
 
+  onInputClick() {
+    this.setState({showing: this.props.showOnInputClick || this.state.showing});
+  },
+
   render() {
     return (
       <div>
         <div className='ui action input datepicker-input'>
           <input
             type="text"
+            name={this.props.name}
             placeholder={this.props.placeholder}
             valueLink={{value: this.state.dateString || '', requestChange: this.onChangeInput}}
-            readOnly={this.props.readOnly} />
+            readOnly={this.props.readOnly}
+            onClick={this.onInputClick} />
           <div className={'ui icon button' + (this.state.showing ? ' active' : '')} onClick={this.toggleDatePicker}>
             <i className='calendar icon'></i>
           </div>
