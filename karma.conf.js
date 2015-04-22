@@ -20,7 +20,7 @@ module.exports = function (config) {
       'lib/**/*.jsx': [ 'coverage' ]
     },
 
-    reporters: [ process.env.CONTINUOUS_INTEGRATION ? 'dots' : 'nyan' ],
+    reporters: [ (process.env.CONTINUOUS_INTEGRATION ? 'dots' : 'nyan'), 'coverage', 'coveralls' ],
 
     webpack: {
       devtool: 'inline-source-map',
