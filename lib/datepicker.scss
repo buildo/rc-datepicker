@@ -1,5 +1,15 @@
+.react-datepicker-component {
+  position: relative;
+}
 
-.datepicker {
+.react-datepicker.floating {
+  position: absolute;
+  z-index: 10000;
+}
+
+.react-datepicker {
+  margin-left: 5px;
+  margin-top: 5px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -8,14 +18,10 @@
   user-select: none;
 
   .container {
-    // position: relative;
-    margin-top: 5px;
-    margin-left: 5px;
     border: 1px solid #AEAEAE;
     border-radius: 4px;
     background-color: #FFFFFF;
     width: 200px;
-    z-index: 10;
   }
 
   .top {
@@ -180,7 +186,4 @@
   }
 }
 
-.ui.action.input.datepicker-input {
-  // width: 19.3rem;
-}
-
+.react-datepicker-input {}

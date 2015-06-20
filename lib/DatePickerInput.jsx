@@ -22,6 +22,8 @@ const DatePickerInput = React.createClass({
     readOnly:         React.PropTypes.bool,
     showOnInputClick: React.PropTypes.bool,
     autoClose:        React.PropTypes.bool,
+    floating:         React.PropTypes.bool,
+    className:        React.PropTypes.string,
     name:             React.PropTypes.string
   },
 
@@ -31,8 +33,8 @@ const DatePickerInput = React.createClass({
       startMode: 'day',
       autoClose: true,
       readOnly: false,
-      startMode: 'day',
-      fixedMode: false
+      fixedMode: false,
+      floating: true
     };
   },
 
@@ -107,6 +109,7 @@ const DatePickerInput = React.createClass({
           locale={this.props.locale}
           startMode={this.props.startMode}
           fixedMode={this.props.fixedMode}
+          floating={this.props.floating}
           onChange={this._onChangeDate} />
         );
     }
@@ -118,8 +121,8 @@ const DatePickerInput = React.createClass({
 
   render() {
     return (
-      <div>
-        <div className='ui action input datepicker-input'>
+      <div className={this.props.className + ' react-datepicker-component'}>
+        <div className='ui action input react-datepicker-input'>
           <input
             type='text'
             name={this.props.name}

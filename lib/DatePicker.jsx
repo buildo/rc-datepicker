@@ -132,6 +132,7 @@ const DatePicker = React.createClass({
         break;
     }
 
+    const floating = this.props.floating ? 'floating' : '';
     return (
       <div className={`react-datepicker ${floating} ${this.props.className}`}>
         {picker}

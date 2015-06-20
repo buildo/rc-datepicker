@@ -65,5 +65,25 @@ describe('DatePickerInput', function() {
 
   });
 
+  it('DatePicker should be floating above content', function() {
+    var picker = <DatePickerInput onChange={() => {}} name='foobar'/>;
+
+    var inputWrapper = TestUtils.renderIntoDocument(
+      <div className='ui input'>
+        <DatePickerInput onChange={() => {}} name='foobar'/>;
+      </div>
+    );
+
+    var input = TestUtils.renderIntoDocument(picker).getDOMNode();
+    var previousHeight = input.clientHeight;
+
+    var calendarButton = TestUtils.findRenderedDOMComponentWithClass(inputWrapper, 'ui icon button');
+    TestUtils.Simulate.click(calendarButton);
+
+    var newHeight = input.clientHeight;
+    expect(newHeight).toBe(previousHeight, 'datepicker component height is ' + newHeight + ' instead of ' + previousHeight);
+
+  });
+
 
 });
