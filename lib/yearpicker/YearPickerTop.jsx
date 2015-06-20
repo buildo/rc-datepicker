@@ -7,8 +7,7 @@ const YearPickerTop = React.createClass({
 
   propTypes: {
     visibleDate:         React.PropTypes.any.isRequired,
-    onChangeVisibleDate: React.PropTypes.func.isRequired,
-    className:           React.PropTypes.string.isRequired
+    onChangeVisibleDate: React.PropTypes.func.isRequired
   },
 
   changeYear(year) {

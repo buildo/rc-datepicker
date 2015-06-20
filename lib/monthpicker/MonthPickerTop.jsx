@@ -9,8 +9,7 @@ const MonthPickerTop = React.createClass({
     visibleDate:         React.PropTypes.any.isRequired,
     onChangeVisibleDate: React.PropTypes.func.isRequired,
     onChangeMode:        React.PropTypes.func.isRequired,
-    fixedMode:           React.PropTypes.bool,
-    className:           React.PropTypes.string.isRequired
+    fixedMode:           React.PropTypes.bool
   },
 
   changeYear(year) {

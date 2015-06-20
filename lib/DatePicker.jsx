@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react';
+import React from 'react/addons';
 import moment from 'moment';
 import DateUtils from './utils/DateUtils.js';
 import DayPicker from './daypicker/DayPicker.jsx';
@@ -10,20 +10,21 @@ import YearPicker from './yearpicker/YearPicker.jsx';
 const DatePicker = React.createClass({
 
   propTypes: {
-    onChange:         React.PropTypes.func.isRequired,
-    date:             DateUtils.evaluateDateProp,
-    initialDate:      DateUtils.evaluateDateProp,
-    minDate:          DateUtils.evaluateDateProp,
-    maxDate:          DateUtils.evaluateDateProp,
-    locale:           React.PropTypes.string,
-    startMode:        React.PropTypes.string,
-    fixedMode:        React.PropTypes.bool,
-    className:        React.PropTypes.string,
+    onChange:    React.PropTypes.func.isRequired,
+    date:        DateUtils.evaluateDateProp,
+    initialDate: DateUtils.evaluateDateProp,
+    minDate:     DateUtils.evaluateDateProp,
+    maxDate:     DateUtils.evaluateDateProp,
+    locale:      React.PropTypes.string,
+    startMode:   React.PropTypes.string,
+    fixedMode:   React.PropTypes.bool,
+    floating:    React.PropTypes.bool,
+    className:   React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
-      className: 'datepicker',
+      className: '',
       startMode: 'day',
       locale: 'en'
     };
@@ -132,13 +133,13 @@ const DatePicker = React.createClass({
     }
 
     return (
-      <div className={this.props.className}>
+      <div className={`react-datepicker ${floating} ${this.props.className}`}>
         {picker}
       </div>
     );
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.date) {
       this.setState(this.getStateFromProps(nextProps));
     }
