@@ -34,15 +34,17 @@ const DayPickerBody = React.createClass({
         date.add(index < visibleDays.startCurrent ? -1 : 1, 'M');
       }
       date.date(dayOfMonth);
-      return <Picker
-        date={date}
-        isSelected={date.format('DD/MM/YYYY') === selectedDate}
-        isCurrent={isCurrent}
-        isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
-        onSelectDate={this.props.onSelectDate}
-        mode={this.props.mode}
-        key={index}
-      />;
+      return (
+        <Picker
+          date={date}
+          isSelected={date.format('DD/MM/YYYY') === selectedDate}
+          isCurrent={isCurrent}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
+          onSelectDate={this.props.onSelectDate}
+          mode={this.props.mode}
+          key={index}
+        />
+      );
     });
     const nColumns = 7;
     const nRows = 6;

@@ -30,15 +30,17 @@ const YearPickerBody = React.createClass({
     const years = visibleYears.years.map((_year, index) => {
       const date = moment([_year, 0, 1]);
       const isCurrent = index >= visibleYears.startCurrent && index <= visibleYears.endCurrent;
-      return <Picker
-        date={date}
-        isSelected={selectedYear === _year}
-        isCurrent={isCurrent}
-        isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
-        onSelectDate={this.props.onSelectDate}
-        mode={this.props.mode}
-        key={index}
-      />;
+      return (
+        <Picker
+          date={date}
+          isSelected={selectedYear === _year}
+          isCurrent={isCurrent}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
+          onSelectDate={this.props.onSelectDate}
+          mode={this.props.mode}
+          key={index}
+        />
+      );
     });
     const nColumns = 4;
     const nRows = 3;

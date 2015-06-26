@@ -29,16 +29,18 @@ const MonthPickerBody = React.createClass({
     const selectedYear = this.props.date ? this.props.date.year() : -1;
     const months = moment.months().map((_month, index) => {
       const date = moment([year, index, 1]);
-      return <Picker
-        date={date}
-        isSelected={selectedMonth === index && selectedYear === year}
-        isCurrent={true}
-        isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
-        onSelectDate={this.props.onSelectDate}
-        locale={this.props.locale}
-        mode={this.props.mode}
-        key={index}
-      />;
+      return (
+        <Picker
+          date={date}
+          isSelected={selectedMonth === index && selectedYear === year}
+          isCurrent={true}
+          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
+          onSelectDate={this.props.onSelectDate}
+          locale={this.props.locale}
+          mode={this.props.mode}
+          key={index}
+        />
+      );
     });
     const nColumns = 4;
     const nRows = 3;
