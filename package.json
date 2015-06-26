@@ -1,5 +1,5 @@
 {
-  "name": "react-semantic-datepicker",
+  "name": "rc-datepicker",
   "version": "1.0.0",
   "description": "DatePicker and DatePickerInput to be used with React and Semantic UI",
   "main": "index.js",
