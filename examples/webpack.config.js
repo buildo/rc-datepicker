@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var paths = {
   SRC: path.resolve(__dirname, '../src'),
@@ -34,6 +35,11 @@ module.exports = {
         loader: 'babel?stage=0&loose',
         include: [paths.SRC, paths.EXAMPLES],
         exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        loader: "style!css!sass",
+        include: [paths.SRC],
       }
     ],
     preLoaders: [
@@ -49,7 +55,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
-    })
+    }),
+    new ExtractTextPlugin("[name].css")
   ]
 
 };
