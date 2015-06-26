@@ -16,8 +16,7 @@ const YearPicker = React.createClass({
     onSelectDate:        React.PropTypes.func.isRequired,
     onChangeMode:        React.PropTypes.func.isRequired,
     mode:                React.PropTypes.string.isRequired,
-    fixedMode:           React.PropTypes.bool,
-    className:           React.PropTypes.string.isRequired
+    fixedMode:           React.PropTypes.bool
   },
 
   _onSelectDate(date) {
@@ -31,19 +30,17 @@ const YearPicker = React.createClass({
 
   render() {
     return (
-      <div className={this.props.className + ' container year'}>
+      <div className='container year'>
         <YearPickerTop
           visibleDate={this.props.visibleDate}
-          onChangeVisibleDate={this.props.onChangeVisibleDate}
-          className={this.props.className} />
+          onChangeVisibleDate={this.props.onChangeVisibleDate} />
         <YearPickerBody
           visibleDate={this.props.visibleDate}
           date={this.props.date}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           onSelectDate={this._onSelectDate}
-          mode={this.props.mode}
-          className={this.props.className} />
+          mode={this.props.mode} />
       </div>
     );
   }

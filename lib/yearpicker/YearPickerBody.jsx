@@ -15,8 +15,7 @@ const YearPickerBody = React.createClass({
       minDate:      DateUtils.evaluateDateProp,
       maxDate:      DateUtils.evaluateDateProp,
       onSelectDate: React.PropTypes.func.isRequired,
-      mode:         React.PropTypes.string.isRequired,
-      className:    React.PropTypes.string.isRequired
+      mode:         React.PropTypes.string.isRequired
     },
 
     render() {

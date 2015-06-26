@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import _ from 'lodash';
+import {partial} from 'lodash/function';
 import moment from 'moment';
 import DateUtils from '../utils/DateUtils.js';
 
@@ -11,7 +11,6 @@ const DayPickerTop = React.createClass({
     visibleDate:         React.PropTypes.any.isRequired,
     onChangeVisibleDate: React.PropTypes.func.isRequired,
     onChangeMode:        React.PropTypes.func.isRequired,
-    className:           React.PropTypes.string.isRequired,
     fixedMode:           React.PropTypes.bool
   },
 
@@ -40,13 +39,13 @@ const DayPickerTop = React.createClass({
     return (
       <div className='top'>
         <div className='display'>
-          <div className='button left' onClick={_.partial(this.changeMonth, (month - 1))}>
+          <div className='button left' onClick={partial(this.changeMonth, (month - 1))}>
             &lt;
           </div>
           <div className={'button label' + (this.props.fixedMode? ' fixed' : '')} onClick={this.changeMode}>
             <strong className={this.props.textClassNames}>{monthValue}</strong>
           </div>
-          <div className='button right' onClick={_.partial(this.changeMonth, (month + 1))}>
+          <div className='button right' onClick={partial(this.changeMonth, (month + 1))}>
             &gt;
           </div>
         </div>

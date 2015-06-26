@@ -17,8 +17,7 @@ const MonthPicker = React.createClass({
     onChangeMode:        React.PropTypes.func.isRequired,
     locale:              React.PropTypes.string.isRequired,
     mode:                React.PropTypes.string.isRequired,
-    fixedMode:           React.PropTypes.bool,
-    className:           React.PropTypes.string.isRequired
+    fixedMode:           React.PropTypes.bool
   },
 
   _onSelectDate(date) {
@@ -32,13 +31,12 @@ const MonthPicker = React.createClass({
 
   render() {
     return (
-      <div className={this.props.className + ' container month'}>
+      <div className='container month'>
         <MonthPickerTop
           visibleDate={this.props.visibleDate}
           onChangeVisibleDate={this.props.onChangeVisibleDate}
           onChangeMode={this.props.onChangeMode}
-          fixedMode={this.props.fixedMode}
-          className={this.props.className} />
+          fixedMode={this.props.fixedMode} />
         <MonthPickerBody
           visibleDate={this.props.visibleDate}
           date={this.props.date}
@@ -46,8 +44,7 @@ const MonthPicker = React.createClass({
           maxDate={this.props.maxDate}
           onSelectDate={this._onSelectDate}
           mode={this.props.mode}
-          locale={this.props.locale}
-          className={this.props.className} />
+          locale={this.props.locale} />
       </div>
     );
   }

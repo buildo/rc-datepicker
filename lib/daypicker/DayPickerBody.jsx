@@ -16,8 +16,7 @@ const DayPickerBody = React.createClass({
       maxDate:      DateUtils.evaluateDateProp,
       onSelectDate: React.PropTypes.func.isRequired,
       locale:       React.PropTypes.string.isRequired,
-      mode:         React.PropTypes.string.isRequired,
-      className:    React.PropTypes.string.isRequired
+      mode:         React.PropTypes.string.isRequired
     },
 
     render(){
