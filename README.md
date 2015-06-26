@@ -3,7 +3,7 @@
 # React Datepicker
 A decent and pretty date picker to be used with React
 
-```
+```jsx
 import fakeItalianImport from 'moment/locale/it.js'
 import {DatePicker, DatePickerInput} from 'rc-datepicker';
 
@@ -28,7 +28,7 @@ npm install --save rc-datepicker
 
 ###DatePickerInput
 supports any props of the base React input component. In addition you can pass:
-```
+```jsx
   onChange:         React.PropTypes.func.isRequired,
   date:             DateUtils.evaluateDateProp,
   initialDate:      DateUtils.evaluateDateProp,
@@ -43,14 +43,14 @@ supports any props of the base React input component. In addition you can pass:
   floating:         React.PropTypes.bool
 ```
 Default values:
-```
+```jsx
   startMode: 'day',
   autoClose: true,
   floating: true
 ```
 
 ###DatePicker
-```
+```jsx
   onChange:    React.PropTypes.func.isRequired,
   date:        DateUtils.evaluateDateProp,
   initialDate: DateUtils.evaluateDateProp,
@@ -62,7 +62,7 @@ Default values:
   floating:    React.PropTypes.bool
 ```
 Default values:
-```
+```jsx
   startMode: 'day'
 ```
 
@@ -80,7 +80,7 @@ The DatePicker will now use French locales.
 #####Locales as props
 You can switch between locales also by passing the prop "locale" to the datepicker. **WATCH OUT** this method requires the wanted locale to be already available in your bundle which is true if you had already imported it or if you're using ```moment-with-locales.min.js```
 
-```
+```jsx
 <DatePicker locale='es' />
 ```
 
