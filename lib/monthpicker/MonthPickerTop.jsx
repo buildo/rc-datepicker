@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import _ from 'lodash';
+import {partial} from 'lodash/function';
 
 const MonthPickerTop = React.createClass({
 
@@ -28,13 +28,13 @@ const MonthPickerTop = React.createClass({
     return (
       <div className='top'>
         <div className='display'>
-          <div className='button left' onClick={_.partial(this.changeYear, (year - 1))}>
+          <div className='button left' onClick={partial(this.changeYear, (year - 1))}>
             &lt;
           </div>
           <div className={'button label' + (this.props.fixedMode? ' fixed' : '')}  onClick={this.changeMode}>
             <strong className={this.props.textClassNames}>{year}</strong>
           </div>
-          <div className='button right' onClick={_.partial(this.changeYear, (year + 1))}>
+          <div className='button right' onClick={partial(this.changeYear, (year + 1))}>
             &gt;
           </div>
         </div>

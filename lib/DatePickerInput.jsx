@@ -121,7 +121,7 @@ const DatePickerInput = React.createClass({
 
   render() {
     return (
-      <div className={this.props.className + ' react-datepicker-component'}>
+      <div className={'react-datepicker-component ' + this.props.className}>
         <div className='ui action input react-datepicker-input'>
           <input
             type='text'
