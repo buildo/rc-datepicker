@@ -12,8 +12,11 @@ const Example = React.createClass({
 
   render() {
     return (
-      <div className='ui action input' style={{margin: 20}}>
-        <DatePickerInput onChange={() => {}} showOnInputClick />
+      <div style={{margin: 20}}>
+        <div className='ui input'>
+          <DatePickerInput onChange={() => {}} showOnInputClick />
+        </div>
+        <p>The datepicker should render over me</p>
       </div>
     );
   }
