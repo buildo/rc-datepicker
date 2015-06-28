@@ -144,8 +144,17 @@
 	  render: function render() {
 	    return _react2['default'].createElement(
 	      'div',
-	      { className: 'ui action input', style: { margin: 20 } },
-	      _react2['default'].createElement(_src.DatePickerInput, { onChange: function () {}, showOnInputClick: true })
+	      { style: { margin: 20 } },
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'ui input' },
+	        _react2['default'].createElement(_src.DatePickerInput, { onChange: function () {}, showOnInputClick: true })
+	      ),
+	      _react2['default'].createElement(
+	        'p',
+	        null,
+	        'The datepicker should render over me'
+	      )
 	    );
 	  }
 	
