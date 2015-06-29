@@ -2,17 +2,22 @@
   position: relative;
 }
 
-.react-datepicker-component .react-datepicker-input {
+.react-datepicker-component .react-datepicker {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.react-datepicker-input {
   position: relative;
 }
 
-.react-datepicker-component .react-datepicker-input input {
+.react-datepicker-input input {
   width: 100%;
   box-sizing: border-box;
   padding-right: 60px;
 }
 
-.react-datepicker-component .react-datepicker-input .input-button {
+.react-datepicker-input .input-button {
   position: absolute;
   margin: 0;
   right: 0;
@@ -29,22 +34,20 @@
   cursor: pointer;
 }
 
-.react-datepicker-component .react-datepicker-input .input-button:hover {
+.react-datepicker-input .input-button:hover {
   background-color: #E8E8E8;
 }
 
-.react-datepicker-component .react-datepicker-input i {
+.react-datepicker-input i {
   margin: 0;
 }
 
-.react-datepicker-component .react-datepicker.floating {
+.react-datepicker.floating {
   position: absolute;
   z-index: 10000;
 }
 
-.react-datepicker-component .react-datepicker {
-  margin-left: 5px;
-  margin-top: 5px;
+.react-datepicker {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -53,14 +56,14 @@
   user-select: none;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-container {
+.react-datepicker .react-datepicker-container {
   border: 1px solid #AEAEAE;
   border-radius: 4px;
   background-color: #FFFFFF;
   width: 200px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top {
+.react-datepicker .react-datepicker-top {
   text-align: center;
   background-color: #F0F0F0;
   border-top-left-radius: 4px;
@@ -68,27 +71,27 @@
   border-bottom: 1px solid #AEAEAE;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .week-days {
+.react-datepicker .react-datepicker-top .week-days {
   display: inline-block;
   height: 20px;
   margin-top: -4px;
   margin-bottom: -4px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .week-days .week-day {
+.react-datepicker .react-datepicker-top .week-days .week-day {
   float: left;
   width: 24px;
   margin: 0 1px;
   cursor: default;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .display {
+.react-datepicker .react-datepicker-top .display {
   width: 200px;
   height: 35px;
   padding: 5px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .display .react-datepicker-button {
+.react-datepicker .react-datepicker-top .display .react-datepicker-button {
   float: left;
   width: 35px;
   height: 100%;
@@ -99,39 +102,39 @@
   text-align: center;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .display .react-datepicker-button.button-left .slow {
+.react-datepicker .react-datepicker-top .display .react-datepicker-button.button-left .slow {
   margin-left: 10px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .display .react-datepicker-button.button-right .fast {
+.react-datepicker .react-datepicker-top .display .react-datepicker-button.button-right .fast {
   margin-left: 10px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .display .react-datepicker-button.button-label {
+.react-datepicker .react-datepicker-top .display .react-datepicker-button.button-label {
   width: 119px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .display .react-datepicker-button.button-label.fixed:hover {
+.react-datepicker .react-datepicker-top .display .react-datepicker-button.button-label.fixed:hover {
   background-color: transparent;
   cursor: default;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-top .display .react-datepicker-button.button-label:hover {
+.react-datepicker .react-datepicker-top .display .react-datepicker-button.button-label:hover {
   background-color: #DDDDDD;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-body {
+.react-datepicker .react-datepicker-body {
   padding: 0.5em;
   padding-bottom: 0.3em;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-row {
+.react-datepicker .react-datepicker-row {
   display: inline-block;
   margin-top: 0px;
   width: 100%;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker {
+.react-datepicker .react-datepicker-picker {
   float: left;
   display: block;
   text-align: center;
@@ -144,12 +147,12 @@
   margin-right: 1px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.day {
+.react-datepicker .react-datepicker-picker.day {
   width: 24px;
   height: 24px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.month {
+.react-datepicker .react-datepicker-picker.month {
   width: 23%;
   margin: 1%;
   height: 55px;
@@ -157,7 +160,7 @@
   line-height: 52px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.year {
+.react-datepicker .react-datepicker-picker.year {
   width: 23%;
   margin: 1%;
   height: 55px;
@@ -165,34 +168,34 @@
   line-height: 52px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.react-datepicker-button:hover {
+.react-datepicker .react-datepicker-picker.react-datepicker-button:hover {
   background-color: #EAEAEA;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.react-datepicker-button.selected {
+.react-datepicker .react-datepicker-picker.react-datepicker-button.selected {
   color: #F7F7F7;
   background-color: #3B83C0;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.current {
+.react-datepicker .react-datepicker-picker.current {
   color: #000000;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.selected.current {
+.react-datepicker .react-datepicker-picker.selected.current {
   color: #F7F7F7;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.react-datepicker-button.disabled {
+.react-datepicker .react-datepicker-picker.react-datepicker-button.disabled {
   color: #BBBBBB;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-picker.react-datepicker-button.disabled:hover {
+.react-datepicker .react-datepicker-picker.react-datepicker-button.disabled:hover {
   color: #BBBBBB;
   background-color: transparent;
   cursor: default;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-button {
+.react-datepicker .react-datepicker-button {
   display: block;
   text-align: center;
   cursor: pointer;
@@ -201,6 +204,6 @@
   padding: 4px;
 }
 
-.react-datepicker-component .react-datepicker .react-datepicker-button:hover {
+.react-datepicker .react-datepicker-button:hover {
   background-color: #DDDDDD;
 }
