@@ -19,14 +19,16 @@ const DatePicker = React.createClass({
     startMode:   React.PropTypes.string,
     fixedMode:   React.PropTypes.bool,
     floating:    React.PropTypes.bool,
-    className:   React.PropTypes.string
+    className:   React.PropTypes.string,
+    style:       React.PropTypes.object
   },
   /* eslint-enable key-spacing */
 
   getDefaultProps() {
     return {
+      startMode: 'day',
       className: '',
-      startMode: 'day'
+      style: {}
     };
   },
 
@@ -133,7 +135,7 @@ const DatePicker = React.createClass({
 
     const floating = this.props.floating ? 'floating' : '';
     return (
-      <div className={`react-datepicker ${floating} ${this.props.className}`}>
+      <div className={`react-datepicker ${floating} ${this.props.className}`} style={this.props.style}>
         {picker}
       </div>
     );

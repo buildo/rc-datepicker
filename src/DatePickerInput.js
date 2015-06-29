@@ -18,7 +18,9 @@ const propTypes = {
   format:           React.PropTypes.string,
   showOnInputClick: React.PropTypes.bool,
   autoClose:        React.PropTypes.bool,
-  floating:         React.PropTypes.bool
+  floating:         React.PropTypes.bool,
+  className:        React.PropTypes.string, // used to omit from inputProps
+  style:            React.PropTypes.object // used to omit from inputProps
 };
 /* eslint-enable key-spacing */
 
@@ -31,8 +33,9 @@ const DatePickerInput = React.createClass({
       startMode: 'day',
       autoClose: true,
       floating: true,
+      iconClassName: '',
       className: '',
-      iconClassName: ''
+      style: {}
     };
   },
 
@@ -122,7 +125,7 @@ const DatePickerInput = React.createClass({
     const inputProps = omit(this.props, Object.keys(propTypes));
 
     return (
-      <div className={`react-datepicker-component ${this.props.className}`}>
+      <div className={`react-datepicker-component ${this.props.className}`} style={this.props.style}>
         <div className='react-datepicker-input'>
           <input
             valueLink={{value: this.state.dateString, requestChange: this.onChangeInput}}
