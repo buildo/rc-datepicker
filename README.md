@@ -69,7 +69,7 @@ DatePicker and DatePickerInput use **Moment.js**, therefore theu support any loc
 
 To select a locale you need to require it **before** requiring the datepicker or moment anywhere in your app: this way it will be automatically selected as current locale.
 ```
-import fakeFrenchImport from 'moment/locale/fr.js'
+import fakeFrenchImport from 'moment/locale/fr.js' // or 'rc-datepicker/node_modules/locale/fr.js' if you don't have it in your node_modules folder
 
 import {DatePickerInput} from 'rc-datepicker';
 ```
