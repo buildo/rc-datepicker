@@ -13,11 +13,22 @@ onChange = (jsDate, dateString) => {
 
 React.renderComponent(
   <div>
-    <DatePickerInput onChange={() => {}} date={date} {...anyReactInputProps}/>
-    <DatePicker {date} />
+    // this renders the full component (input and datepicker)
+    <DatePickerInput
+      onChange={onChange}
+      date={date}
+      className='my-custom-datepicker-component'
+      {...anyReactInputProps}/>
+    
+    // this renders only a fixed datepicker
+    <DatePicker onChange={onChange} date={date} />
   </div>,
   document.body);
 ```
+
+You can see a live demo [here](https://cdn.rawgit.com/buildo/react-semantic-datepicker/master/examples/index.html)
+
+or check the full examples [here](https://github.com/buildo/react-semantic-datepicker/tree/master/examples)
 
 ###Install
 ```
@@ -27,41 +38,41 @@ npm install --save rc-datepicker
 ###DatePickerInput
 supports any props of the base React input component. In addition you can pass:
 ```jsx
-  onChange:         React.PropTypes.func.isRequired,
-  date:             DateUtils.evaluateDateProp,
-  initialDate:      DateUtils.evaluateDateProp,
-  minDate:          DateUtils.evaluateDateProp,
-  maxDate:          DateUtils.evaluateDateProp,
-  locale:           React.PropTypes.string,
-  startMode:        React.PropTypes.string,
-  fixedMode:        React.PropTypes.bool,
-  format:           React.PropTypes.string,
-  showOnInputClick: React.PropTypes.bool,
-  autoClose:        React.PropTypes.bool,
-  floating:         React.PropTypes.bool
+onChange:         React.PropTypes.func.isRequired,
+date:             DateUtils.evaluateDateProp,
+initialDate:      DateUtils.evaluateDateProp,
+minDate:          DateUtils.evaluateDateProp,
+maxDate:          DateUtils.evaluateDateProp,
+locale:           React.PropTypes.string,
+startMode:        React.PropTypes.string,
+fixedMode:        React.PropTypes.bool,
+format:           React.PropTypes.string,
+showOnInputClick: React.PropTypes.bool,
+autoClose:        React.PropTypes.bool,
+floating:         React.PropTypes.bool
 ```
 Default values:
 ```jsx
-  startMode: 'day',
-  autoClose: true,
-  floating: true
+startMode: 'day',
+autoClose: true,
+floating: true
 ```
 
 ###DatePicker
 ```jsx
-  onChange:    React.PropTypes.func.isRequired,
-  date:        DateUtils.evaluateDateProp,
-  initialDate: DateUtils.evaluateDateProp,
-  minDate:     DateUtils.evaluateDateProp,
-  maxDate:     DateUtils.evaluateDateProp,
-  locale:      React.PropTypes.string,
-  startMode:   React.PropTypes.string,
-  fixedMode:   React.PropTypes.bool,
-  floating:    React.PropTypes.bool
+onChange:    React.PropTypes.func.isRequired,
+date:        DateUtils.evaluateDateProp,
+initialDate: DateUtils.evaluateDateProp,
+minDate:     DateUtils.evaluateDateProp,
+maxDate:     DateUtils.evaluateDateProp,
+locale:      React.PropTypes.string,
+startMode:   React.PropTypes.string,
+fixedMode:   React.PropTypes.bool,
+floating:    React.PropTypes.bool
 ```
 Default values:
 ```jsx
-  startMode: 'day'
+startMode: 'day'
 ```
 
 ###Locales
