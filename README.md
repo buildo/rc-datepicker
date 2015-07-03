@@ -1,6 +1,8 @@
 # React Datepicker
 A decent and pretty date picker to be used with React
 
+`![](http://s10.postimg.org/o5hqerrtl/Screen_Shot_2015_07_03_at_12_59_25_PM.png)
+
 ```jsx
 import fakeItalianImport from 'moment/locale/it.js'
 import {DatePicker, DatePickerInput} from 'rc-datepicker';
