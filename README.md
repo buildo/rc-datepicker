@@ -1,6 +1,8 @@
 # React Datepicker
 A decent and pretty date picker to be used with React
 
+![ScreenShot](http://s2.postimg.org/p0ih1vfx5/Screen_Shot_2015_07_02_at_13_05_55.png)
+
 ```jsx
 import fakeItalianImport from 'moment/locale/it.js'
 import {DatePicker, DatePickerInput} from 'rc-datepicker';
@@ -34,6 +36,7 @@ or check the full examples [here](https://github.com/buildo/react-semantic-datep
 ```
 npm install --save rc-datepicker
 ```
+The npm package is compiled in JavaScript 5
 
 ###DatePickerInput
 supports any props of the base React input component. In addition you can pass:
