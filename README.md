@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/rc-datepicker.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rc-datepicker/)
+
 # React Datepicker
 A decent and pretty date picker to be used with React
 
