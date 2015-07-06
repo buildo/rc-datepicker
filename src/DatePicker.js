@@ -10,17 +10,18 @@ const DatePicker = React.createClass({
 
   /* eslint-disable key-spacing */
   propTypes: {
-    onChange:    React.PropTypes.func.isRequired,
-    date:        DateUtils.evaluateDateProp,
-    initialDate: DateUtils.evaluateDateProp,
-    minDate:     DateUtils.evaluateDateProp,
-    maxDate:     DateUtils.evaluateDateProp,
-    locale:      React.PropTypes.string,
-    startMode:   React.PropTypes.string,
-    fixedMode:   React.PropTypes.bool,
-    floating:    React.PropTypes.bool,
-    className:   React.PropTypes.string,
-    style:       React.PropTypes.object
+    onChange:             React.PropTypes.func.isRequired,
+    date:                 DateUtils.evaluateDateProp,
+    initialDate:          DateUtils.evaluateDateProp,
+    minDate:              DateUtils.evaluateDateProp,
+    maxDate:              DateUtils.evaluateDateProp,
+    locale:               React.PropTypes.string,
+    startMode:            React.PropTypes.string,
+    fixedMode:            React.PropTypes.bool,
+    floating:             React.PropTypes.bool,
+    closeOnClickOutiside: React.PropTypes.bool, // used only with DatePickerInput
+    className:            React.PropTypes.string,
+    style:                React.PropTypes.object
   },
   /* eslint-enable key-spacing */
 
@@ -48,6 +49,12 @@ const DatePicker = React.createClass({
       visibleDate: visibleDate,
       mode: _props.startMode
     };
+  },
+
+  stopPropagation(e) {
+    if (this.props.closeOnClickOutiside) {
+      e.stopPropagation();
+    }
   },
 
   onChangeVisibleDate(date) {
@@ -135,7 +142,10 @@ const DatePicker = React.createClass({
 
     const floating = this.props.floating ? 'floating' : '';
     return (
-      <div className={`react-datepicker ${floating} ${this.props.className}`} style={this.props.style}>
+      <div
+        className={`react-datepicker ${floating} ${this.props.className}`}
+        style={this.props.style}
+        onClick={this.stopPropagation}>
         {picker}
       </div>
     );

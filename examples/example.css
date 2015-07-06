@@ -5,6 +5,7 @@
 .react-datepicker-component .react-datepicker {
   margin-left: 5px;
   margin-top: 5px;
+  display: inherit;
 }
 
 .react-datepicker-input {
@@ -54,6 +55,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  display: inline-block;
 }
 
 .react-datepicker .react-datepicker-container {
