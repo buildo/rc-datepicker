@@ -26,6 +26,7 @@ const Example = React.createClass({
             onChange={(jsDate, dateString) => this.setState({datePickerInputDate: dateString})}
             showOnInputClick
             placeholder='placeholder'
+            locale='de'
             iconClassName='calendar icon'/>
         </div>
 
@@ -34,6 +35,7 @@ const Example = React.createClass({
         <p>jsDate = {String(this.state.datePickerDate)}</p>
         <DatePicker
           className='my-react-datepicker'
+          locale='fr'
           onChange={(jsDate) => this.setState({datePickerDate: jsDate})}/>
       </div>
     );

@@ -15,7 +15,6 @@ const MonthPicker = React.createClass({
     onChangeVisibleDate: React.PropTypes.func.isRequired,
     onSelectDate:        React.PropTypes.func.isRequired,
     onChangeMode:        React.PropTypes.func.isRequired,
-    locale:              React.PropTypes.string.isRequired,
     mode:                React.PropTypes.string.isRequired,
     fixedMode:           React.PropTypes.bool
   },
@@ -44,8 +43,7 @@ const MonthPicker = React.createClass({
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           onSelectDate={this._onSelectDate}
-          mode={this.props.mode}
-          locale={this.props.locale} />
+          mode={this.props.mode} />
       </div>
     );
   }
