@@ -41,22 +41,24 @@ The npm package is compiled in JavaScript 5
 ###DatePickerInput
 supports any props of the base React input component. In addition you can pass:
 ```jsx
-onChange:         React.PropTypes.func.isRequired,
-date:             DateUtils.evaluateDateProp,
-initialDate:      DateUtils.evaluateDateProp,
-minDate:          DateUtils.evaluateDateProp,
-maxDate:          DateUtils.evaluateDateProp,
-locale:           React.PropTypes.string,
-startMode:        React.PropTypes.string,
-fixedMode:        React.PropTypes.bool,
-format:           React.PropTypes.string,
-showOnInputClick: React.PropTypes.bool,
-autoClose:        React.PropTypes.bool,
-floating:         React.PropTypes.bool
+onChange:             React.PropTypes.func.isRequired,
+date:                 DateUtils.evaluateDateProp,
+initialDate:          DateUtils.evaluateDateProp,
+minDate:              DateUtils.evaluateDateProp,
+maxDate:              DateUtils.evaluateDateProp,
+locale:               React.PropTypes.string,
+startMode:            React.PropTypes.string,
+fixedMode:            React.PropTypes.bool,
+format:               React.PropTypes.string,
+showOnInputClick:     React.PropTypes.bool,
+closeOnClickOutiside: React.PropTypes.bool,
+autoClose:            React.PropTypes.bool,
+floating:             React.PropTypes.bool
 ```
 Default values:
 ```jsx
 startMode: 'day',
+closeOnClickOutiside: true,
 autoClose: true,
 floating: true
 ```
