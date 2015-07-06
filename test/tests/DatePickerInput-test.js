@@ -1,6 +1,8 @@
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
 import expect from 'expect';
+import fr from 'moment/locale/fr';
+import de from 'moment/locale/de';
 import {DatePickerInput, DatePicker} from '../../src';
 
 describe('DatePickerInput', function() {
@@ -58,17 +60,15 @@ describe('DatePickerInput', function() {
 
   it('DatePicker should be floating above content', function() {
 
-    const picker = <DatePickerInput onChange={() => {}} />;
-
     const inputWrapper = TestUtils.renderIntoDocument(
       <div className='ui input'>
-        <DatePickerInput onChange={() => {}} />;
+        <DatePickerInput onChange={() => {}} />
       </div>
     );
 
     const inputWrapper2 = TestUtils.renderIntoDocument(
       <div className='ui input'>
-        <DatePickerInput onChange={() => {}} />;
+        <DatePickerInput onChange={() => {}} />
       </div>
     );
 
@@ -82,6 +82,26 @@ describe('DatePickerInput', function() {
     const previousHeight = wrapper1.getDOMNode().clientHeight;
     const newHeight = wrapper2.getDOMNode().clientHeight;
     expect(newHeight).toBe(previousHeight, 'datepicker component height is ' + newHeight + ' instead of ' + previousHeight);
+
+  });
+
+  it('DatePickers should have correct locales', function() {
+
+    const inputWrapper = TestUtils.renderIntoDocument(
+      <div className='ui input'>
+        <DatePicker onChange={() => {}} locale='fr' className='french' />
+        <DatePicker onChange={() => {}} locale='de' className='german' />
+      </div>
+    );
+
+    const FrenchDatePicker = TestUtils.findRenderedDOMComponentWithClass(inputWrapper, 'french');
+    const GermanDatePicker = TestUtils.findRenderedDOMComponentWithClass(inputWrapper, 'german');
+
+    const FrenchWeekDays = TestUtils.scryRenderedDOMComponentsWithClass(FrenchDatePicker, 'week-day');
+    const GermanWeekDays = TestUtils.scryRenderedDOMComponentsWithClass(GermanDatePicker, 'week-day');
+
+    expect(FrenchWeekDays[0].getDOMNode().innerHTML).toBe('Lu', 'First DatePicker is not in french');
+    expect(GermanWeekDays[0].getDOMNode().innerHTML).toBe('Mo', 'Second DatePicker is not in german');
 
   });
 
