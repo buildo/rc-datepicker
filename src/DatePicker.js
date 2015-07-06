@@ -36,6 +36,9 @@ const DatePicker = React.createClass({
   getInitialState() {
     if (this.props.locale) {
       moment.locale(this.props.locale);
+      if (process.env.NODE_ENV !== 'production' && moment.locale() !== this.props.locale) {
+        console.warn(`Setting "${this.props.locale}" as locale failed. Did you import it correctly?`);
+      }
     }
     return this.getStateFromProps(this.props);
   },

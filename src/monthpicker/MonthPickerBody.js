@@ -15,7 +15,6 @@ const MonthPickerBody = React.createClass({
     minDate:      DateUtils.evaluateDateProp,
     maxDate:      DateUtils.evaluateDateProp,
     onSelectDate: React.PropTypes.func.isRequired,
-    locale:       React.PropTypes.string.isRequired,
     mode:         React.PropTypes.string.isRequired
   },
   /* eslint-enable key-spacing */
@@ -36,7 +35,6 @@ const MonthPickerBody = React.createClass({
           isCurrent={true}
           isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
           onSelectDate={this.props.onSelectDate}
-          locale={this.props.locale}
           mode={this.props.mode}
           key={index}
         />
