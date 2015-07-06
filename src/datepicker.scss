@@ -4,6 +4,7 @@
   .react-datepicker {
     margin-left: 5px;
     margin-top: 5px;
+    display: inherit;
   }
 }
 
@@ -59,6 +60,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  display: inline-block;
 
   .react-datepicker-container {
     border: 1px solid #AEAEAE;
