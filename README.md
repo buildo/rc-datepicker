@@ -32,6 +32,8 @@ You can see a live demo [here](https://cdn.rawgit.com/buildo/react-semantic-date
 
 or check the full examples [here](https://github.com/buildo/react-semantic-datepicker/tree/master/examples)
 
+**FOR WEBPACK USERS:** webpack by default imports every locale. Please take a look at [this question](http://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack) on Stack Overflow for possible solutions.
+
 ###Install
 ```
 npm install --save rc-datepicker
