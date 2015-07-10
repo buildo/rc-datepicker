@@ -10,9 +10,13 @@ const DatePicker = React.createClass({
 
   /* eslint-disable key-spacing */
   propTypes: {
-    onChange:            React.PropTypes.func.isRequired,
-    date:                DateUtils.evaluateDateProp,
-    initialDate:         DateUtils.evaluateDateProp,
+    onChange:            React.PropTypes.func,
+    value:               DateUtils.evaluateDateProp,
+    valueLink:           React.PropTypes.shape({
+                           value:         DateUtils.evaluateDateProp,
+                           requestChange: React.PropTypes.func.isRequired
+                         }),
+    initialValue:        DateUtils.evaluateDateProp,
     minDate:             DateUtils.evaluateDateProp,
     maxDate:             DateUtils.evaluateDateProp,
     locale:              React.PropTypes.string,
@@ -44,14 +48,23 @@ const DatePicker = React.createClass({
   },
 
   getStateFromProps(_props) {
-    const date = typeof _props.date === 'string' ? moment(_props.date, this.getFormat(), true) : moment(_props.date);
-    const initialDate = typeof _props.initialDate === 'string' ? moment(_props.initialDate, this.getFormat(), true) : moment(_props.initialDate);
-    const visibleDate = _props.date ? date.clone() : initialDate; // must be copy, otherwise they get linked
+    const value = this.getValue(_props);
+    const date = typeof value === 'string' ? moment(value, this.getFormat(), true) : moment(value);
+    const initialDate = typeof _props.initialValue === 'string' ? moment(_props.initialValue, this.getFormat(), true) : moment(_props.initialValue);
+    const visibleDate = value ? date.clone() : initialDate; // must be copy, otherwise they get linked
     return {
-      date: _props.date ? date.clone() : undefined,
+      date: value ? date.clone() : undefined,
       visibleDate: visibleDate,
       mode: _props.startMode
     };
+  },
+
+  getValue(_props) {
+    return _props.valueLink ? _props.valueLink.value : _props.value;
+  },
+
+  getOnChange(_props) {
+    return _props.valueLink ? _props.valueLink.requestChange : _props.onChange;
   },
 
   stopPropagation(e) {
@@ -69,7 +82,7 @@ const DatePicker = React.createClass({
       visibleDate: date.clone(), // must be copy, otherwise they get linked
       date: date
     });
-    this.props.onChange(date.toDate());
+    this.getOnChange(this.props)(date.toDate());
   },
 
   onChangeMode(mode) {
@@ -155,7 +168,7 @@ const DatePicker = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.date) {
+    if (this.getValue(nextProps)) {
       this.setState(this.getStateFromProps(nextProps));
     }
   }
