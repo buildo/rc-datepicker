@@ -17,8 +17,8 @@ const propTypes = {
   fixedMode:            React.PropTypes.bool,
   format:               React.PropTypes.string,
   showOnInputClick:     React.PropTypes.bool,
-  closeOnClickOutside: React.PropTypes.bool,
-  showInputIcon:        React.PropTypes.bool,
+  closeOnClickOutside:  React.PropTypes.bool,
+  showInputButton:      React.PropTypes.bool,
   autoClose:            React.PropTypes.bool,
   floating:             React.PropTypes.bool,
   className:            React.PropTypes.string, // used to omit from inputProps
@@ -36,7 +36,7 @@ const DatePickerInput = React.createClass({
       autoClose: true,
       closeOnClickOutside: true,
       floating: true,
-      showInputIcon: true,
+      showInputButton: true,
       iconClassName: '',
       className: '',
       style: {}
@@ -76,7 +76,6 @@ const DatePickerInput = React.createClass({
   _onChangeDate(jsDate) {
     const newDate = moment(jsDate);
     const newDateString = newDate.format(this.getFormat());
-    console.log(newDateString);
     if (newDateString !== this.state.dateString) {
       this.setState({
         date: newDate,
@@ -146,7 +145,7 @@ const DatePickerInput = React.createClass({
     const inputProps = omit(this.props, Object.keys(propTypes));
 
     const getInputIcon = () => {
-      if (this.props.showInputIcon) {
+      if (this.props.showInputButton) {
         return (
           <div className={`input-button ${active}`} onClick={this.toggleDatePicker}>
             <i className={this.props.iconClassName} />
