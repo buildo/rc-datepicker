@@ -10,18 +10,18 @@ const DatePicker = React.createClass({
 
   /* eslint-disable key-spacing */
   propTypes: {
-    onChange:             React.PropTypes.func.isRequired,
-    date:                 DateUtils.evaluateDateProp,
-    initialDate:          DateUtils.evaluateDateProp,
-    minDate:              DateUtils.evaluateDateProp,
-    maxDate:              DateUtils.evaluateDateProp,
-    locale:               React.PropTypes.string,
-    startMode:            React.PropTypes.string,
-    fixedMode:            React.PropTypes.bool,
-    floating:             React.PropTypes.bool,
-    closeOnClickOutiside: React.PropTypes.bool, // used only with DatePickerInput
-    className:            React.PropTypes.string,
-    style:                React.PropTypes.object
+    onChange:            React.PropTypes.func.isRequired,
+    date:                DateUtils.evaluateDateProp,
+    initialDate:         DateUtils.evaluateDateProp,
+    minDate:             DateUtils.evaluateDateProp,
+    maxDate:             DateUtils.evaluateDateProp,
+    locale:              React.PropTypes.string,
+    startMode:           React.PropTypes.string,
+    fixedMode:           React.PropTypes.bool,
+    floating:            React.PropTypes.bool,
+    closeOnClickOutside: React.PropTypes.bool, // used only with DatePickerInput
+    className:           React.PropTypes.string,
+    style:               React.PropTypes.object
   },
   /* eslint-enable key-spacing */
 
@@ -55,7 +55,7 @@ const DatePicker = React.createClass({
   },
 
   stopPropagation(e) {
-    if (this.props.closeOnClickOutiside) {
+    if (this.props.closeOnClickOutside)  {
       e.stopPropagation();
     }
   },
