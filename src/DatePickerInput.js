@@ -144,7 +144,7 @@ const DatePickerInput = React.createClass({
     const active = this.state.showing ? 'active' : '';
     const inputProps = omit(this.props, Object.keys(propTypes));
 
-    const getInputIcon = () => {
+    const getInputButton = () => {
       if (this.props.showInputButton) {
         return (
           <div className={`input-button ${active}`} onClick={this.toggleDatePicker}>
@@ -165,7 +165,7 @@ const DatePickerInput = React.createClass({
             onClick={this.onInputClick}
             {...inputProps}
           />
-          {getInputIcon()}
+          {getInputButton()}
         </div>
         {this.getDatePicker()}
       </div>
