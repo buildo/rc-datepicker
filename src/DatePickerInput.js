@@ -7,21 +7,22 @@ import DateUtils from './utils/DateUtils.js';
 
 /* eslint-disable key-spacing */
 const propTypes = {
-  onChange:            React.PropTypes.func.isRequired,
-  date:                DateUtils.evaluateDateProp,
-  initialDate:         DateUtils.evaluateDateProp,
-  minDate:             DateUtils.evaluateDateProp,
-  maxDate:             DateUtils.evaluateDateProp,
-  locale:              React.PropTypes.string,
-  startMode:           React.PropTypes.string,
-  fixedMode:           React.PropTypes.bool,
-  format:              React.PropTypes.string,
-  showOnInputClick:    React.PropTypes.bool,
+  onChange:             React.PropTypes.func.isRequired,
+  date:                 DateUtils.evaluateDateProp,
+  initialDate:          DateUtils.evaluateDateProp,
+  minDate:              DateUtils.evaluateDateProp,
+  maxDate:              DateUtils.evaluateDateProp,
+  locale:               React.PropTypes.string,
+  startMode:            React.PropTypes.string,
+  fixedMode:            React.PropTypes.bool,
+  format:               React.PropTypes.string,
+  showOnInputClick:     React.PropTypes.bool,
   closeOnClickOutside: React.PropTypes.bool,
-  autoClose:           React.PropTypes.bool,
-  floating:            React.PropTypes.bool,
-  className:           React.PropTypes.string, // used to omit from inputProps
-  style:               React.PropTypes.object // used to omit from inputProps
+  showInputIcon:        React.PropTypes.bool,
+  autoClose:            React.PropTypes.bool,
+  floating:             React.PropTypes.bool,
+  className:            React.PropTypes.string, // used to omit from inputProps
+  style:                React.PropTypes.object // used to omit from inputProps
 };
 /* eslint-enable key-spacing */
 
@@ -35,6 +36,7 @@ const DatePickerInput = React.createClass({
       autoClose: true,
       closeOnClickOutside: true,
       floating: true,
+      showInputIcon: true,
       iconClassName: '',
       className: '',
       style: {}
@@ -143,6 +145,16 @@ const DatePickerInput = React.createClass({
     const active = this.state.showing ? 'active' : '';
     const inputProps = omit(this.props, Object.keys(propTypes));
 
+    const getInputIcon = () => {
+      if (this.props.showInputIcon) {
+        return (
+          <div className={`input-button ${active}`} onClick={this.toggleDatePicker}>
+            <i className={this.props.iconClassName} />
+          </div>
+        );
+      }
+    };
+
     return (
       <div
         className={`react-datepicker-component ${this.props.className}`}
@@ -154,9 +166,7 @@ const DatePickerInput = React.createClass({
             onClick={this.onInputClick}
             {...inputProps}
           />
-          <div className={`input-button ${active}`} onClick={this.toggleDatePicker}>
-            <i className={this.props.iconClassName} />
-          </div>
+          {getInputIcon()}
         </div>
         {this.getDatePicker()}
       </div>
