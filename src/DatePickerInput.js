@@ -7,21 +7,21 @@ import DateUtils from './utils/DateUtils.js';
 
 /* eslint-disable key-spacing */
 const propTypes = {
-  onChange:             React.PropTypes.func.isRequired,
-  date:                 DateUtils.evaluateDateProp,
-  initialDate:          DateUtils.evaluateDateProp,
-  minDate:              DateUtils.evaluateDateProp,
-  maxDate:              DateUtils.evaluateDateProp,
-  locale:               React.PropTypes.string,
-  startMode:            React.PropTypes.string,
-  fixedMode:            React.PropTypes.bool,
-  format:               React.PropTypes.string,
-  showOnInputClick:     React.PropTypes.bool,
-  closeOnClickOutiside: React.PropTypes.bool,
-  autoClose:            React.PropTypes.bool,
-  floating:             React.PropTypes.bool,
-  className:            React.PropTypes.string, // used to omit from inputProps
-  style:                React.PropTypes.object // used to omit from inputProps
+  onChange:            React.PropTypes.func.isRequired,
+  date:                DateUtils.evaluateDateProp,
+  initialDate:         DateUtils.evaluateDateProp,
+  minDate:             DateUtils.evaluateDateProp,
+  maxDate:             DateUtils.evaluateDateProp,
+  locale:              React.PropTypes.string,
+  startMode:           React.PropTypes.string,
+  fixedMode:           React.PropTypes.bool,
+  format:              React.PropTypes.string,
+  showOnInputClick:    React.PropTypes.bool,
+  closeOnClickOutside: React.PropTypes.bool,
+  autoClose:           React.PropTypes.bool,
+  floating:            React.PropTypes.bool,
+  className:           React.PropTypes.string, // used to omit from inputProps
+  style:               React.PropTypes.object // used to omit from inputProps
 };
 /* eslint-enable key-spacing */
 
@@ -33,7 +33,7 @@ const DatePickerInput = React.createClass({
     return {
       startMode: 'day',
       autoClose: true,
-      closeOnClickOutiside: true,
+      closeOnClickOutside: true,
       floating: true,
       iconClassName: '',
       className: '',
@@ -52,13 +52,13 @@ const DatePickerInput = React.createClass({
   },
 
   componentDidMount() {
-    if (this.props.closeOnClickOutiside) {
+    if (this.props.closeOnClickOutside) {
       window.onclick = this.hide;
     }
   },
 
   stopPropagation(e) {
-    if (this.props.closeOnClickOutiside) {
+    if (this.props.closeOnClickOutside) {
       e.stopPropagation();
     }
   },
@@ -129,7 +129,7 @@ const DatePickerInput = React.createClass({
           startMode={this.props.startMode}
           fixedMode={this.props.fixedMode}
           floating={this.props.floating}
-          closeOnClickOutiside={this.props.closeOnClickOutiside}
+          closeOnClickOutside={this.props.closeOnClickOutside}
         />
       );
     }
