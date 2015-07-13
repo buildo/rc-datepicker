@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react/addons';
 import fakeImport from 'moment/locale/fr.js';
 import {DatePicker, DatePickerInput} from '../src';
 
@@ -6,10 +6,13 @@ const Example = React.createClass({
 
   propTypes: {},
 
+  mixins: [React.addons.LinkedStateMixin],
+
   getInitialState() {
     return {
       datePickerDate: null,
       datePickerInputDate: null,
+      datePickerInputDate2: null,
       showInput: true
     };
   },
@@ -22,6 +25,10 @@ const Example = React.createClass({
 
   log(x) {
     console.log(x);
+  },
+
+  onChange2(a, b) {
+    this.setState({datePickerInputDate2: a});
   },
 
   render() {
@@ -53,6 +60,19 @@ const Example = React.createClass({
           className='my-react-datepicker'
           locale='fr'
           onChange={(jsDate) => this.setState({datePickerDate: jsDate})}/>
+
+        <p></p>
+        <p>VALUE LINK</p>
+        <p>jsDate = {String(this.state.datePickerInputDate2)}</p>
+        <div className='ui input'>
+          <DatePickerInput
+            className='my-react-component'
+            valueLink={{value: this.state.datePickerInputDate2, requestChange: this.onChange2}}
+            showOnInputClick
+            placeholder='placeholder'
+            locale='de'
+            iconClassName='calendar icon'/>
+        </div>
       </div>
     );
   }
