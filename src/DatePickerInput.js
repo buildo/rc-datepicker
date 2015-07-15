@@ -181,6 +181,12 @@ const DatePickerInput = React.createClass({
         dateString: date.isValid() ? date.format(this.getFormat()) : this.state.dateString
       });
     }
+  },
+
+  componentWillUnmount() {
+    if (this.props.closeOnClickOutside) {
+      window.onclick = null;
+    }
   }
 
 });
