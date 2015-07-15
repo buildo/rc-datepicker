@@ -55,7 +55,25 @@ const DatePickerInput = React.createClass({
 
   componentDidMount() {
     if (this.props.closeOnClickOutside) {
-      window.onclick = this.hide;
+      this.addOnClickListener();
+    }
+  },
+
+  addOnClickListener() {
+    if (window.attachEvent) {
+      //Internet Explorer
+      window.attachEvent('onclick', this.hide);
+    } else if(window.addEventListener) {
+      window.addEventListener('click', this.hide, false);
+    }
+  },
+
+  removeOnClickListener() {
+    if (window.detachEvent) {
+      //Internet Explorer
+      window.detachEvent('onclick', this.hide);
+    } else if(window.removeEventListener) {
+      window.removeEventListener('click', this.hide, false);
     }
   },
 
@@ -185,7 +203,7 @@ const DatePickerInput = React.createClass({
 
   componentWillUnmount() {
     if (this.props.closeOnClickOutside) {
-      window.onclick = null;
+      this.removeOnClickListener();
     }
   }
 
