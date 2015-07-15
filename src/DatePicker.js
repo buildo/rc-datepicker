@@ -55,7 +55,7 @@ const DatePicker = React.createClass({
   },
 
   stopPropagation(e) {
-    if (this.props.closeOnClickOutside)  {
+    if (this.props.closeOnClickOutside) {
       e.stopPropagation();
     }
   },
