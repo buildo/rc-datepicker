@@ -106,4 +106,34 @@ describe('DatePickerInput', function() {
   });
 
 
+  it('DatePicker should work with valueLink', function() {
+
+    const date = new Date('2015-07-15');
+    let changedValue;
+    const onChange = (dateString) => {
+      changedValue = dateString;
+    };
+
+    const valueLink = {
+      value: date,
+      requestChange: onChange
+    };
+
+    const inputWrapper = TestUtils.renderIntoDocument(
+      <div className='ui input'>
+        <DatePickerInput locale='de' valueLink={valueLink} showOnInputClick/>
+      </div>
+    );
+
+    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
+    TestUtils.Simulate.click(datePickerInputArea);
+    expect(datePickerInputArea.getDOMNode().value).toBe('15.07.2015', 'initial value is wrong');
+
+    const pickerButton = TestUtils.scryRenderedDOMComponentsWithClass(inputWrapper, 'react-datepicker-picker')[0];
+    TestUtils.Simulate.click(pickerButton);
+    expect(datePickerInputArea.getDOMNode().value).toBe('29.06.2015', 'changed value is wrong');
+
+  });
+
+
 });
