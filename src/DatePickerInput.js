@@ -87,7 +87,7 @@ const DatePickerInput = React.createClass({
     }
   },
 
-  callback() {
+  onShowingChange() {
     if (this.state.showing) {
       this.props.onShow();
     } else {
@@ -97,18 +97,18 @@ const DatePickerInput = React.createClass({
 
   hide() {
     if (this.state.showing) {
-      this.setState({showing: false}, this.callback);
+      this.setState({showing: false}, this.onShowingChange);
     }
   },
 
   show() {
     if (!this.state.showing) {
-      this.setState({showing: true}, this.callback);
+      this.setState({showing: true}, this.onShowingChange);
     }
   },
 
   toggleDatePicker() {
-    this.setState({showing: !this.state.showing}, this.callback);
+    this.setState({showing: !this.state.showing}, this.onShowingChange);
   },
 
   _onChangeDate(jsDate) {
