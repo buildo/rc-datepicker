@@ -44,6 +44,8 @@ The npm package is compiled in JavaScript 5
 supports any props of the base React input component. In addition you can pass:
 ```jsx
 onChange:             React.PropTypes.func.isRequired,
+onShow:               React.PropTypes.func, // on show DatePicker callback
+onHide:               React.PropTypes.func, // on hide DatePicker callback
 date:                 DateUtils.evaluateDateProp,
 initialDate:          DateUtils.evaluateDateProp,
 minDate:              DateUtils.evaluateDateProp,
@@ -53,33 +55,46 @@ startMode:            React.PropTypes.string,
 fixedMode:            React.PropTypes.bool,
 format:               React.PropTypes.string,
 showOnInputClick:     React.PropTypes.bool,
-closeOnClickOutiside: React.PropTypes.bool,
+closeOnClickOutside:  React.PropTypes.bool,
+showInputButton:      React.PropTypes.bool,
 autoClose:            React.PropTypes.bool,
-floating:             React.PropTypes.bool
+floating:             React.PropTypes.bool,
+className:            React.PropTypes.string,
+style:                React.PropTypes.object
 ```
 Default values:
 ```jsx
+onShow: () => {},
+onHide: () => {},
 startMode: 'day',
-closeOnClickOutiside: true,
 autoClose: true,
-floating: true
+closeOnClickOutside: true,
+floating: true,
+showInputButton: true,
+iconClassName: '',
+className: '',
+style: {}
 ```
 
 ###DatePicker
 ```jsx
-onChange:    React.PropTypes.func.isRequired,
-date:        DateUtils.evaluateDateProp,
-initialDate: DateUtils.evaluateDateProp,
-minDate:     DateUtils.evaluateDateProp,
-maxDate:     DateUtils.evaluateDateProp,
-locale:      React.PropTypes.string,
-startMode:   React.PropTypes.string,
-fixedMode:   React.PropTypes.bool,
-floating:    React.PropTypes.bool
+onChange:            React.PropTypes.func.isRequired,
+date:                DateUtils.evaluateDateProp,
+initialDate:         DateUtils.evaluateDateProp,
+minDate:             DateUtils.evaluateDateProp,
+maxDate:             DateUtils.evaluateDateProp,
+locale:              React.PropTypes.string,
+startMode:           React.PropTypes.string,
+fixedMode:           React.PropTypes.bool,
+floating:            React.PropTypes.bool,
+className:           React.PropTypes.string,
+style:               React.PropTypes.object
 ```
 Default values:
 ```jsx
-startMode: 'day'
+startMode: 'day',
+className: '',
+style: {}
 ```
 
 ###Locales
@@ -99,6 +114,10 @@ You can switch between locales also by passing the prop "locale" to the datepick
 ```jsx
 <DatePicker locale='es' />
 ```
+
+###Style
+To use DatePicker and DatePickerInput default style you should add it to your vendor styles.
+You can find it in the ```lib``` folder as ```style.css``` (```node_modules/rc-datepicker/lib/style.css```).
 
 
 
