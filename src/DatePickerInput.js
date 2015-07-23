@@ -8,6 +8,8 @@ import DateUtils from './utils/DateUtils.js';
 /* eslint-disable key-spacing */
 const propTypes = {
   onChange:             React.PropTypes.func.isRequired,
+  onShow:               React.PropTypes.func,
+  onHide:               React.PropTypes.func,
   date:                 DateUtils.evaluateDateProp,
   initialDate:          DateUtils.evaluateDateProp,
   minDate:              DateUtils.evaluateDateProp,
@@ -32,6 +34,8 @@ const DatePickerInput = React.createClass({
 
   getDefaultProps() {
     return {
+      onShow: () => {},
+      onHide: () => {},
       startMode: 'day',
       autoClose: true,
       closeOnClickOutside: true,
@@ -83,12 +87,28 @@ const DatePickerInput = React.createClass({
     }
   },
 
+  callback() {
+    if (this.state.showing) {
+      this.props.onShow();
+    } else {
+      this.props.onHide();
+    }
+  },
+
   hide() {
-    this.setState({showing: false});
+    if (this.state.showing) {
+      this.setState({showing: false}, this.callback);
+    }
+  },
+
+  show() {
+    if (!this.state.showing) {
+      this.setState({showing: true}, this.callback);
+    }
   },
 
   toggleDatePicker() {
-    this.setState({showing: !this.state.showing});
+    this.setState({showing: !this.state.showing}, this.callback);
   },
 
   _onChangeDate(jsDate) {
@@ -154,10 +174,6 @@ const DatePickerInput = React.createClass({
     }
   },
 
-  onInputClick() {
-    this.setState({showing: this.props.showOnInputClick || this.state.showing});
-  },
-
   render() {
     const active = this.state.showing ? 'active' : '';
     const inputProps = omit(this.props, Object.keys(propTypes));
@@ -172,6 +188,7 @@ const DatePickerInput = React.createClass({
       }
     };
 
+    const onInputClick = this.props.showOnInputClick ? this.show : undefined;
     return (
       <div
         className={`react-datepicker-component ${this.props.className}`}
@@ -180,7 +197,7 @@ const DatePickerInput = React.createClass({
         <div className='react-datepicker-input'>
           <input
             valueLink={{value: this.state.dateString, requestChange: this.onChangeInput}}
-            onClick={this.onInputClick}
+            onClick={onInputClick}
             {...inputProps}
           />
           {getInputButton()}
