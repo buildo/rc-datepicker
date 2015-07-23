@@ -9,8 +9,15 @@ const Example = React.createClass({
   getInitialState() {
     return {
       datePickerDate: null,
-      datePickerInputDate: null
+      datePickerInputDate: null,
+      showInput: true
     };
+  },
+
+  toggleInput() {
+    this.setState({
+      showInput: !this.state.showInput
+    });
   },
 
   render() {
@@ -18,17 +25,20 @@ const Example = React.createClass({
       <div style={{margin: 20}}>
 
         <h1>DatePickerInput</h1>
+        <button onClick={this.toggleInput}>toggle DatePickerInput</button>
         <p>onChange(jsDate, dateString)</p>
         <p>dateString = "{this.state.datePickerInputDate}"</p>
-        <div className='ui input'>
-          <DatePickerInput
-            className='my-react-component'
-            onChange={(jsDate, dateString) => this.setState({datePickerInputDate: dateString})}
-            showOnInputClick
-            placeholder='placeholder'
-            locale='de'
-            iconClassName='calendar icon'/>
-        </div>
+        {this.state.showInput &&
+          <div className='ui input'>
+            <DatePickerInput
+              className='my-react-component'
+              onChange={(jsDate, dateString) => this.setState({datePickerInputDate: dateString})}
+              showOnInputClick
+              placeholder='placeholder'
+              locale='de'
+              iconClassName='calendar icon'/>
+          </div>
+        }
 
         <h1>DatePicker (fixed calendar component)</h1>
         <p>onChange(jsDate)</p>
