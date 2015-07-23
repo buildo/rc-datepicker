@@ -108,7 +108,11 @@ const DatePickerInput = React.createClass({
   },
 
   toggleDatePicker() {
-    this.setState({showing: !this.state.showing}, this.onShowingChange);
+    if (this.state.showing) {
+      this.hide();
+    } else {
+      this.show();
+    }
   },
 
   _onChangeDate(jsDate) {
