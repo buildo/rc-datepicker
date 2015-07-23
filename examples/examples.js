@@ -20,6 +20,10 @@ const Example = React.createClass({
     });
   },
 
+  log(x) {
+    console.log(x);
+  },
+
   render() {
     return (
       <div style={{margin: 20}}>
@@ -33,6 +37,8 @@ const Example = React.createClass({
             <DatePickerInput
               className='my-react-component'
               onChange={(jsDate, dateString) => this.setState({datePickerInputDate: dateString})}
+              onShow={this.log.bind(this, 'show')}
+              onHide={this.log.bind(this, 'hide')}
               showOnInputClick
               placeholder='placeholder'
               locale='de'
