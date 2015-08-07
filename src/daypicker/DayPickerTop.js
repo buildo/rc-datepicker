@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {partial} from 'lodash/function';
+import partial from 'lodash/function/partial';
 import DateUtils from '../utils/DateUtils.js';
 
 const DayPickerTop = React.createClass({

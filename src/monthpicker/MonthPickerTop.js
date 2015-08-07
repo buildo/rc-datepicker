@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {partial} from 'lodash/function';
+import partial from 'lodash/function/partial';
 
 const MonthPickerTop = React.createClass({
 

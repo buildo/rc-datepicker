@@ -1,6 +1,6 @@
 
 import moment from 'moment';
-import {range} from 'lodash/utility';
+import range from 'lodash/utility/range';
 
 const daysInMonthCount = (month, year) => moment([year, month]).endOf('month').date();
 
