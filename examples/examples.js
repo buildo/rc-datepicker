@@ -67,6 +67,7 @@ const Example = React.createClass({
         <div className='ui input'>
           <DatePickerInput
             className='my-react-component'
+            defaultValue={yesterday}
             valueLink={{value: this.state.datePickerInputDate2, requestChange: this.onChange2}}
             showOnInputClick
             placeholder='placeholder'

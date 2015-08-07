@@ -15,7 +15,7 @@ const propTypes = {
                          value:         DateUtils.evaluateDateProp,
                          requestChange: React.PropTypes.func.isRequired
                        }),
-  initialValue:        DateUtils.evaluateDateProp,
+  defaultValue:        DateUtils.evaluateDateProp,
   minDate:             DateUtils.evaluateDateProp,
   maxDate:             DateUtils.evaluateDateProp,
   locale:              React.PropTypes.string,
@@ -52,7 +52,7 @@ const DatePickerInput = React.createClass({
   },
 
   getInitialState() {
-    const _date = this.getValue(this.props) || this.props.initialValue;
+    const _date = this.getValue(this.props) || this.props.defaultValue;
     const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
     return {
       date: _date ? date : undefined,
@@ -179,7 +179,7 @@ const DatePickerInput = React.createClass({
         <DatePicker
           value={this.state.date ? this.state.date.toDate() : undefined}
           onChange={this._onChangeDate}
-          initialValue={this.props.initialValue}
+          defaultValue={this.props.defaultValue}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           locale={this.props.locale}
@@ -227,7 +227,7 @@ const DatePickerInput = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (this.getValue(nextProps)) {
-      const _date = this.getValue(nextProps) || nextProps.initialValue;
+      const _date = this.getValue(nextProps) || nextProps.defaultValue;
       const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
       this.setState({
         date: _date ? date : undefined,

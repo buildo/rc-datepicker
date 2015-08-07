@@ -16,7 +16,7 @@ const DatePicker = React.createClass({
                            value:         DateUtils.evaluateDateProp,
                            requestChange: React.PropTypes.func.isRequired
                          }),
-    initialValue:        DateUtils.evaluateDateProp,
+    defaultValue:        DateUtils.evaluateDateProp,
     minDate:             DateUtils.evaluateDateProp,
     maxDate:             DateUtils.evaluateDateProp,
     locale:              React.PropTypes.string,
@@ -50,7 +50,7 @@ const DatePicker = React.createClass({
   getStateFromProps(_props) {
     const value = this.getValue(_props);
     const date = typeof value === 'string' ? moment(value, this.getFormat(), true) : moment(value);
-    const initialDate = typeof _props.initialValue === 'string' ? moment(_props.initialValue, this.getFormat(), true) : moment(_props.initialValue);
+    const initialDate = typeof _props.defaultValue === 'string' ? moment(_props.defaultValue, this.getFormat(), true) : moment(_props.defaultValue);
     const visibleDate = value ? date.clone() : initialDate; // must be copy, otherwise they get linked
     return {
       date: value ? date.clone() : undefined,
