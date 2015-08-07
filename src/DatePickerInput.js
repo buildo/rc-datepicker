@@ -162,12 +162,7 @@ const DatePickerInput = React.createClass({
           return 'YYYY';
       }
     }
-    // if (dateString) {
-    //   const array = dateString.match(/\d+/g);
-    //   if (Array.isArray(array) && array.length === 3 && array.filter((x) => x.length > 2).length === 0) {
-    //     return this.props.locale === 'it' ? 'DD MM YY' : 'MM DD YY';
-    //   }
-    // }
+
     return 'L';
   },
 
