@@ -1,15 +1,12 @@
-
 import React from 'react';
 import partial from 'lodash/function/partial';
 
 const YearPickerTop = React.createClass({
 
-  /* eslint-disable key-spacing */
   propTypes: {
-    visibleDate:         React.PropTypes.any.isRequired,
+    visibleDate: React.PropTypes.any.isRequired,
     onChangeVisibleDate: React.PropTypes.func.isRequired
   },
-  /* eslint-enable key-spacing */
 
   changeYear(year) {
     this.props.visibleDate.year(year);

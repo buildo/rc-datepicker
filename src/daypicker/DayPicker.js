@@ -1,4 +1,3 @@
-
 import React from 'react';
 import DateUtils from '../utils/DateUtils.js';
 import DayPickerTop from './DayPickerTop';
@@ -6,19 +5,17 @@ import DayPickerBody from './DayPickerBody';
 
 const DayPicker = React.createClass({
 
-  /* eslint-disable key-spacing */
   propTypes: {
-    visibleDate:         React.PropTypes.any.isRequired,
-    date:                DateUtils.evaluateDateProp,
-    minDate:             DateUtils.evaluateDateProp,
-    maxDate:             DateUtils.evaluateDateProp,
+    visibleDate: React.PropTypes.any.isRequired,
+    date: DateUtils.evaluateDateProp,
+    minDate: DateUtils.evaluateDateProp,
+    maxDate: DateUtils.evaluateDateProp,
     onChangeVisibleDate: React.PropTypes.func.isRequired,
-    onSelectDate:        React.PropTypes.func.isRequired,
-    onChangeMode:        React.PropTypes.func.isRequired,
-    mode:                React.PropTypes.string.isRequired,
-    fixedMode:           React.PropTypes.bool
+    onSelectDate: React.PropTypes.func.isRequired,
+    onChangeMode: React.PropTypes.func.isRequired,
+    mode: React.PropTypes.string.isRequired,
+    fixedMode: React.PropTypes.bool
   },
-  /* eslint-enable key-spacing */
 
   _onSelectDate(date) {
     this.props.onSelectDate(date);

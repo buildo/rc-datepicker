@@ -1,4 +1,3 @@
-
 import React from 'react';
 import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
@@ -7,16 +6,14 @@ import DateUtils from '../utils/DateUtils';
 
 const DayPickerBody = React.createClass({
 
-  /* eslint-disable key-spacing */
   propTypes: {
-    visibleDate:  React.PropTypes.any.isRequired,
-    date:         DateUtils.evaluateDateProp,
-    minDate:      DateUtils.evaluateDateProp,
-    maxDate:      DateUtils.evaluateDateProp,
+    visibleDate: React.PropTypes.any.isRequired,
+    date: DateUtils.evaluateDateProp,
+    minDate: DateUtils.evaluateDateProp,
+    maxDate: DateUtils.evaluateDateProp,
     onSelectDate: React.PropTypes.func.isRequired,
-    mode:         React.PropTypes.string.isRequired
+    mode: React.PropTypes.string.isRequired
   },
-  /* eslint-enable key-spacing */
 
   render(){
     if (!this.props.visibleDate.isValid()) {

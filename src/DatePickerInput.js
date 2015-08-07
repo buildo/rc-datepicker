@@ -1,36 +1,34 @@
-
 import React from 'react';
 import moment from 'moment';
 import omit from 'lodash/object/omit';
 import DatePicker from './DatePicker';
 import DateUtils from './utils/DateUtils.js';
 
-/* eslint-disable key-spacing */
 const propTypes = {
-  onChange:            React.PropTypes.func,
-  onShow:               React.PropTypes.func,
-  onHide:               React.PropTypes.func,
-  value:               DateUtils.evaluateDateProp,
-  valueLink:           React.PropTypes.shape({
-                         value:         DateUtils.evaluateDateProp,
-                         requestChange: React.PropTypes.func.isRequired
-                       }),
-  defaultValue:        DateUtils.evaluateDateProp,
-  minDate:             DateUtils.evaluateDateProp,
-  maxDate:             DateUtils.evaluateDateProp,
-  locale:              React.PropTypes.string,
-  startMode:           React.PropTypes.string,
-  fixedMode:           React.PropTypes.bool,
-  format:              React.PropTypes.string,
-  showOnInputClick:    React.PropTypes.bool,
+  onChange: React.PropTypes.func,
+  onShow: React.PropTypes.func,
+  onHide: React.PropTypes.func,
+  value: DateUtils.evaluateDateProp,
+  valueLink: React.PropTypes.shape({
+    value: DateUtils.evaluateDateProp,
+    requestChange: React.PropTypes.func.isRequired
+  }),
+  defaultValue: DateUtils.evaluateDateProp,
+  minDate: DateUtils.evaluateDateProp,
+  maxDate: DateUtils.evaluateDateProp,
+  locale: React.PropTypes.string,
+  startMode: React.PropTypes.string,
+  fixedMode: React.PropTypes.bool,
+  format: React.PropTypes.string,
+  showOnInputClick: React.PropTypes.bool,
   closeOnClickOutside: React.PropTypes.bool,
-  showInputButton:     React.PropTypes.bool,
-  autoClose:           React.PropTypes.bool,
-  floating:            React.PropTypes.bool,
-  className:           React.PropTypes.string, // used to omit from inputProps
-  style:               React.PropTypes.object // used to omit from inputProps
+  showInputButton: React.PropTypes.bool,
+  autoClose: React.PropTypes.bool,
+  floating: React.PropTypes.bool,
+  iconClassName: React.PropTypes.string, // used to omit from inputProps
+  className: React.PropTypes.string, // used to omit from inputProps
+  style: React.PropTypes.object // used to omit from inputProps
 };
-/* eslint-enable key-spacing */
 
 const DatePickerInput = React.createClass({
 

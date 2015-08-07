@@ -1,4 +1,3 @@
-
 import React from 'react/addons';
 import moment from 'moment';
 import DateUtils from './utils/DateUtils.js';
@@ -8,26 +7,24 @@ import YearPicker from './yearpicker/YearPicker';
 
 const DatePicker = React.createClass({
 
-  /* eslint-disable key-spacing */
   propTypes: {
-    onChange:            React.PropTypes.func,
-    value:               DateUtils.evaluateDateProp,
-    valueLink:           React.PropTypes.shape({
-                           value:         DateUtils.evaluateDateProp,
-                           requestChange: React.PropTypes.func.isRequired
-                         }),
-    defaultValue:        DateUtils.evaluateDateProp,
-    minDate:             DateUtils.evaluateDateProp,
-    maxDate:             DateUtils.evaluateDateProp,
-    locale:              React.PropTypes.string,
-    startMode:           React.PropTypes.string,
-    fixedMode:           React.PropTypes.bool,
-    floating:            React.PropTypes.bool,
+    onChange: React.PropTypes.func,
+    value: DateUtils.evaluateDateProp,
+    valueLink: React.PropTypes.shape({
+      value: DateUtils.evaluateDateProp,
+      requestChange: React.PropTypes.func.isRequired
+    }),
+    defaultValue: DateUtils.evaluateDateProp,
+    minDate: DateUtils.evaluateDateProp,
+    maxDate: DateUtils.evaluateDateProp,
+    locale: React.PropTypes.string,
+    startMode: React.PropTypes.string,
+    fixedMode: React.PropTypes.bool,
+    floating: React.PropTypes.bool,
     closeOnClickOutside: React.PropTypes.bool, // used only with DatePickerInput
-    className:           React.PropTypes.string,
-    style:               React.PropTypes.object
+    className: React.PropTypes.string,
+    style: React.PropTypes.object
   },
-  /* eslint-enable key-spacing */
 
   getDefaultProps() {
     return {
