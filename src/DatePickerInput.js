@@ -1,7 +1,7 @@
 
 import React from 'react';
 import moment from 'moment';
-import {omit} from 'lodash/object';
+import omit from 'lodash/object/omit';
 import DatePicker from './DatePicker';
 import DateUtils from './utils/DateUtils.js';
 
