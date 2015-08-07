@@ -25,7 +25,7 @@ const propTypes = {
   showInputButton: React.PropTypes.bool,
   autoClose: React.PropTypes.bool,
   floating: React.PropTypes.bool,
-  iconClassName: React.PropTypes.string, // used to omit from inputProps
+  iconClassName: React.PropTypes.string,
   className: React.PropTypes.string, // used to omit from inputProps
   style: React.PropTypes.object // used to omit from inputProps
 };
