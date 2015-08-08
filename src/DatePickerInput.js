@@ -7,24 +7,28 @@ import DateUtils from './utils/DateUtils.js';
 
 /* eslint-disable key-spacing */
 const propTypes = {
-  onChange:             React.PropTypes.func.isRequired,
+  onChange:            React.PropTypes.func,
   onShow:               React.PropTypes.func,
   onHide:               React.PropTypes.func,
-  date:                 DateUtils.evaluateDateProp,
-  initialDate:          DateUtils.evaluateDateProp,
-  minDate:              DateUtils.evaluateDateProp,
-  maxDate:              DateUtils.evaluateDateProp,
-  locale:               React.PropTypes.string,
-  startMode:            React.PropTypes.string,
-  fixedMode:            React.PropTypes.bool,
-  format:               React.PropTypes.string,
-  showOnInputClick:     React.PropTypes.bool,
-  closeOnClickOutside:  React.PropTypes.bool,
-  showInputButton:      React.PropTypes.bool,
-  autoClose:            React.PropTypes.bool,
-  floating:             React.PropTypes.bool,
-  className:            React.PropTypes.string, // used to omit from inputProps
-  style:                React.PropTypes.object // used to omit from inputProps
+  value:               DateUtils.evaluateDateProp,
+  valueLink:           React.PropTypes.shape({
+                         value:         DateUtils.evaluateDateProp,
+                         requestChange: React.PropTypes.func.isRequired
+                       }),
+  defaultValue:        DateUtils.evaluateDateProp,
+  minDate:             DateUtils.evaluateDateProp,
+  maxDate:             DateUtils.evaluateDateProp,
+  locale:              React.PropTypes.string,
+  startMode:           React.PropTypes.string,
+  fixedMode:           React.PropTypes.bool,
+  format:              React.PropTypes.string,
+  showOnInputClick:    React.PropTypes.bool,
+  closeOnClickOutside: React.PropTypes.bool,
+  showInputButton:     React.PropTypes.bool,
+  autoClose:           React.PropTypes.bool,
+  floating:            React.PropTypes.bool,
+  className:           React.PropTypes.string, // used to omit from inputProps
+  style:               React.PropTypes.object // used to omit from inputProps
 };
 /* eslint-enable key-spacing */
 
@@ -48,7 +52,7 @@ const DatePickerInput = React.createClass({
   },
 
   getInitialState() {
-    const _date = this.props.date || this.props.initialDate;
+    const _date = this.getValue(this.props) || this.props.defaultValue;
     const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
     return {
       date: _date ? date : undefined,
@@ -79,6 +83,14 @@ const DatePickerInput = React.createClass({
     } else if(window.removeEventListener) {
       window.removeEventListener('click', this.hide, false);
     }
+  },
+
+  getValue(_props) {
+    return _props.valueLink ? _props.valueLink.value : _props.value;
+  },
+
+  getOnChange(_props) {
+    return _props.valueLink ? _props.valueLink.requestChange : _props.onChange;
   },
 
   stopPropagation(e) {
@@ -127,7 +139,7 @@ const DatePickerInput = React.createClass({
         this.hide();
       }
     }
-    this.props.onChange(jsDate, newDateString);
+    this.getOnChange(this.props)(jsDate, newDateString);
   },
 
   onChangeInput(dateString) {
@@ -137,7 +149,7 @@ const DatePickerInput = React.createClass({
       this.setState({date: parsedDate});
     }
     const jsDate = parsedDate.isValid() ? parsedDate.toDate() : undefined;
-    this.props.onChange(jsDate, dateString);
+    this.getOnChange(this.props)(jsDate, dateString);
   },
 
   getFormat() {
@@ -165,9 +177,9 @@ const DatePickerInput = React.createClass({
     if (this.state.showing) {
       return (
         <DatePicker
-          date={this.state.date ? this.state.date.toDate() : undefined}
+          value={this.state.date ? this.state.date.toDate() : undefined}
           onChange={this._onChangeDate}
-          initialDate={this.props.initialDate}
+          defaultValue={this.props.defaultValue}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           locale={this.props.locale}
@@ -214,8 +226,8 @@ const DatePickerInput = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.date) {
-      const _date = nextProps.date || nextProps.initialDate;
+    if (this.getValue(nextProps)) {
+      const _date = this.getValue(nextProps) || nextProps.defaultValue;
       const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
       this.setState({
         date: _date ? date : undefined,
