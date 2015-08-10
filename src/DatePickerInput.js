@@ -141,9 +141,9 @@ const DatePickerInput = React.createClass({
         date: newDate,
         dateString: newDateString
       });
-      if (this.props.autoClose) {
-        this.hide();
-      }
+    }
+    if (this.props.autoClose) {
+      this.hide();
     }
     this.getOnChange(this.props)(jsDate, newDateString);
   },
