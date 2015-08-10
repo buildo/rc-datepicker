@@ -42,14 +42,21 @@ npm install --save rc-datepicker
 ```
 The npm package is compiled in JavaScript 5
 
+###v2.x BREAKING CHANGES
+```date``` and ```initialDate``` have been replaced with ```value``` and ```defaultValue```
+
 ###DatePickerInput
 supports any props of the base React input component. In addition you can pass:
 ```jsx
 onChange:             React.PropTypes.func.isRequired,
 onShow:               React.PropTypes.func, // on show DatePicker callback
 onHide:               React.PropTypes.func, // on hide DatePicker callback
-date:                 DateUtils.evaluateDateProp,
-initialDate:          DateUtils.evaluateDateProp,
+value:                DateUtils.evaluateDateProp,
+valueLink:            React.PropTypes.shape({
+                        value: DateUtils.evaluateDateProp,
+                        requestChange: React.PropTypes.func.isRequired
+                      }),
+defaultValue:         DateUtils.evaluateDateProp,
 minDate:              DateUtils.evaluateDateProp,
 maxDate:              DateUtils.evaluateDateProp,
 locale:               React.PropTypes.string,
@@ -81,8 +88,12 @@ style: {}
 ###DatePicker
 ```jsx
 onChange:            React.PropTypes.func.isRequired,
-date:                DateUtils.evaluateDateProp,
-initialDate:         DateUtils.evaluateDateProp,
+value:               DateUtils.evaluateDateProp,
+valueLink:           React.PropTypes.shape({
+                       value: DateUtils.evaluateDateProp,
+                       requestChange: React.PropTypes.func.isRequired
+                     }),
+defaultValue:        DateUtils.evaluateDateProp,
 minDate:             DateUtils.evaluateDateProp,
 maxDate:             DateUtils.evaluateDateProp,
 locale:              React.PropTypes.string,
