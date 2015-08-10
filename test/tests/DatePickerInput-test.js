@@ -138,53 +138,5 @@ describe('DatePickerInput', function() {
 
   });
 
-  it('DatePicker should close on select date', function() {
-
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} showOnInputClick autoClose />
-      </div>
-    );
-
-    let datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.length).toBe(0);
-
-    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
-    TestUtils.Simulate.click(datePickerInputArea);
-
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.length).toBe(1);
-
-    const pickerButton = TestUtils.scryRenderedDOMComponentsWithClass(inputWrapper, 'react-datepicker-picker')[0];
-    TestUtils.Simulate.click(pickerButton);
-
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.length).toBe(0, 'DatePicker didn\'t close correctly');
-
-  });
-
-  it('DatePicker should close on enter key event on input', function() {
-
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} showOnInputClick />
-      </div>
-    );
-
-    let datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.length).toBe(0);
-
-    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
-    TestUtils.Simulate.click(datePickerInputArea);
-
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.length).toBe(1);
-
-    TestUtils.Simulate.keyUp(datePickerInputArea, {keyCode: 13});
-
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.length).toBe(0, 'DatePicker didn\'t close correctly');
-
-  });
 
 });
