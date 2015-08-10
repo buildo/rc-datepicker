@@ -1,4 +1,3 @@
-
 import moment from 'moment';
 import range from 'lodash/utility/range';
 

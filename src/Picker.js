@@ -1,23 +1,20 @@
-
 import React from 'react';
 import classNames from 'classnames';
 import DateUtils from './utils/DateUtils.js';
 
 const Picker = React.createClass({
 
-  /* eslint-disable key-spacing */
   propTypes: {
-    date:         React.PropTypes.any.isRequired,
-    minDate:      DateUtils.evaluateDateProp,
-    maxDate:      DateUtils.evaluateDateProp,
-    isSelected:   React.PropTypes.bool.isRequired,
-    isCurrent:    React.PropTypes.bool.isRequired,
-    isEnabled:    React.PropTypes.bool.isRequired,
-    isDisabled:   React.PropTypes.bool,
+    date: React.PropTypes.any.isRequired,
+    minDate: DateUtils.evaluateDateProp,
+    maxDate: DateUtils.evaluateDateProp,
+    isSelected: React.PropTypes.bool.isRequired,
+    isCurrent: React.PropTypes.bool.isRequired,
+    isEnabled: React.PropTypes.bool.isRequired,
+    isDisabled: React.PropTypes.bool,
     onSelectDate: React.PropTypes.func.isRequired,
-    mode:         React.PropTypes.string.isRequired
+    mode: React.PropTypes.string.isRequired
   },
-  /* eslint-enable key-spacing */
 
   handleClick(e) {
     e.preventDefault();

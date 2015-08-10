@@ -1,17 +1,14 @@
-
 import React from 'react';
 import partial from 'lodash/function/partial';
 
 const MonthPickerTop = React.createClass({
 
-  /* eslint-disable key-spacing */
   propTypes: {
-    visibleDate:         React.PropTypes.any.isRequired,
+    visibleDate: React.PropTypes.any.isRequired,
     onChangeVisibleDate: React.PropTypes.func.isRequired,
-    onChangeMode:        React.PropTypes.func.isRequired,
-    fixedMode:           React.PropTypes.bool
+    onChangeMode: React.PropTypes.func.isRequired,
+    fixedMode: React.PropTypes.bool
   },
-  /* eslint-enable key-spacing */
 
   changeYear(year) {
     this.props.visibleDate.year(year);
