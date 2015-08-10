@@ -4,6 +4,8 @@ import omit from 'lodash/object/omit';
 import DatePicker from './DatePicker';
 import DateUtils from './utils/DateUtils.js';
 
+const ENTER_KEYCODE = 13;
+
 const propTypes = {
   onChange: React.PropTypes.func,
   onShow: React.PropTypes.func,
@@ -125,6 +127,12 @@ const DatePickerInput = React.createClass({
     }
   },
 
+  hideOnEnterKey(event) {
+    if (event.keyCode === ENTER_KEYCODE) {
+      this.hide();
+    }
+  },
+
   _onChangeDate(jsDate) {
     const newDate = moment(jsDate);
     const newDateString = newDate.format(this.getFormat());
@@ -133,9 +141,9 @@ const DatePickerInput = React.createClass({
         date: newDate,
         dateString: newDateString
       });
-      if (this.props.autoClose) {
-        this.hide();
-      }
+    }
+    if (this.props.autoClose) {
+      this.hide();
     }
     this.getOnChange(this.props)(jsDate, newDateString);
   },
@@ -209,6 +217,7 @@ const DatePickerInput = React.createClass({
           <input
             valueLink={{value: this.state.dateString, requestChange: this.onChangeInput}}
             onClick={onInputClick}
+            onKeyUp={this.hideOnEnterKey}
             {...inputProps}
           />
           {getInputButton()}
