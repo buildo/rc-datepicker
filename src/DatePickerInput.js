@@ -226,9 +226,9 @@ const DatePickerInput = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const _date = this.getValue(nextProps);
-    if (_date) {
-      const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
+    const value = this.getValue(nextProps);
+    if (value) {
+      const date = typeof value === 'string' ? moment(value, this.getFormat(), true) : moment(value);
       this.setState({
         date: date,
         dateString: date.isValid() ? date.format(this.getFormat()) : this.state.dateString
