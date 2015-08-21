@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import partial from 'lodash/function/partial';
 
 const MonthPickerTop = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
-    onChangeVisibleDate: React.PropTypes.func.isRequired,
-    onChangeMode: React.PropTypes.func.isRequired,
-    fixedMode: React.PropTypes.bool
+    visibleDate: PropTypes.any.isRequired,
+    onChangeVisibleDate: PropTypes.func.isRequired,
+    onChangeMode: PropTypes.func.isRequired,
+    fixedMode: PropTypes.bool
   },
 
   changeYear(year) {
