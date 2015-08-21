@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import partial from 'lodash/function/partial';
 import DateUtils from '../utils/DateUtils.js';
 
 const DayPickerTop = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
-    onChangeVisibleDate: React.PropTypes.func.isRequired,
-    onChangeMode: React.PropTypes.func.isRequired,
-    fixedMode: React.PropTypes.bool
+    visibleDate: PropTypes.any.isRequired,
+    onChangeVisibleDate: PropTypes.func.isRequired,
+    onChangeMode: PropTypes.func.isRequired,
+    fixedMode: PropTypes.bool
   },
 
   changeMonth(month) {
@@ -29,7 +29,9 @@ const DayPickerTop = React.createClass({
 
   render() {
     const month = this.props.visibleDate.month();
-    const daysMin = DateUtils.getWeekdaysMin(this.props.locale).map((dayMin, index) => <div className='week-day' key={index}>{dayMin}</div>);
+    const daysMin = DateUtils
+      .getWeekdaysMin(this.props.locale)
+      .map((dayMin, index) => <div className='week-day' key={index}>{dayMin}</div>);
 
     const string = this.props.visibleDate.format('MMMM YYYY');
     const monthValue = string.charAt(0).toUpperCase() + string.slice(1); // first letter always uppercase

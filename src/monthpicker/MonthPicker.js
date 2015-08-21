@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import DateUtils from '../utils/DateUtils.js';
 import MonthPickerTop from './MonthPickerTop';
 import MonthPickerBody from './MonthPickerBody';
@@ -6,15 +6,15 @@ import MonthPickerBody from './MonthPickerBody';
 const MonthPicker = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
+    visibleDate: PropTypes.any.isRequired,
     date: DateUtils.evaluateDateProp,
     minDate: DateUtils.evaluateDateProp,
     maxDate: DateUtils.evaluateDateProp,
-    onChangeVisibleDate: React.PropTypes.func.isRequired,
-    onSelectDate: React.PropTypes.func.isRequired,
-    onChangeMode: React.PropTypes.func.isRequired,
-    mode: React.PropTypes.string.isRequired,
-    fixedMode: React.PropTypes.bool
+    onChangeVisibleDate: PropTypes.func.isRequired,
+    onSelectDate: PropTypes.func.isRequired,
+    onChangeMode: PropTypes.func.isRequired,
+    mode: PropTypes.string.isRequired,
+    fixedMode: PropTypes.bool
   },
 
   _onSelectDate(date) {

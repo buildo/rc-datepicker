@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 import DateUtils from './utils/DateUtils.js';
 
 const Picker = React.createClass({
 
   propTypes: {
-    date: React.PropTypes.any.isRequired,
+    date: PropTypes.any.isRequired,
     minDate: DateUtils.evaluateDateProp,
     maxDate: DateUtils.evaluateDateProp,
-    isSelected: React.PropTypes.bool.isRequired,
-    isCurrent: React.PropTypes.bool.isRequired,
-    isEnabled: React.PropTypes.bool.isRequired,
-    isDisabled: React.PropTypes.bool,
-    onSelectDate: React.PropTypes.func.isRequired,
-    mode: React.PropTypes.string.isRequired
+    isSelected: PropTypes.bool.isRequired,
+    isCurrent: PropTypes.bool.isRequired,
+    isEnabled: PropTypes.bool.isRequired,
+    isDisabled: PropTypes.bool,
+    onSelectDate: PropTypes.func.isRequired,
+    mode: PropTypes.string.isRequired
   },
 
   handleClick(e) {

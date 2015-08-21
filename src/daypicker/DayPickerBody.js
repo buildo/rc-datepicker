@@ -1,18 +1,19 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
 import Row from '../Row';
 import DateUtils from '../utils/DateUtils';
+import range from 'lodash/utility/range';
 
 const DayPickerBody = React.createClass({
 
   propTypes: {
-    visibleDate: React.PropTypes.any.isRequired,
+    visibleDate: PropTypes.any.isRequired,
     date: DateUtils.evaluateDateProp,
     minDate: DateUtils.evaluateDateProp,
     maxDate: DateUtils.evaluateDateProp,
-    onSelectDate: React.PropTypes.func.isRequired,
-    mode: React.PropTypes.string.isRequired
+    onSelectDate: PropTypes.func.isRequired,
+    mode: PropTypes.string.isRequired
   },
 
   render(){
@@ -45,8 +46,9 @@ const DayPickerBody = React.createClass({
     });
     const nColumns = 7;
     const nRows = 6;
-    const rows = Array.apply(null, Array(nRows)).map((n, index) =>
-      <Row pickers={days.slice(nColumns * index, nColumns * (index + 1))} mode={this.props.mode} key={index} />);
+    const rows = range(nRows).map(index =>
+      <Row pickers={days.slice(nColumns * index, nColumns * (index + 1))} mode={this.props.mode} key={index} />
+    );
 
     return (
       <div className='react-datepicker-body'>

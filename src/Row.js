@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 const Row = React.createClass({
 
   propTypes: {
-    pickers: React.PropTypes.array.isRequired,
-    mode: React.PropTypes.string.isRequired
+    pickers: PropTypes.array.isRequired,
+    mode: PropTypes.string.isRequired
   },
 
   render() {
