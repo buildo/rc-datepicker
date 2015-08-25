@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import partial from 'lodash/function/partial';
+import PickerTop from '../PickerTop';
 
 const MonthPickerTop = React.createClass({
 
@@ -25,19 +26,13 @@ const MonthPickerTop = React.createClass({
     const year = this.props.visibleDate.year();
     const fixed = this.props.fixedMode ? 'fixed' : '';
     return (
-      <div className='react-datepicker-top'>
-        <div className='display'>
-          <div className='react-datepicker-button button-left' onClick={partial(this.changeYear, (year - 1))}>
-            &lt;
-          </div>
-          <div className={`react-datepicker-button button-label ${fixed}`} onClick={this.changeMode}>
-            <strong className={this.props.textClassNames}>{year}</strong>
-          </div>
-          <div className='react-datepicker-button button-right' onClick={partial(this.changeYear, (year + 1))}>
-            &gt;
-          </div>
-        </div>
-      </div>
+      <PickerTop
+        fixed={fixed}
+        title={year}
+        handleClick={this.changeMode}
+        previousDate={partial(this.changeYear, (year - 1))}
+        nextDate={partial(this.changeYear, (year + 1))}
+        textClassNames={this.props.textClassNames} />
     );
   }
 });
