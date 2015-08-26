@@ -113,7 +113,7 @@ const DatePickerInput = React.createClass({
   },
 
   toggleDatePicker() {
-    let callback = this.state.showing ? this.props.onHide : this.props.onShow;
+    const callback = this.state.showing ? this.props.onHide : this.props.onShow;
     this.setState({showing: !this.state.showing}, callback);
   },
 
