@@ -6,6 +6,7 @@ import MonthPickerBody from './MonthPickerBody';
 const MonthPicker = React.createClass({
 
   propTypes: {
+    changeYear: PropTypes.func.isRequired,
     visibleDate: PropTypes.any.isRequired,
     date: DateUtils.evaluateDateProp,
     minDate: DateUtils.evaluateDateProp,
@@ -30,8 +31,8 @@ const MonthPicker = React.createClass({
     return (
       <div className='react-datepicker-container month'>
         <MonthPickerTop
-          initialVisibleDate={this.props.visibleDate}
-          onChangeVisibleDate={this.props.onChangeVisibleDate}
+          changeYear={this.props.changeYear}
+          visibleDate={this.props.visibleDate}
           onChangeMode={this.props.onChangeMode}
           fixedMode={this.props.fixedMode} />
         <MonthPickerBody
