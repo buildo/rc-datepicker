@@ -1,25 +1,32 @@
 import React, {PropTypes} from 'react';
 import partial from 'lodash/function/partial';
+import capitalize from 'lodash/string/capitalize';
 import DateUtils from '../utils/DateUtils.js';
 import PickerTop from '../PickerTop';
 
-const DayPickerTop = React.createClass({
+export default React.createClass({
+
+  displayName: 'DayPickerTop',
 
   propTypes: {
-    visibleDate: PropTypes.any.isRequired,
+    initialVisibleDate: PropTypes.any.isRequired,
     onChangeVisibleDate: PropTypes.func.isRequired,
     onChangeMode: PropTypes.func.isRequired,
     fixedMode: PropTypes.bool
   },
 
-  changeMonth(month) {
-    this.props.visibleDate.month(month);
-    this.props.onChangeVisibleDate(this.props.visibleDate);
+  getInitialState() {
+    return { visibleDate: this.props.initialVisibleDate.clone() };
   },
 
-  changeYear(year) {
-    this.props.visibleDate.year(year);
-    this.props.onChangeVisibleDate(this.props.visibleDate);
+  componentWillReceiveProps(nextProps) {
+    this.setState({ visibleDate: nextProps.initialVisibleDate });
+  },
+
+  changeMonth(month) {
+    this.setState({
+      visibleDate: this.state.visibleDate.clone().month(month)
+    }, () => this.props.onChangeVisibleDate(this.state.visibleDate));
   },
 
   changeMode() {
@@ -29,20 +36,19 @@ const DayPickerTop = React.createClass({
   },
 
   render() {
-    const month = this.props.visibleDate.month();
+    const month = this.state.visibleDate.month();
     const weekDays = (
       <div className='week-days'>
         {
           DateUtils
           .getWeekdaysMin(this.props.locale)
-          .map((dayMin, index) => <div className='week-day' key={index}>{dayMin}</div>)
+          .map((dayMin, index) =>
+            <div className='week-day' key={index}>{dayMin}</div>
+          )
         }
       </div>
     );
-
-
-    const string = this.props.visibleDate.format('MMMM YYYY');
-    const monthValue = string.charAt(0).toUpperCase() + string.slice(1); // first letter always uppercase
+    const monthValue = capitalize(this.state.visibleDate.format('MMMM YYYY'));
 
     return (
       <PickerTop
@@ -56,5 +62,3 @@ const DayPickerTop = React.createClass({
     );
   }
 });
-
-export default DayPickerTop;

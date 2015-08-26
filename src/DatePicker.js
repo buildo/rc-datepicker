@@ -4,6 +4,8 @@ import DateUtils from './utils/DateUtils.js';
 import DayPicker from './daypicker/DayPicker';
 import MonthPicker from './monthpicker/MonthPicker';
 import YearPicker from './yearpicker/YearPicker';
+import ValueLinkMixin from './utils/ValueLinkMixin';
+import cx from 'classnames';
 
 const DatePicker = React.createClass({
 
@@ -26,6 +28,8 @@ const DatePicker = React.createClass({
     style: PropTypes.object
   },
 
+  mixins: [ValueLinkMixin],
+
   getDefaultProps() {
     return {
       startMode: 'day',
@@ -45,7 +49,7 @@ const DatePicker = React.createClass({
   },
 
   getStateFromProps(_props) {
-    const value = this.getValue(_props);
+    const value = this.getValueLink(_props).value;
     const date = typeof value === 'string' ? moment(value, this.getFormat(), true) : moment(value);
     const initialDate = typeof _props.defaultValue === 'string' ? moment(_props.defaultValue, this.getFormat(), true) : moment(_props.defaultValue);
     const visibleDate = value ? date.clone() : initialDate; // must be copy, otherwise they get linked
@@ -54,14 +58,6 @@ const DatePicker = React.createClass({
       visibleDate: visibleDate,
       mode: _props.startMode
     };
-  },
-
-  getValue(_props) {
-    return _props.valueLink ? _props.valueLink.value : _props.value;
-  },
-
-  getOnChange(_props) {
-    return _props.valueLink ? _props.valueLink.requestChange : _props.onChange;
   },
 
   stopPropagation(e) {
@@ -78,8 +74,7 @@ const DatePicker = React.createClass({
     this.setState({
       visibleDate: date.clone(), // must be copy, otherwise they get linked
       date: date
-    });
-    this.getOnChange(this.props)(date.toDate());
+    }, () => this.getValueLink().requestChange(date.toDate()));
   },
 
   onChangeMode(mode) {
@@ -153,10 +148,9 @@ const DatePicker = React.createClass({
         break;
     }
 
-    const floating = this.props.floating ? 'floating' : '';
     return (
       <div
-        className={`react-datepicker ${floating} ${this.props.className}`}
+        className={cx('react-datepicker', this.props.className, {floating: this.props.floating} )}
         style={this.props.style}
         onClick={this.stopPropagation}>
         {picker}
@@ -165,7 +159,7 @@ const DatePicker = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (this.getValue(nextProps)) {
+    if (this.getValueLink(nextProps).value) {
       this.setState(this.getStateFromProps(nextProps));
     }
   }

@@ -30,7 +30,7 @@ const YearPicker = React.createClass({
     return (
       <div className='react-datepicker-container year'>
         <YearPickerTop
-          visibleDate={this.props.visibleDate}
+          initialVisibleDate={this.props.visibleDate}
           onChangeVisibleDate={this.props.onChangeVisibleDate} />
         <YearPickerBody
           visibleDate={this.props.visibleDate}
