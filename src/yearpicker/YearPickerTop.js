@@ -23,8 +23,8 @@ const YearPickerTop = React.createClass({
         fixed={true}
         nextDate={partial(this.changeYear, year + 10)}
         previousDate={partial(this.changeYear, year - 10)}
-        title={startDecadeYear + '-' + endDecadeYear}
-        textClassNames={this.props.textClassNames} />
+        value={startDecadeYear + '-' + endDecadeYear}
+        valueClassName={this.props.textClassNames} />
     );
   }
 });

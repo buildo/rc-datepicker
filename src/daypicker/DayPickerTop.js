@@ -44,15 +44,14 @@ const DayPickerTop = React.createClass({
     const string = this.props.visibleDate.format('MMMM YYYY');
     const monthValue = string.charAt(0).toUpperCase() + string.slice(1); // first letter always uppercase
 
-    const fixed = this.props.fixedMode ? 'fixed' : '';
     return (
       <PickerTop
-        fixed={fixed}
-        title={monthValue}
+        fixed={this.props.fixedMode}
+        value={monthValue}
         handleClick={this.changeMode}
         previousDate={partial(this.changeMonth, (month - 1))}
         nextDate={partial(this.changeMonth, (month + 1))}
-        textClassNames={this.props.textClassNames}
+        valueClassName={this.props.textClassNames}
         weekDays={weekDays} />
     );
   }

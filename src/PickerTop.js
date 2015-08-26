@@ -7,8 +7,8 @@ export default React.createClass({
     handleClick: PropTypes.func,
     nextDate: PropTypes.func,
     previousDate: PropTypes.func,
-    title: PropTypes.string,
-    textClassNames: PropTypes.string,
+    value: PropTypes.string,
+    valueClassName: PropTypes.string,
     weekDays: PropTypes.element
   },
 
@@ -30,7 +30,7 @@ export default React.createClass({
           </div>
           <div className={cx('react-datepicker-button button-label', {fixed: this.props.fixed})}
                onClick={this.props.handleClick}>
-            <strong className={this.props.textClassNames}>{this.props.title}</strong>
+            <strong className={this.props.valueClassName}>{this.props.value}</strong>
           </div>
           <div className='react-datepicker-button button-right'
                onClick={this.props.nextDate}>

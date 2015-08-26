@@ -24,15 +24,14 @@ const MonthPickerTop = React.createClass({
 
   render() {
     const year = this.props.visibleDate.year();
-    const fixed = this.props.fixedMode ? 'fixed' : '';
     return (
       <PickerTop
-        fixed={fixed}
-        title={year}
+        fixed={this.props.fixedMode}
+        value={year}
         handleClick={this.changeMode}
         previousDate={partial(this.changeYear, (year - 1))}
         nextDate={partial(this.changeYear, (year + 1))}
-        textClassNames={this.props.textClassNames} />
+        valueClassName={this.props.textClassNames} />
     );
   }
 });
