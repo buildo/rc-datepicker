@@ -27,10 +27,6 @@ const Example = React.createClass({
     console.log(x);
   },
 
-  onChange2(a, b) {
-    this.setState({datePickerInputDate2: a});
-  },
-
   render() {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
@@ -70,7 +66,7 @@ const Example = React.createClass({
           <DatePickerInput
             className='my-react-component'
             defaultValue={yesterday}
-            valueLink={{value: this.state.datePickerInputDate2, requestChange: this.onChange2}}
+            valueLink={this.linkState('datePickerInputDate2')}
             showOnInputClick
             placeholder='placeholder'
             locale='de'
