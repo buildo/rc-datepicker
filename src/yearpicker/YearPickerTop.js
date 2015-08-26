@@ -5,13 +5,8 @@ import partial from 'lodash/function/partial';
 const YearPickerTop = React.createClass({
 
   propTypes: {
-    visibleDate: PropTypes.any.isRequired,
+    initialVisibleDate: PropTypes.any.isRequired,
     onChangeVisibleDate: PropTypes.func.isRequired
-  },
-
-  changeYear(year) {
-    this.props.visibleDate.year(year);
-    this.props.onChangeVisibleDate(this.props.visibleDate);
   },
 
   render() {
@@ -21,8 +16,8 @@ const YearPickerTop = React.createClass({
     return (
       <PickerTop
         fixed={true}
-        nextDate={partial(this.changeYear, year + 10)}
-        previousDate={partial(this.changeYear, year - 10)}
+        nextDate={partial(this.props.changeYear, year + 10)}
+        previousDate={partial(this.props.changeYear, year - 10)}
         value={startDecadeYear + '-' + endDecadeYear}
         valueClassName={this.props.textClassNames} />
     );

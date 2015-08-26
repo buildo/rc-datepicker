@@ -6,13 +6,14 @@ import YearPickerBody from './YearPickerBody';
 const YearPicker = React.createClass({
 
   propTypes: {
+    changeYear: PropTypes.func.isRequired,
     visibleDate: PropTypes.any.isRequired,
     date: DateUtils.evaluateDateProp,
     minDate: DateUtils.evaluateDateProp,
     maxDate: DateUtils.evaluateDateProp,
-    onChangeVisibleDate: PropTypes.func.isRequired,
     onSelectDate: PropTypes.func.isRequired,
     onChangeMode: PropTypes.func.isRequired,
+    onChangeVisibleDate: PropTypes.func.isRequired,
     mode: PropTypes.string.isRequired,
     fixedMode: PropTypes.bool
   },
@@ -30,8 +31,8 @@ const YearPicker = React.createClass({
     return (
       <div className='react-datepicker-container year'>
         <YearPickerTop
-          visibleDate={this.props.visibleDate}
-          onChangeVisibleDate={this.props.onChangeVisibleDate} />
+          changeYear={this.props.changeYear}
+          visibleDate={this.props.visibleDate} />
         <YearPickerBody
           visibleDate={this.props.visibleDate}
           date={this.props.date}

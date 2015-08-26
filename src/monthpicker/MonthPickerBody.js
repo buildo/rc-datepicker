@@ -24,7 +24,7 @@ const MonthPickerBody = React.createClass({
     const year = this.props.visibleDate.year();
     const selectedMonth = this.props.date ? this.props.date.month() : -1;
     const selectedYear = this.props.date ? this.props.date.year() : -1;
-    const months = moment.months().map((_month, index) => {
+    const months = moment.months().map((_, index) => {
       const date = moment([year, index, 1]);
       return (
         <Picker
@@ -41,7 +41,9 @@ const MonthPickerBody = React.createClass({
     const nColumns = 4;
     const nRows = 3;
     const rows = range(nRows).map(index =>
-      <Row pickers={months.slice(nColumns * index, nColumns * (index + 1))} mode={this.props.mode} key={index} />
+      <Row pickers={months.slice(nColumns * index, nColumns * (index + 1))}
+           mode={this.props.mode}
+           key={index} />
     );
 
     return (

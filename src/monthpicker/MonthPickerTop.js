@@ -6,14 +6,8 @@ const MonthPickerTop = React.createClass({
 
   propTypes: {
     visibleDate: PropTypes.any.isRequired,
-    onChangeVisibleDate: PropTypes.func.isRequired,
     onChangeMode: PropTypes.func.isRequired,
     fixedMode: PropTypes.bool
-  },
-
-  changeYear(year) {
-    this.props.visibleDate.year(year);
-    this.props.onChangeVisibleDate(this.props.visibleDate);
   },
 
   changeMode() {
@@ -29,8 +23,8 @@ const MonthPickerTop = React.createClass({
         fixed={this.props.fixedMode}
         value={year}
         handleClick={this.changeMode}
-        previousDate={partial(this.changeYear, (year - 1))}
-        nextDate={partial(this.changeYear, (year + 1))}
+        previousDate={partial(this.props.changeYear, (year - 1))}
+        nextDate={partial(this.props.changeYear, (year + 1))}
         valueClassName={this.props.textClassNames} />
     );
   }
