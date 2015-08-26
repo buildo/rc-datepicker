@@ -81,14 +81,26 @@ const DatePicker = React.createClass({
     this.setState({ mode });
   },
 
+  changeYear(year) {
+    this.setState({
+      visibleDate: this.state.visibleDate.clone().year(year)
+    }, () => this.onChangeVisibleDate(this.state.visibleDate));
+  },
+
+  changeMonth(month) {
+    this.setState({
+      visibleDate: this.state.visibleDate.clone().month(month)
+    }, () => this.onChangeVisibleDate(this.state.visibleDate));
+  },
+
   getDayPicker() {
     return (
       <DayPicker
+        changeMonth={this.changeMonth}
         date={this.state.date}
         visibleDate={this.state.visibleDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate}
-        onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
         onChangeMode={this.onChangeMode}
         mode={this.state.mode}
@@ -101,12 +113,13 @@ const DatePicker = React.createClass({
   getMonthPicker() {
     return (
       <MonthPicker
+        changeYear={this.changeYear}
         date={this.state.date}
         visibleDate={this.state.visibleDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate}
-        onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
+        onChangeVisibleDate={this.onChangeVisibleDate}
         onChangeMode={this.onChangeMode}
         mode={this.state.mode}
         fixedMode={this.props.fixedMode}
@@ -118,12 +131,13 @@ const DatePicker = React.createClass({
   getYearPicker() {
     return (
       <YearPicker
+        changeYear={this.changeYear}
         date={this.state.date}
         visibleDate={this.state.visibleDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate}
-        onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
+        onChangeVisibleDate={this.onChangeVisibleDate}
         onChangeMode={this.onChangeMode}
         mode={this.state.mode}
         fixedMode={this.props.fixedMode}

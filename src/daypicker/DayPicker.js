@@ -6,11 +6,11 @@ import DayPickerBody from './DayPickerBody';
 const DayPicker = React.createClass({
 
   propTypes: {
+    changeMonth: PropTypes.func.isRequired,
     visibleDate: PropTypes.any.isRequired,
     date: DateUtils.evaluateDateProp,
     minDate: DateUtils.evaluateDateProp,
     maxDate: DateUtils.evaluateDateProp,
-    onChangeVisibleDate: PropTypes.func.isRequired,
     onSelectDate: PropTypes.func.isRequired,
     onChangeMode: PropTypes.func.isRequired,
     mode: PropTypes.string.isRequired,
@@ -25,8 +25,8 @@ const DayPicker = React.createClass({
     return (
       <div className='react-datepicker-container day'>
         <DayPickerTop
-          initialVisibleDate={this.props.visibleDate}
-          onChangeVisibleDate={this.props.onChangeVisibleDate}
+          changeMonth={this.props.changeMonth}
+          visibleDate={this.props.visibleDate}
           onChangeMode={this.props.onChangeMode}
           fixedMode={this.props.fixedMode} />
         <DayPickerBody

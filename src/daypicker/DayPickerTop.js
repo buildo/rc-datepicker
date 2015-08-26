@@ -9,24 +9,9 @@ export default React.createClass({
   displayName: 'DayPickerTop',
 
   propTypes: {
-    initialVisibleDate: PropTypes.any.isRequired,
-    onChangeVisibleDate: PropTypes.func.isRequired,
+    visibleDate: PropTypes.any.isRequired,
     onChangeMode: PropTypes.func.isRequired,
     fixedMode: PropTypes.bool
-  },
-
-  getInitialState() {
-    return { visibleDate: this.props.initialVisibleDate.clone() };
-  },
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ visibleDate: nextProps.initialVisibleDate });
-  },
-
-  changeMonth(month) {
-    this.setState({
-      visibleDate: this.state.visibleDate.clone().month(month)
-    }, () => this.props.onChangeVisibleDate(this.state.visibleDate));
   },
 
   changeMode() {
@@ -36,7 +21,7 @@ export default React.createClass({
   },
 
   render() {
-    const month = this.state.visibleDate.month();
+    const month = this.props.visibleDate.month();
     const weekDays = (
       <div className='week-days'>
         {
@@ -48,15 +33,15 @@ export default React.createClass({
         }
       </div>
     );
-    const monthValue = capitalize(this.state.visibleDate.format('MMMM YYYY'));
+    const monthValue = capitalize(this.props.visibleDate.format('MMMM YYYY'));
 
     return (
       <PickerTop
         fixed={this.props.fixedMode}
         value={monthValue}
         handleClick={this.changeMode}
-        previousDate={partial(this.changeMonth, (month - 1))}
-        nextDate={partial(this.changeMonth, (month + 1))}
+        previousDate={partial(this.props.changeMonth, (month - 1))}
+        nextDate={partial(this.props.changeMonth, (month + 1))}
         valueClassName={this.props.textClassNames}
         weekDays={weekDays} />
     );

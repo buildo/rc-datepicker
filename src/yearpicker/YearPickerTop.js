@@ -9,29 +9,15 @@ const YearPickerTop = React.createClass({
     onChangeVisibleDate: PropTypes.func.isRequired
   },
 
-  getInitialState() {
-    return { visibleDate: this.props.initialVisibleDate.clone() };
-  },
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ visibleDate: nextProps.initialVisibleDate });
-  },
-
-  changeYear(year) {
-    this.setState({
-      visibleDate: this.state.visibleDate.clone().year(year)
-    }, () => this.props.onChangeVisibleDate(this.state.visibleDate));
-  },
-
   render() {
-    const year = this.state.visibleDate.year();
+    const year = this.props.visibleDate.year();
     const startDecadeYear = parseInt(year / 10, 10) * 10;
     const endDecadeYear = startDecadeYear + 9;
     return (
       <PickerTop
         fixed={true}
-        nextDate={partial(this.changeYear, year + 10)}
-        previousDate={partial(this.changeYear, year - 10)}
+        nextDate={partial(this.props.changeYear, year + 10)}
+        previousDate={partial(this.props.changeYear, year - 10)}
         value={startDecadeYear + '-' + endDecadeYear}
         valueClassName={this.props.textClassNames} />
     );
