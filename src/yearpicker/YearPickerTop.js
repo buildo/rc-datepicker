@@ -5,17 +5,26 @@ import partial from 'lodash/function/partial';
 const YearPickerTop = React.createClass({
 
   propTypes: {
-    visibleDate: PropTypes.any.isRequired,
+    initialVisibleDate: PropTypes.any.isRequired,
     onChangeVisibleDate: PropTypes.func.isRequired
   },
 
+  getInitialState() {
+    return { visibleDate: this.props.initialVisibleDate.clone() };
+  },
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ visibleDate: nextProps.initialVisibleDate });
+  },
+
   changeYear(year) {
-    this.props.visibleDate.year(year);
-    this.props.onChangeVisibleDate(this.props.visibleDate);
+    this.setState({
+      visibleDate: this.state.visibleDate.clone().year(year)
+    }, () => this.props.onChangeVisibleDate(this.state.visibleDate));
   },
 
   render() {
-    const year = this.props.visibleDate.year();
+    const year = this.state.visibleDate.year();
     const startDecadeYear = parseInt(year / 10, 10) * 10;
     const endDecadeYear = startDecadeYear + 9;
     return (

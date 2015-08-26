@@ -25,7 +25,7 @@ const DayPicker = React.createClass({
     return (
       <div className='react-datepicker-container day'>
         <DayPickerTop
-          visibleDate={this.props.visibleDate}
+          initialVisibleDate={this.props.visibleDate}
           onChangeVisibleDate={this.props.onChangeVisibleDate}
           onChangeMode={this.props.onChangeMode}
           fixedMode={this.props.fixedMode} />
