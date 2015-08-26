@@ -86,15 +86,11 @@ const DatePicker = React.createClass({
   },
 
   changeYear(year) {
-    this.setState({
-      visibleDate: this.state.visibleDate.clone().year(year)
-    }, () => this.onChangeVisibleDate(this.state.visibleDate));
+    this.setState({ visibleDate: this.state.visibleDate.clone().year(year) });
   },
 
   changeMonth(month) {
-    this.setState({
-      visibleDate: this.state.visibleDate.clone().month(month)
-    }, () => this.onChangeVisibleDate(this.state.visibleDate));
+    this.setState({ visibleDate: this.state.visibleDate.clone().month(month) });
   },
 
   getDayPicker() {
