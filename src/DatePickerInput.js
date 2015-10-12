@@ -140,7 +140,7 @@ const DatePickerInput = React.createClass({
 
 
   onChangeInput(dateString) {
-    const parsedDate = moment(dateString, this.getFormat(dateString), true);
+    const parsedDate = this.parseInputDateString(dateString);
     const date = parsedDate.isValid() ? parsedDate : this.state.date;
 
     const jsDate = parsedDate.isValid() ? parsedDate.toDate() : INVALID;
