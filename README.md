@@ -20,12 +20,12 @@ React.renderComponent(
     // this renders the full component (input and datepicker)
     <DatePickerInput
       onChange={onChange}
-      date={date}
+      value={date}
       className='my-custom-datepicker-component'
       {...anyReactInputProps}/>
     
     // this renders only a fixed datepicker
-    <DatePicker onChange={onChange} date={date} />
+    <DatePicker onChange={onChange} value={date} />
   </div>,
   document.body);
 ```
@@ -41,6 +41,9 @@ or check the full examples [here](https://github.com/buildo/react-semantic-datep
 npm install --save rc-datepicker
 ```
 The npm package is compiled in JavaScript 5
+
+###v3.x BREAKING CHANGES
+`format` prop has been replaced by `displayFormat` (formats date in `<input>`. It's what final user sees) and `returnFormat` (formats date before returning it in `onChange`. Maybe useful to developers to unify output format)
 
 ###v2.x BREAKING CHANGES
 ```date``` and ```initialDate``` have been replaced with ```value``` and ```defaultValue```
@@ -60,14 +63,16 @@ defaultValue:         DateUtils.evaluateDateProp,
 minDate:              DateUtils.evaluateDateProp,
 maxDate:              DateUtils.evaluateDateProp,
 locale:               React.PropTypes.string,
-startMode:            React.PropTypes.string,
+startMode:            React.PropTypes.string, // ('day', 'month', 'year')
 fixedMode:            React.PropTypes.bool,
-format:               React.PropTypes.string,
+displayFormat:        React.PropTypes.string,
+returnFormat:         React.PropTypes.string,
 showOnInputClick:     React.PropTypes.bool,
 closeOnClickOutside:  React.PropTypes.bool,
 showInputButton:      React.PropTypes.bool,
 autoClose:            React.PropTypes.bool,
 floating:             React.PropTypes.bool,
+iconClassName:        React.PropTypes.string,
 className:            React.PropTypes.string,
 style:                React.PropTypes.object
 ```
@@ -115,7 +120,7 @@ DatePicker and DatePickerInput use **Moment.js**, therefore theu support any loc
 
 To select a locale you need to require it **before** requiring the datepicker or moment anywhere in your app: this way it will be automatically selected as current locale.
 ```
-import fakeFrenchImport from 'moment/locale/fr.js' // or 'rc-datepicker/node_modules/locale/fr.js' if you don't have it in your node_modules folder
+import fakeFrenchImport from 'moment/locale/fr.js' // or 'rc-datepicker/node_modules/moment/locale/fr.js' if you don't have it in your node_modules folder
 
 import {DatePickerInput} from 'rc-datepicker';
 ```
