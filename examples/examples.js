@@ -10,7 +10,7 @@ const Example = React.createClass({
 
   getInitialState() {
     return {
-      datePickerDate: null,
+      datePickerDate: '2015-05-13',
       datePickerInputDate: null,
       datePickerInputDate2: null,
       showInput: true
@@ -49,6 +49,8 @@ const Example = React.createClass({
         {this.state.showInput &&
           <div className='ui input'>
             <DatePickerInput
+              displayFormat='DD/MM/YYYY'
+              returnFormat='YYYY-MM-DD'
               className='my-react-component'
               onChange={(jsDate, dateString) => this.setState({datePickerInputDate: dateString})}
               onShow={this.log.bind(this, 'show')}
@@ -66,6 +68,7 @@ const Example = React.createClass({
         <DatePicker
           className='my-react-datepicker'
           locale='fr'
+          value={this.state.datePickerDate}
           onChange={(jsDate) => this.setState({datePickerDate: jsDate})}/>
 
         <p></p>
@@ -74,6 +77,8 @@ const Example = React.createClass({
         <p>jsDate = {String(this.state.datePickerInputDate2)}</p>
         <div className='ui input'>
           <DatePickerInput
+            displayFormat='DD/MM/YYYY'
+            returnFormat='YYYY-MM-DD'
             className='my-react-component'
             defaultValue={yesterday}
             valueLink={{value: this.state.datePickerInputDate2, requestChange: this.onChange2}}
