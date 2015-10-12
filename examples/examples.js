@@ -31,12 +31,17 @@ const Example = React.createClass({
     this.setState({datePickerInputDate2: a});
   },
 
+  resetState() {
+    this.setState({
+      datePickerInputDate2: undefined
+    })
+  },
+
   render() {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     return (
       <div style={{margin: 20}}>
-
         <h1>DatePickerInput</h1>
         <button onClick={this.toggleInput}>toggle DatePickerInput</button>
         <p>onChange(jsDate, dateString)</p>
@@ -65,6 +70,7 @@ const Example = React.createClass({
 
         <p></p>
         <p>VALUE LINK</p>
+        <button onClick={this.resetState}>reset state</button>
         <p>jsDate = {String(this.state.datePickerInputDate2)}</p>
         <div className='ui input'>
           <DatePickerInput
