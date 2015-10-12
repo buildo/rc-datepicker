@@ -4,8 +4,7 @@ import range from 'lodash/utility/range';
 const daysInMonthCount = (month, year) => moment([year, month]).endOf('month').date();
 
 const getArrayByBoundary = (start, end) => {
-  const arr = Array.apply(null, Array(end - start));
-  return arr.map((x, i) => (i + start));
+  return range(end - start).map(i => i + start);
 };
 
 const getWeekdaysMin = () => {

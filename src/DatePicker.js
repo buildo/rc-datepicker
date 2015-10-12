@@ -5,6 +5,8 @@ import formatMixin from './utils/formatMixin';
 import DayPicker from './daypicker/DayPicker';
 import MonthPicker from './monthpicker/MonthPicker';
 import YearPicker from './yearpicker/YearPicker';
+import ValueLinkMixin from './utils/ValueLinkMixin';
+import cx from 'classnames';
 
 const DatePicker = React.createClass({
 
@@ -28,7 +30,7 @@ const DatePicker = React.createClass({
     style: PropTypes.object
   },
 
-  mixins: [ formatMixin ],
+  mixins: [ ValueLinkMixin, formatMixin ],
 
   getDefaultProps() {
     return {
@@ -49,24 +51,17 @@ const DatePicker = React.createClass({
   },
 
   getStateFromProps(_props) {
-    const value = this.getValue(_props);
+    const { value } = this.getValueLink(_props);
     const { defaultValue, startMode } = _props;
     const date = typeof value === 'string' ? this.parsePropDateString(value) : moment(value);
     const initialDate = typeof defaultValue === 'string' ? this.parsePropDateString(defaultValue) : moment(defaultValue);
+
     const visibleDate = value ? date.clone() : initialDate; // must be copy, otherwise they get linked
     return {
       date: value ? date.clone() : undefined,
       visibleDate: visibleDate,
       mode: startMode
     };
-  },
-
-  getValue(_props) {
-    return _props.valueLink ? _props.valueLink.value : _props.value;
-  },
-
-  getOnChange(_props) {
-    return _props.valueLink ? _props.valueLink.requestChange : _props.onChange;
   },
 
   stopPropagation(e) {
@@ -83,22 +78,29 @@ const DatePicker = React.createClass({
     this.setState({
       visibleDate: date.clone(), // must be copy, otherwise they get linked
       date: date
-    });
-    this.getOnChange(this.props)(date.toDate());
+    }, () => this.getValueLink().requestChange(date.toDate()));
   },
 
   onChangeMode(mode) {
     this.setState({ mode });
   },
 
+  changeYear(year) {
+    this.setState({ visibleDate: this.state.visibleDate.clone().year(year) });
+  },
+
+  changeMonth(month) {
+    this.setState({ visibleDate: this.state.visibleDate.clone().month(month) });
+  },
+
   getDayPicker() {
     return (
       <DayPicker
+        changeMonth={this.changeMonth}
         date={this.state.date}
         visibleDate={this.state.visibleDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate}
-        onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
         onChangeMode={this.onChangeMode}
         mode={this.state.mode}
@@ -111,12 +113,13 @@ const DatePicker = React.createClass({
   getMonthPicker() {
     return (
       <MonthPicker
+        changeYear={this.changeYear}
         date={this.state.date}
         visibleDate={this.state.visibleDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate}
-        onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
+        onChangeVisibleDate={this.onChangeVisibleDate}
         onChangeMode={this.onChangeMode}
         mode={this.state.mode}
         fixedMode={this.props.fixedMode}
@@ -128,12 +131,13 @@ const DatePicker = React.createClass({
   getYearPicker() {
     return (
       <YearPicker
+        changeYear={this.changeYear}
         date={this.state.date}
         visibleDate={this.state.visibleDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate}
-        onChangeVisibleDate={this.onChangeVisibleDate}
         onSelectDate={this.onChangeSelectedDate}
+        onChangeVisibleDate={this.onChangeVisibleDate}
         onChangeMode={this.onChangeMode}
         mode={this.state.mode}
         fixedMode={this.props.fixedMode}
@@ -158,10 +162,9 @@ const DatePicker = React.createClass({
         break;
     }
 
-    const floating = this.props.floating ? 'floating' : '';
     return (
       <div
-        className={`react-datepicker ${floating} ${this.props.className}`}
+        className={cx('react-datepicker', this.props.className, {floating: this.props.floating} )}
         style={this.props.style}
         onClick={this.stopPropagation}>
         {picker}
@@ -170,7 +173,7 @@ const DatePicker = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (this.getValue(nextProps) !== this.getValue(this.props)) {
+    if (this.getValueLink(nextProps).value !== this.getValueLink().value) {
       this.setState(this.getStateFromProps(nextProps));
     }
   }
