@@ -1,9 +1,11 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import moment from 'moment';
 import omit from 'lodash/object/omit';
 import DatePicker from './DatePicker';
-import DateUtils from './utils/DateUtils.js';
+import DateUtils from './utils/DateUtils';
+import formatMixin from './utils/formatMixin';
 
+const INVALID = 'Invalid date';
 const ENTER_KEYCODE = 13;
 
 const propTypes = {
@@ -21,7 +23,10 @@ const propTypes = {
   locale: PropTypes.string,
   startMode: PropTypes.string,
   fixedMode: PropTypes.bool,
+  displayFormat: PropTypes.string,
+  returnFormat: PropTypes.string,
   format: PropTypes.string,
+  validationFormat: PropTypes.string,
   showOnInputClick: PropTypes.bool,
   closeOnClickOutside: PropTypes.bool,
   showInputButton: PropTypes.bool,
@@ -35,6 +40,8 @@ const propTypes = {
 const DatePickerInput = React.createClass({
 
   propTypes: propTypes,
+
+  mixins: [ formatMixin ],
 
   getDefaultProps() {
     return {
@@ -53,10 +60,10 @@ const DatePickerInput = React.createClass({
 
   getInitialState() {
     const _date = this.getValue(this.props) || this.props.defaultValue;
-    const date = typeof _date === 'string' ? moment(_date, this.getFormat(), true) : moment(_date);
+    const date = typeof _date === 'string' ? this.parsePropDateString(_date) : moment(_date);
     return {
       date: _date ? date : undefined,
-      dateString: _date ? date.format(this.getFormat()) : '',
+      dateString: _date ? this.formatDisplayedDate(date) : '',
       showing: false
     };
   },
@@ -135,7 +142,7 @@ const DatePickerInput = React.createClass({
 
   _onChangeDate(jsDate) {
     const newDate = moment(jsDate);
-    const newDateString = newDate.format(this.getFormat());
+    const newDateString = this.formatDisplayedDate(newDate);
     if (newDateString !== this.state.dateString) {
       this.setState({
         date: newDate,
@@ -145,33 +152,21 @@ const DatePickerInput = React.createClass({
     if (this.props.autoClose) {
       this.hide();
     }
-    this.getOnChange(this.props)(jsDate, newDateString);
+    this.getOnChange(this.props)(jsDate, this.formatReturnedDate(newDate));
   },
 
   onChangeInput(dateString) {
-    this.setState({ dateString });
-    const parsedDate = moment(dateString, this.getFormat(dateString), true);
-    if (parsedDate.isValid()) {
-      this.setState({date: parsedDate});
-    }
-    const jsDate = parsedDate.isValid() ? parsedDate.toDate() : undefined;
-    this.getOnChange(this.props)(jsDate, dateString);
-  },
+    const parsedDate = this.parseInputDateString(dateString);
 
-  getFormat() {
-    if (this.props.format) {
-      return this.props.format;
-    }
-    if (this.props.fixed) {
-      switch (this.props.startMode) {
-        case 'month':
-          return 'MMMM';
-        case 'year':
-          return 'YYYY';
-      }
-    }
+    const jsDate = parsedDate.isValid() ? parsedDate.toDate() : INVALID;
+    const returnedDateString = jsDate ? this.formatReturnedDate(parsedDate) : INVALID;
 
-    return 'L';
+    this.getOnChange(this.props)(jsDate, returnedDateString);
+
+    this.setState({
+      dateString,
+      date: parsedDate.isValid() ? parsedDate : this.state.date
+    });
   },
 
   getDatePicker() {
@@ -229,12 +224,12 @@ const DatePickerInput = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     const value = this.getValue(nextProps);
-    if (value !== this.getValue(this.props)) {
+    if (value !== INVALID && value !== this.getValue(this.props)) {
       if (value) {
-        const date = typeof value === 'string' ? moment(value, this.getFormat(), true) : moment(value);
+        const date = typeof value === 'string' ? this.parsePropDateString(value, nextProps) : moment(value);
         this.setState({
           date: date,
-          dateString: date.isValid() ? date.format(this.getFormat()) : this.state.dateString
+          dateString: date.isValid() ? this.formatDisplayedDate(date, nextProps) : this.state.dateString
         });
       } else {
         this.setState({

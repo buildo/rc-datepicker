@@ -1,6 +1,7 @@
-import React, {PropTypes} from 'react/addons';
+import React, { PropTypes } from 'react/addons';
 import moment from 'moment';
 import DateUtils from './utils/DateUtils.js';
+import formatMixin from './utils/formatMixin';
 import DayPicker from './daypicker/DayPicker';
 import MonthPicker from './monthpicker/MonthPicker';
 import YearPicker from './yearpicker/YearPicker';
@@ -20,11 +21,14 @@ const DatePicker = React.createClass({
     locale: PropTypes.string,
     startMode: PropTypes.string,
     fixedMode: PropTypes.bool,
+    returnFormat: PropTypes.string,
     floating: PropTypes.bool,
     closeOnClickOutside: PropTypes.bool, // used only with DatePickerInput
     className: PropTypes.string,
     style: PropTypes.object
   },
+
+  mixins: [ formatMixin ],
 
   getDefaultProps() {
     return {
@@ -46,13 +50,14 @@ const DatePicker = React.createClass({
 
   getStateFromProps(_props) {
     const value = this.getValue(_props);
-    const date = typeof value === 'string' ? moment(value, this.getFormat(), true) : moment(value);
-    const initialDate = typeof _props.defaultValue === 'string' ? moment(_props.defaultValue, this.getFormat(), true) : moment(_props.defaultValue);
+    const { defaultValue, startMode } = _props;
+    const date = typeof value === 'string' ? this.parsePropDateString(value) : moment(value);
+    const initialDate = typeof defaultValue === 'string' ? this.parsePropDateString(defaultValue) : moment(defaultValue);
     const visibleDate = value ? date.clone() : initialDate; // must be copy, otherwise they get linked
     return {
       date: value ? date.clone() : undefined,
       visibleDate: visibleDate,
-      mode: _props.startMode
+      mode: startMode
     };
   },
 
