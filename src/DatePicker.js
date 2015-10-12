@@ -165,7 +165,7 @@ const DatePicker = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (this.getValue(nextProps)) {
+    if (this.getValue(nextProps) !== this.getValue(this.props)) {
       this.setState(this.getStateFromProps(nextProps));
     }
   }
