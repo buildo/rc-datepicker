@@ -35,6 +35,8 @@ const propTypes = {
   autoClose: PropTypes.bool,
   floating: PropTypes.bool,
   iconClassName: PropTypes.string,
+  iconClearClassName: PropTypes.string,
+  onClear: PropTypes.func,
   className: PropTypes.string, // used to omit from inputProps
   style: PropTypes.object // used to omit from inputProps
 };
@@ -123,6 +125,19 @@ const DatePickerInput = React.createClass({
     }
   },
 
+  onClear() {
+    const _date = this.props.defaultValue;
+    const date = typeof _date === 'string' ? this.parsePropDateString(_date) : moment(_date);
+    this.setState(
+      {
+        date: _date ? date : undefined,
+        dateString: _date ? this.formatDisplayedDate(date) : '',
+        showing: false
+      },
+      this.props.onClear
+    );
+  },
+
   _onChangeDate(jsDate) {
     const newDate = moment(jsDate);
     const newDateString = this.formatDisplayedDate(newDate);
@@ -173,20 +188,34 @@ const DatePickerInput = React.createClass({
 
   render() {
     const inputProps = omit(this.props, Object.keys(propTypes));
-    let inputButton = null;
-    if (this.props.showInputButton) {
-      inputButton = (
-        <div className={cx('input-button', {active: this.state.showing})} onClick={this.toggleDatePicker}>
-          <i className={this.props.iconClassName} />
-        </div>
-      );
-    }
+    const {
+      showInputButton,
+      showing: active,
+      iconClassName,
+      showOnInputClick,
+      onClear,
+      iconClearClassName,
+      className,
+      style
+    } = this.props;
 
-    const onInputClick = this.props.showOnInputClick ? this.show : undefined;
+    const inputButton = (
+      <div className={cx('input-button', { active })} onClick={this.toggleDatePicker}>
+        <i className={iconClassName} />
+      </div>
+    );
+
+    const clearButton = (
+      <div className='clear-button' onClick={this.onClear}>
+        <i className={iconClearClassName} />
+      </div>
+    );
+
+    const onInputClick = showOnInputClick ? this.show : undefined;
     return (
       <div
-        className={cx('react-datepicker-component', this.props.className)}
-        style={this.props.style}
+        className={cx('react-datepicker-component', className)}
+        style={style}
         onClick={this.stopPropagation}>
         <div className='react-datepicker-input'>
           <input
@@ -195,7 +224,10 @@ const DatePickerInput = React.createClass({
             onKeyUp={this.hideOnEnterKey}
             {...inputProps}
           />
-          {inputButton}
+          <div className='button-wrapper'>
+            {onClear && clearButton}
+            {showInputButton && inputButton}
+          </div>
         </div>
         {this.getDatePicker()}
       </div>
