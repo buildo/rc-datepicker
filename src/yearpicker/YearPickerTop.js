@@ -5,8 +5,9 @@ import partial from 'lodash/function/partial';
 const YearPickerTop = React.createClass({
 
   propTypes: {
-    initialVisibleDate: PropTypes.any.isRequired,
-    onChangeVisibleDate: PropTypes.func.isRequired
+    visibleDate: PropTypes.any.isRequired,
+    changeYear: PropTypes.func.isRequired,
+    textClassNames: PropTypes.string
   },
 
   render() {
