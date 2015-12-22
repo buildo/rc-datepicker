@@ -19,11 +19,19 @@
     padding-right: 60px;
   }
 
-  .input-button {
+  .button-wrapper {
     position: absolute;
-    margin: 0;
     right: 0;
     top: 0;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .input-button {
+    margin: 0;
     height: 100%;
     width: 50px;
     display: flex;
@@ -38,6 +46,10 @@
 
   .input-button:hover {
     background-color: #E8E8E8;
+  }
+
+  .clear-button i {
+    cursor: pointer;
   }
 
   i {
