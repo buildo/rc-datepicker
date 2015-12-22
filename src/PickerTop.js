@@ -7,7 +7,10 @@ export default React.createClass({
     handleClick: PropTypes.func,
     nextDate: PropTypes.func,
     previousDate: PropTypes.func,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
     valueClassName: PropTypes.string,
     weekDays: PropTypes.element
   },

@@ -9,8 +9,10 @@ export default React.createClass({
   displayName: 'DayPickerTop',
 
   propTypes: {
+    changeMonth: PropTypes.func.isRequired,
     visibleDate: PropTypes.any.isRequired,
     onChangeMode: PropTypes.func.isRequired,
+    textClassNames: PropTypes.string,
     fixedMode: PropTypes.bool
   },
 
