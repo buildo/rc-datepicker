@@ -18,11 +18,19 @@
   padding-right: 60px;
 }
 
-.react-datepicker-input .input-button {
+.react-datepicker-input .button-wrapper {
   position: absolute;
-  margin: 0;
   right: 0;
   top: 0;
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.react-datepicker-input .input-button {
+  margin: 0;
   height: 100%;
   width: 50px;
   display: flex;
@@ -37,6 +45,10 @@
 
 .react-datepicker-input .input-button:hover {
   background-color: #E8E8E8;
+}
+
+.react-datepicker-input .clear-button i {
+  cursor: pointer;
 }
 
 .react-datepicker-input i {
