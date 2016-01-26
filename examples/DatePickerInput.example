@@ -10,9 +10,7 @@ class Example extends React.Component {
     };
   }
 
-  resetState() {
-    this.setState({ value: null });
-  }
+  resetState = () => this.setState({ value: null })
 
   render() {
     return (
