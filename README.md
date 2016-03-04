@@ -140,3 +140,9 @@ You can find it in the ```lib``` folder as ```style.css``` (```node_modules/rc-d
 
 
 
+###Examples
+```shell
+$ npm install
+$ npm start
+$ open http://localhost:8080
+```
