@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
-import omit from 'lodash/object/omit';
+import omit from 'lodash/omit';
 import DatePicker from './DatePicker';
 import DateUtils from './utils/DateUtils';
 import formatMixin from './utils/formatMixin';
