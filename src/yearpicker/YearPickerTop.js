@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import PickerTop from '../PickerTop';
-import partial from 'lodash/function/partial';
+import partial from 'lodash/partial';
 
 const YearPickerTop = React.createClass({
 

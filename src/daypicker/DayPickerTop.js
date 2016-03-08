@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import partial from 'lodash/function/partial';
-import capitalize from 'lodash/string/capitalize';
+import partial from 'lodash/partial';
+import capitalize from 'lodash/capitalize';
 import DateUtils from '../utils/DateUtils.js';
 import PickerTop from '../PickerTop';
 

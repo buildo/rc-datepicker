@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import partial from 'lodash/function/partial';
+import partial from 'lodash/partial';
 import PickerTop from '../PickerTop';
 
 const MonthPickerTop = React.createClass({

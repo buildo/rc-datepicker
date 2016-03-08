@@ -4,7 +4,7 @@ import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
 import Row from '../Row';
 import DateUtils from '../utils/DateUtils';
-import range from 'lodash/utility/range';
+import range from 'lodash/range';
 
 const YearPickerBody = React.createClass({
 
