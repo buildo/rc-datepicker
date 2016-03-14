@@ -64,12 +64,6 @@ const DatePicker = React.createClass({
     };
   },
 
-  stopPropagation(e) {
-    if (this.props.closeOnClickOutside) {
-      e.stopPropagation();
-    }
-  },
-
   onChangeVisibleDate(date) {
     this.setState({visibleDate: date});
   },
@@ -165,8 +159,7 @@ const DatePicker = React.createClass({
     return (
       <div
         className={cx('react-datepicker', this.props.className, {floating: this.props.floating} )}
-        style={this.props.style}
-        onClick={this.stopPropagation}>
+        style={this.props.style}>
         {picker}
       </div>
     );

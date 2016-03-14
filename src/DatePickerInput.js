@@ -81,31 +81,43 @@ const DatePickerInput = React.createClass({
   addOnClickListener() {
     if (window.attachEvent) {
       //Internet Explorer
-      window.attachEvent('onclick', this.hide);
+      window.attachEvent('onclick', this.hideOnClickOutside);
     } else if(window.addEventListener) {
-      window.addEventListener('click', this.hide, false);
+      window.addEventListener('click', this.hideOnClickOutside, false);
     }
   },
 
   removeOnClickListener() {
     if (window.detachEvent) {
       //Internet Explorer
-      window.detachEvent('onclick', this.hide);
+      window.detachEvent('onclick', this.hideOnClickOutside);
     } else if(window.removeEventListener) {
-      window.removeEventListener('click', this.hide, false);
+      window.removeEventListener('click', this.hideOnClickOutside, false);
     }
   },
 
-  stopPropagation(e) {
-    if (this.props.closeOnClickOutside) {
-      e.stopPropagation();
+  getDatePickerInput() {
+    return React.findDOMNode(this.refs.datePickerInput);
+  },
+
+  isEventInsideDatePickerInput(el) {
+    if (el === this.getDatePickerInput()) {
+      return true;
+    } else if (el.parentNode) {
+      return this.isEventInsideDatePickerInput(el.parentNode);
+    } else {
+      return false;
+    }
+  },
+
+  hideOnClickOutside(e) {
+    if (!this.isEventInsideDatePickerInput(e.target) && this.state.showing) {
+      this.hide();
     }
   },
 
   hide() {
-    if (this.state.showing) {
-      this.setState({showing: false}, this.props.onHide);
-    }
+    this.setState({showing: false}, this.props.onHide);
   },
 
   show() {
@@ -216,7 +228,7 @@ const DatePickerInput = React.createClass({
       <div
         className={cx('react-datepicker-component', className)}
         style={style}
-        onClick={this.stopPropagation}>
+        ref='datePickerInput'>
         <div className='react-datepicker-input'>
           <input
             valueLink={{value: this.state.dateString, requestChange: this.onChangeInput}}
