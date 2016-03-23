@@ -76,7 +76,7 @@ const DatePicker = React.createClass({
   },
 
   onChangeMode(mode) {
-    this.setState({ mode });
+    setTimeout(() => this.setState({ mode }));
   },
 
   changeYear(year) {
