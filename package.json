@@ -62,6 +62,6 @@
   "dependencies": {
     "classnames": "^1.2.0",
     "lodash": "^4.6.1",
-    "moment": "2.10.6 < 2.11.x"
+    "moment": "^2.12.0"
   }
 }
