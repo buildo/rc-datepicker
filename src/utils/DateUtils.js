@@ -23,7 +23,7 @@ const getVisibleDays = (month, year) => {
   const currentMonthLength = daysInMonthCount(month, year) + 1;
 
   if (month - 1 < 0) {
-    month = 11;
+    month = 12;
     year = year - 1;
   }
 
