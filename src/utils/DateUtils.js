@@ -20,8 +20,14 @@ const getWeekdaysMin = () => {
 
 const getVisibleDays = (month, year) => {
   const offset = moment([year, month]).startOf('month').weekday();
-  const previousMonthLength = daysInMonthCount(month - 1, year) + 1; //We need the last number too
   const currentMonthLength = daysInMonthCount(month, year) + 1;
+
+  if (month - 1 < 0) {
+    month = 11;
+    year = year - 1;
+  }
+
+  const previousMonthLength = daysInMonthCount(month - 1, year) + 1; //We need the last number too
 
   const previous = getArrayByBoundary(previousMonthLength - offset, previousMonthLength);
   const current = getArrayByBoundary(1, currentMonthLength);
