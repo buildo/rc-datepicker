@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import partial from 'lodash/partial';
 import PickerTop from '../PickerTop';
 
@@ -27,7 +27,8 @@ const MonthPickerTop = React.createClass({
         handleClick={this.changeMode}
         previousDate={partial(this.props.changeYear, (year - 1))}
         nextDate={partial(this.props.changeYear, (year + 1))}
-        valueClassName={this.props.textClassNames} />
+        valueClassName={this.props.textClassNames}
+      />
     );
   }
 });

@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import PickerTop from '../PickerTop';
 import partial from 'lodash/partial';
 
@@ -16,11 +16,12 @@ const YearPickerTop = React.createClass({
     const endDecadeYear = startDecadeYear + 9;
     return (
       <PickerTop
-        fixed={true}
+        fixed
         nextDate={partial(this.props.changeYear, year + 10)}
         previousDate={partial(this.props.changeYear, year - 10)}
-        value={startDecadeYear + '-' + endDecadeYear}
-        valueClassName={this.props.textClassNames} />
+        value={`${startDecadeYear}-${endDecadeYear}`}
+        valueClassName={this.props.textClassNames}
+      />
     );
   }
 });

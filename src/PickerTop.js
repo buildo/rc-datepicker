@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
 export default React.createClass({
@@ -28,15 +28,18 @@ export default React.createClass({
       <div className='react-datepicker-top'>
         <div className='display'>
           <div className='react-datepicker-button button-left'
-               onClick={this.props.previousDate}>
+            onClick={this.props.previousDate}
+          >
             &lt;
           </div>
-          <div className={cx('react-datepicker-button button-label', {fixed: this.props.fixed})}
-               onClick={this.props.handleClick}>
+          <div className={cx('react-datepicker-button button-label', { fixed: this.props.fixed })}
+            onClick={this.props.handleClick}
+          >
             <strong className={this.props.valueClassName}>{this.props.value}</strong>
           </div>
           <div className='react-datepicker-button button-right'
-               onClick={this.props.nextDate}>
+            onClick={this.props.nextDate}
+          >
             &gt;
           </div>
         </div>

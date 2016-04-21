@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
 import Row from '../Row';
@@ -16,7 +16,7 @@ const DayPickerBody = React.createClass({
     mode: PropTypes.string.isRequired
   },
 
-  render(){
+  render() {
     if (!this.props.visibleDate.isValid()) {
       return <InvalidDate invalidDate={this.props.visibleDate.format()} />;
     }

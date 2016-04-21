@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import DateUtils from '../utils/DateUtils.js';
 import DayPickerTop from './DayPickerTop';
 import DayPickerBody from './DayPickerBody';
@@ -28,14 +28,16 @@ const DayPicker = React.createClass({
           changeMonth={this.props.changeMonth}
           visibleDate={this.props.visibleDate}
           onChangeMode={this.props.onChangeMode}
-          fixedMode={this.props.fixedMode} />
+          fixedMode={this.props.fixedMode}
+        />
         <DayPickerBody
           visibleDate={this.props.visibleDate}
           date={this.props.date}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           onSelectDate={this._onSelectDate}
-          mode={this.props.mode} />
+          mode={this.props.mode}
+        />
       </div>
     );
   }

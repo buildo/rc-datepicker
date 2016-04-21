@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react/addons';
+import React, { PropTypes } from 'react';
 import moment from 'moment';
 import DateUtils from './utils/DateUtils.js';
 import formatMixin from './utils/formatMixin';
@@ -44,7 +44,7 @@ const DatePicker = React.createClass({
     if (this.props.locale) {
       moment.locale(this.props.locale);
       if (process.env.NODE_ENV !== 'production' && moment.locale() !== this.props.locale) {
-        console.warn(`Setting "${this.props.locale}" as locale failed. Did you import it correctly?`);
+        console.warn(`Setting "${this.props.locale}" as locale failed. Did you import it correctly?`); // eslint-disable-line no-console
       }
     }
     return this.getStateFromProps(this.props);
@@ -59,19 +59,19 @@ const DatePicker = React.createClass({
     const visibleDate = value ? date.clone() : initialDate; // must be copy, otherwise they get linked
     return {
       date: value ? date.clone() : undefined,
-      visibleDate: visibleDate,
+      visibleDate,
       mode: startMode
     };
   },
 
   onChangeVisibleDate(date) {
-    this.setState({visibleDate: date});
+    this.setState({ visibleDate: date });
   },
 
   onChangeSelectedDate(date) {
     this.setState({
       visibleDate: date.clone(), // must be copy, otherwise they get linked
-      date: date
+      date
     }, () => this.getValueLink().requestChange(date.toDate()));
   },
 
@@ -158,8 +158,9 @@ const DatePicker = React.createClass({
 
     return (
       <div
-        className={cx('react-datepicker', this.props.className, {floating: this.props.floating} )}
-        style={this.props.style}>
+        className={cx('react-datepicker', this.props.className, { floating: this.props.floating } )}
+        style={this.props.style}
+      >
         {picker}
       </div>
     );
