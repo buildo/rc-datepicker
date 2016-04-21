@@ -44,7 +44,7 @@ const propTypes = {
 
 const DatePickerInput = React.createClass({
 
-  propTypes: propTypes,
+  propTypes,
 
   mixins: [ ValueLinkMixin, formatMixin ],
 
@@ -83,7 +83,7 @@ const DatePickerInput = React.createClass({
     if (window.attachEvent) {
       //Internet Explorer
       window.attachEvent('onclick', this.hideOnClickOutside);
-    } else if(window.addEventListener) {
+    } else if (window.addEventListener) {
       window.addEventListener('click', this.hideOnClickOutside, false);
     }
   },
@@ -92,7 +92,7 @@ const DatePickerInput = React.createClass({
     if (window.detachEvent) {
       //Internet Explorer
       window.detachEvent('onclick', this.hideOnClickOutside);
-    } else if(window.removeEventListener) {
+    } else if (window.removeEventListener) {
       window.removeEventListener('click', this.hideOnClickOutside, false);
     }
   },
@@ -118,18 +118,18 @@ const DatePickerInput = React.createClass({
   },
 
   hide() {
-    this.setState({showing: false}, this.props.onHide);
+    this.setState({ showing: false }, this.props.onHide);
   },
 
   show() {
     if (!this.state.showing) {
-      this.setState({showing: true}, this.props.onShow);
+      this.setState({ showing: true }, this.props.onShow);
     }
   },
 
   toggleDatePicker() {
     const callback = this.state.showing ? this.props.onHide : this.props.onShow;
-    this.setState({showing: !this.state.showing}, callback);
+    this.setState({ showing: !this.state.showing }, callback);
   },
 
   hideOnEnterKey(event) {
@@ -229,10 +229,11 @@ const DatePickerInput = React.createClass({
       <div
         className={cx('react-datepicker-component', className)}
         style={style}
-        ref='datePickerInput'>
+        ref='datePickerInput'
+      >
         <div className='react-datepicker-input'>
           <input
-            valueLink={{value: this.state.dateString, requestChange: this.onChangeInput}}
+            valueLink={{ value: this.state.dateString, requestChange: this.onChangeInput }}
             onClick={onInputClick}
             onKeyUp={this.hideOnEnterKey}
             {...inputProps}
@@ -253,7 +254,7 @@ const DatePickerInput = React.createClass({
       if (value) {
         const date = typeof value === 'string' ? this.parsePropDateString(value, nextProps) : moment(value);
         this.setState({
-          date: date,
+          date,
           dateString: date.isValid() ? this.formatDisplayedDate(date, nextProps) : this.state.dateString
         });
       } else {

@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import partial from 'lodash/partial';
 import capitalize from 'lodash/capitalize';
 import DateUtils from '../utils/DateUtils.js';
@@ -45,7 +45,8 @@ export default React.createClass({
         previousDate={partial(this.props.changeMonth, (month - 1))}
         nextDate={partial(this.props.changeMonth, (month + 1))}
         valueClassName={this.props.textClassNames}
-        weekDays={weekDays} />
+        weekDays={weekDays}
+      />
     );
   }
 });

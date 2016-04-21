@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import DateUtils from './utils/DateUtils.js';
 
@@ -50,7 +50,7 @@ const Picker = React.createClass({
     });
 
     return (
-      <div className={'react-datepicker-picker react-datepicker-button ' + classes} onClick={this.handleClick}>
+      <div className={`react-datepicker-picker react-datepicker-button ${classes}`} onClick={this.handleClick}>
         <span>{value}</span>
       </div>
     );

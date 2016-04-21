@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
 const Row = React.createClass({
 
@@ -9,7 +9,7 @@ const Row = React.createClass({
 
   render() {
     return (
-      <div className={'react-datepicker-row ' + this.props.mode}>
+      <div className={`react-datepicker-row ${this.props.mode}`}>
         {this.props.pickers}
       </div>
     );

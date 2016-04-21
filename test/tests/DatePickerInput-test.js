@@ -3,7 +3,7 @@ const TestUtils = React.addons.TestUtils;
 import expect from 'expect';
 import fr from 'moment/locale/fr';
 import de from 'moment/locale/de';
-import {DatePickerInput, DatePicker} from '../../src';
+import { DatePickerInput, DatePicker } from '../../src';
 
 describe('DatePickerInput', function() {
 
@@ -22,7 +22,7 @@ describe('DatePickerInput', function() {
     TestUtils.Simulate.click(calendarButton);
 
     datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.length).toBe(1, "DatePicker was not displayed after clicking on the calendar button");
+    expect(datePickers.length).toBe(1, 'DatePicker was not displayed after clicking on the calendar button');
 
   });
 
@@ -30,7 +30,7 @@ describe('DatePickerInput', function() {
 
     const inputWrapper = TestUtils.renderIntoDocument(
       <div className='ui input'>
-        <DatePickerInput onChange={() => {}} showOnInputClick={true} />
+        <DatePickerInput onChange={() => {}} showOnInputClick />
       </div>
     );
 
@@ -41,7 +41,7 @@ describe('DatePickerInput', function() {
     TestUtils.Simulate.click(datePickerInputArea);
 
     datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
-    expect(datePickers.length).toBe(1, "DatePicker was not displayed after clicking on the input area");
+    expect(datePickers.length).toBe(1, 'DatePicker was not displayed after clicking on the input area');
 
   });
 
@@ -180,7 +180,7 @@ describe('DatePickerInput', function() {
     datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
     expect(datePickers.length).toBe(1);
 
-    TestUtils.Simulate.keyUp(datePickerInputArea, {keyCode: 13});
+    TestUtils.Simulate.keyUp(datePickerInputArea, { keyCode: 13 });
 
     datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
     expect(datePickers.length).toBe(0, 'DatePicker didn\'t close correctly');

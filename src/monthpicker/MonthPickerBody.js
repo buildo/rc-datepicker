@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import moment from 'moment';
 import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
@@ -30,7 +30,7 @@ const MonthPickerBody = React.createClass({
         <Picker
           date={date}
           isSelected={selectedMonth === index && selectedYear === year}
-          isCurrent={true}
+          isCurrent
           isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
           onSelectDate={this.props.onSelectDate}
           mode={this.props.mode}
@@ -42,8 +42,9 @@ const MonthPickerBody = React.createClass({
     const nRows = 3;
     const rows = range(nRows).map(index =>
       <Row pickers={months.slice(nColumns * index, nColumns * (index + 1))}
-           mode={this.props.mode}
-           key={index} />
+        mode={this.props.mode}
+        key={index}
+      />
     );
 
     return (

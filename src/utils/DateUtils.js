@@ -52,7 +52,7 @@ const getVisibleYears = (year) => {
 const evaluateDateProp = (props, propName, componentName) => {
   const dateProp = props[propName];
   if (dateProp && (typeof dateProp !== 'string' && !(dateProp instanceof Date) && !moment.isMoment(dateProp))) {
-    return new Error(propName + ' validation failed in ' + componentName);
+    return new Error(`${propName} validation failed in ${componentName}`);
   }
 };
 
