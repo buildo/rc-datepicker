@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react/addons';
+import React, { PropTypes } from 'react';
 import moment from 'moment';
 import DateUtils from './utils/DateUtils.js';
 import formatMixin from './utils/formatMixin';

@@ -1,5 +1,5 @@
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import fr from 'moment/locale/fr';
 import de from 'moment/locale/de';
@@ -9,99 +9,72 @@ describe('DatePickerInput', function() {
 
   it('presents the DatePicker when clicking on the calendar button', function() {
 
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} />
-      </div>
-    );
+    const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} />);
 
-    let datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    let datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(0);
 
-    const calendarButton = TestUtils.findRenderedDOMComponentWithClass(inputWrapper, 'input-button');
+    const calendarButton = TestUtils.findRenderedDOMComponentWithClass(input, 'input-button');
     TestUtils.Simulate.click(calendarButton);
 
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(1, 'DatePicker was not displayed after clicking on the calendar button');
 
   });
 
   it('presents the DatePicker when clicking on the input area', function() {
 
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} showOnInputClick />
-      </div>
-    );
+    const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} showOnInputClick />);
 
-    let datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    let datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(0);
 
-    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
+    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(input, 'input');
     TestUtils.Simulate.click(datePickerInputArea);
 
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(1, 'DatePicker was not displayed after clicking on the input area');
 
   });
 
   it('should pass the name prop down to the underlying input field', function() {
 
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} name='foobar' />
-      </div>
-    );
+    const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} name='foobar' />);
 
-    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
-    expect(datePickerInputArea.props.name).toBe('foobar', 'Underlying input\'s \'name\' prop is \'' + datePickerInputArea.props.name + '\' intead of \'foobar\'');
+    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(input, 'input');
+    expect(datePickerInputArea.name).toBe('foobar', 'Underlying input\'s \'name\' prop is \'' + datePickerInputArea.name + '\' intead of \'foobar\'');
 
   });
 
   it('DatePicker should be floating above content', function() {
 
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} />
-      </div>
-    );
+    const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} />);
 
-    const inputWrapper2 = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} />
-      </div>
-    );
+    const input2 = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} />);
 
-    const wrapper1 = TestUtils.findRenderedDOMComponentWithClass(inputWrapper, 'react-datepicker-component');
+    const wrapper1 = TestUtils.findRenderedDOMComponentWithClass(input, 'react-datepicker-component');
 
-    const calendarButton = TestUtils.findRenderedDOMComponentWithClass(inputWrapper2, 'input-button');
+    const calendarButton = TestUtils.findRenderedDOMComponentWithClass(input2, 'input-button');
     TestUtils.Simulate.click(calendarButton);
 
-    const wrapper2 = TestUtils.findRenderedDOMComponentWithClass(inputWrapper2, 'react-datepicker-component');
+    const wrapper2 = TestUtils.findRenderedDOMComponentWithClass(input2, 'react-datepicker-component');
 
-    const previousHeight = wrapper1.getDOMNode().clientHeight;
-    const newHeight = wrapper2.getDOMNode().clientHeight;
+    const previousHeight = wrapper1.clientHeight;
+    const newHeight = wrapper2.clientHeight;
     expect(newHeight).toBe(previousHeight, 'datepicker component height is ' + newHeight + ' instead of ' + previousHeight);
 
   });
 
   it('DatePickers should have correct locales', function() {
 
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePicker onChange={() => {}} locale='fr' className='french' />
-        <DatePicker onChange={() => {}} locale='de' className='german' />
-      </div>
-    );
+    const inputFr = TestUtils.renderIntoDocument(<DatePicker onChange={() => {}} locale='fr' className='french' />);
+    const inputDe = TestUtils.renderIntoDocument(<DatePicker onChange={() => {}} locale='de' className='german' />);
 
-    const FrenchDatePicker = TestUtils.findRenderedDOMComponentWithClass(inputWrapper, 'french');
-    const GermanDatePicker = TestUtils.findRenderedDOMComponentWithClass(inputWrapper, 'german');
+    const frenchWeekDays = TestUtils.scryRenderedDOMComponentsWithClass(inputFr, 'week-day');
+    const germanWeekDays = TestUtils.scryRenderedDOMComponentsWithClass(inputDe, 'week-day');
 
-    const FrenchWeekDays = TestUtils.scryRenderedDOMComponentsWithClass(FrenchDatePicker, 'week-day');
-    const GermanWeekDays = TestUtils.scryRenderedDOMComponentsWithClass(GermanDatePicker, 'week-day');
-
-    expect(FrenchWeekDays[0].getDOMNode().innerHTML).toBe('Lu', 'First DatePicker is not in french');
-    expect(GermanWeekDays[0].getDOMNode().innerHTML).toBe('Mo', 'Second DatePicker is not in german');
+    expect(frenchWeekDays[0].innerHTML).toBe('Lu', 'First DatePicker is not in french');
+    expect(germanWeekDays[0].innerHTML).toBe('Mo', 'Second DatePicker is not in german');
 
   });
 
@@ -119,19 +92,15 @@ describe('DatePickerInput', function() {
       requestChange: onChange
     };
 
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput locale='de' valueLink={valueLink} showOnInputClick/>
-      </div>
-    );
+    const input = TestUtils.renderIntoDocument(<DatePickerInput locale='de' valueLink={valueLink} showOnInputClick/>);
 
-    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
+    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(input, 'input');
     TestUtils.Simulate.click(datePickerInputArea);
-    expect(datePickerInputArea.getDOMNode().value).toBe('15.07.2015', 'initial value is wrong');
+    expect(datePickerInputArea.value).toBe('15.07.2015', 'initial value is wrong');
 
-    const pickerButton = TestUtils.scryRenderedDOMComponentsWithClass(inputWrapper, 'react-datepicker-picker')[0];
+    const pickerButton = TestUtils.scryRenderedDOMComponentsWithClass(input, 'react-datepicker-picker')[0];
     TestUtils.Simulate.click(pickerButton);
-    expect(datePickerInputArea.getDOMNode().value).toBe('29.06.2015', 'displayed value didn\'t change correctly');
+    expect(datePickerInputArea.value).toBe('29.06.2015', 'displayed value didn\'t change correctly');
 
     const formattedDate = [date.getDate(), date.getMonth() + 1, date.getFullYear()].join('.');
     expect(formattedDate).toBe('29.6.2015', 'stored value didn\'t change correctly');
@@ -140,49 +109,41 @@ describe('DatePickerInput', function() {
 
   it('DatePicker should close on select date', function() {
 
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} showOnInputClick autoClose />
-      </div>
-    );
+    const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} showOnInputClick autoClose />);
 
-    let datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    let datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(0);
 
-    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
+    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(input, 'input');
     TestUtils.Simulate.click(datePickerInputArea);
 
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(1);
 
-    const pickerButton = TestUtils.scryRenderedDOMComponentsWithClass(inputWrapper, 'react-datepicker-picker')[0];
+    const pickerButton = TestUtils.scryRenderedDOMComponentsWithClass(input, 'react-datepicker-picker')[0];
     TestUtils.Simulate.click(pickerButton);
 
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(0, 'DatePicker didn\'t close correctly');
 
   });
 
   it('DatePicker should close on enter key event on input', function() {
 
-    const inputWrapper = TestUtils.renderIntoDocument(
-      <div className='ui input'>
-        <DatePickerInput onChange={() => {}} showOnInputClick />
-      </div>
-    );
+    const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} showOnInputClick />);
 
-    let datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    let datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(0);
 
-    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(inputWrapper, 'input');
+    const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(input, 'input');
     TestUtils.Simulate.click(datePickerInputArea);
 
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(1);
 
     TestUtils.Simulate.keyUp(datePickerInputArea, { keyCode: 13 });
 
-    datePickers = TestUtils.scryRenderedComponentsWithType(inputWrapper, DatePicker);
+    datePickers = TestUtils.scryRenderedComponentsWithType(input, DatePicker);
     expect(datePickers.length).toBe(0, 'DatePicker didn\'t close correctly');
 
   });
