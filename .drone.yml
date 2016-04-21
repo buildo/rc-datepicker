@@ -1,0 +1,13 @@
+build:
+  rc-datepicker:
+    image: quay.io/buildo/node5-npm3-chrome
+    environment:
+      - NPM_CONFIG_CACHE=/drone/.npm
+    commands:
+      - npm i
+      - npm run lint
+      - npm test
+
+cache:
+  mount:
+    - /drone/.npm
