@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import moment from 'moment';
 import omit from 'lodash/omit';
 import DatePicker from './DatePicker';
@@ -97,7 +98,7 @@ const DatePickerInput = React.createClass({
   },
 
   getDatePickerInput() {
-    return React.findDOMNode(this.refs.datePickerInput);
+    return ReactDOM.findDOMNode(this.refs.datePickerInput);
   },
 
   isEventInsideDatePickerInput(el) {
