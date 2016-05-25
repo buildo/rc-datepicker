@@ -9,7 +9,7 @@ var paths = {
 module.exports = {
 
   output: {
-    path: paths.EXAMPLES,
+    path: paths.EXAMPLES + '/build',
     filename: 'bundle.js'
   },
 
