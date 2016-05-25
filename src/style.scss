@@ -124,14 +124,14 @@ $input-opacity-disabled: .6 !default;
     -webkit-align-items: center;
     justify-content: center;
     -webkit-justify-content: center;
-    background-color: $input-button-background-color;
+    background: $input-button-background-color;
     font-size: input-button-icon-size;
     border-radius: 0 $input-border-radius $input-border-radius 0;
     cursor: pointer;
   }
 
   .input-button:hover {
-    background-color: $input-button-background-color-hover;
+    background: $input-button-background-color-hover;
   }
 
   .clear-button {
