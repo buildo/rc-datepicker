@@ -168,16 +168,18 @@ const DatePickerInput = React.createClass({
 
 
   onChangeInput(dateString) {
-    const parsedDate = this.parseInputDateString(dateString);
-    const date = parsedDate.isValid() ? parsedDate : this.state.date;
+    if (dateString || this.state.date) {
+      const parsedDate = this.parseInputDateString(dateString);
+      const date = parsedDate.isValid() ? parsedDate : this.state.date;
 
-    const jsDate = parsedDate.isValid() ? parsedDate.toDate() : INVALID;
-    const returnedDateString = jsDate ? this.formatReturnedDate(parsedDate) : INVALID;
+      const jsDate = parsedDate.isValid() ? parsedDate.toDate() : INVALID;
+      const returnedDateString = jsDate ? this.formatReturnedDate(parsedDate) : INVALID;
 
-    this.setState(
-      { dateString, date },
-      () => this.getValueLink().requestChange(jsDate, returnedDateString)
-    );
+      this.setState(
+        { dateString, date },
+        () => this.getValueLink().requestChange(jsDate, returnedDateString)
+      );
+    }
   },
 
   getDatePicker() {
