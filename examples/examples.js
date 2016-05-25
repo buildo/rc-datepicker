@@ -1,6 +1,9 @@
 import React from 'react/addons';
+import ReactDOM from 'react-dom';
 import fakeImport from 'moment/locale/fr.js';
 import {DatePicker, DatePickerInput} from '../src';
+
+import '../src/style.scss';
 
 const Example = React.createClass({
 
@@ -89,4 +92,4 @@ const Example = React.createClass({
 
 });
 
-React.render(<Example />, document.getElementById('container'));
+ReactDOM.render(<Example />, document.getElementById('container'));
