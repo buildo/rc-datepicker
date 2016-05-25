@@ -1,3 +1,51 @@
+$gradientGrey: linear-gradient(#FAFAFA, #E0E0E0);
+$gradientMediumGrey: linear-gradient(#FAFAFA, #A7ABAB);
+$coolGrey: #D0D0D0;
+$darkGrey: #767C7E;
+$mediumGrey: #A7ABAB;
+$charcoal: #2D373C;
+$cerulean: #009bde;
+$vermillion: #C93132;
+
+
+$font-size: 15px !default;
+$font-weight: normal !default;
+$font-family: sans-serif !default;
+
+$input-height: 38px !default;
+$input-height-small: 30px !default;
+$input-min-width: 150px !default;
+
+$input-border-radius: 5px !default;
+$input-font-size: 15px !default;
+
+$input-background: $gradientGrey !default;
+$input-border-color: $coolGrey !default;
+$input-color: $mediumGrey !default;
+$input-icon-color: $mediumGrey !default;
+
+$input-background-hover: $gradientMediumGrey !default;
+$input-border-color-hover: $input-border-color !default;
+$input-color-hover: $charcoal !default;
+$input-icon-color-hover: $charcoal !default;
+
+$input-background-open: $gradientMediumGrey !default;
+$input-border-color-open: $cerulean !default;
+$input-color-open: $darkGrey !default;
+$input-icon-color-open: $charcoal !default;
+
+$input-color-has-value: $charcoal !default;
+
+$input-button-background-color: transparent !default;
+$input-button-background-color-hover: transparent !default;
+$input-button-icon-size: 15px !default;
+$input-clear-button-icon-size: 16px !default;
+$input-clear-button-color: $mediumGrey !default;
+$input-clear-button-color-hover: $vermillion !default;
+
+$input-opacity-disabled: .6 !default;
+
+
 .react-datepicker-component {
   position: relative;
 
@@ -12,11 +60,47 @@
 
 .react-datepicker-input {
   position: relative;
-
+  min-width: $input-min-width;
+  height: $input-height;
+  background: $input-background;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  &.is-small {
+    height: $input-height-small;
+  }
   input {
     width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
     box-sizing: border-box;
+    padding-left: 15px;
     padding-right: 60px;
+    font-size: $input-font-size;
+    color: $input-color;
+    &:focus {
+      outline: none;
+    }
+  }
+  &:hover {
+    background: $input-background-hover;
+    border: 1px solid $input-border-color-hover;
+    input {
+      color: $input-color-hover;
+    }
+  }
+  &.is-open {
+    background: $input-background-open;
+    border: 1px solid $input-border-color-open;
+    input {
+      color: $input-color-open;
+    }
+  }
+  &.has-value input {
+    color: $input-color-has-value;
+  }
+  &.is-disabled {
+    opacity: $input-opacity-disabled;
   }
 
   .button-wrapper {
@@ -40,20 +124,24 @@
     -webkit-align-items: center;
     justify-content: center;
     -webkit-justify-content: center;
-    background-color: #E0E0E0;
+    background: $input-button-background-color;
+    font-size: input-button-icon-size;
+    border-radius: 0 $input-border-radius $input-border-radius 0;
     cursor: pointer;
   }
 
   .input-button:hover {
-    background-color: #E8E8E8;
+    background: $input-button-background-color-hover;
   }
 
-  .clear-button i {
+  .clear-button {
+    margin-right: 10px;
     cursor: pointer;
-  }
-
-  i {
-    margin: 0;
+    font-size: $input-clear-button-icon-size;
+    color: $input-clear-button-color;
+    &:hover {
+      color: $input-clear-button-color-hover;
+    }
   }
 }
 

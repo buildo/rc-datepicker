@@ -20,6 +20,7 @@ const propTypes = {
     value: DateUtils.evaluateDateProp,
     requestChange: PropTypes.func.isRequired
   }),
+  small: PropTypes.bool,
   defaultValue: DateUtils.evaluateDateProp,
   minDate: DateUtils.evaluateDateProp,
   maxDate: DateUtils.evaluateDateProp,
@@ -56,6 +57,7 @@ const DatePickerInput = React.createClass({
       autoClose: true,
       closeOnClickOutside: true,
       floating: true,
+      small: false,
       showInputButton: true,
       iconClassName: '',
       className: '',
@@ -68,6 +70,7 @@ const DatePickerInput = React.createClass({
     const date = typeof _date === 'string' ? this.parsePropDateString(_date) : moment(_date);
     return {
       date: _date ? date : undefined,
+      hasValue: !!_date,
       dateString: _date ? this.formatDisplayedDate(date) : '',
       showing: false
     };
@@ -160,6 +163,7 @@ const DatePickerInput = React.createClass({
     this.getValueLink().requestChange(jsDate, this.formatReturnedDate(newDate));
     if (newDateString !== this.state.dateString) {
       this.setState({
+        hasValue: true,
         date: newDate,
         dateString: newDateString
       });
@@ -175,10 +179,11 @@ const DatePickerInput = React.createClass({
       const jsDate = parsedDate.isValid() ? parsedDate.toDate() : INVALID;
       const returnedDateString = jsDate ? this.formatReturnedDate(parsedDate) : INVALID;
 
-      this.setState(
-        { dateString, date },
-        () => this.getValueLink().requestChange(jsDate, returnedDateString)
-      );
+      this.setState({
+        dateString,
+        date,
+        hasValue: parsedDate.isValid()
+      }, () => this.getValueLink().requestChange(jsDate, returnedDateString));
     }
   },
 
@@ -205,15 +210,15 @@ const DatePickerInput = React.createClass({
     const inputProps = omit(this.props, Object.keys(propTypes));
     const {
       showInputButton,
-      showing: active,
       iconClassName,
       showOnInputClick,
       onClear,
+      small,
       iconClearClassName,
       className,
       style
     } = this.props;
-
+    const { showing: active, hasValue } = this.state;
     const inputButton = (
       <div className={cx('input-button', { active })} onClick={this.toggleDatePicker}>
         <i className={iconClassName} />
@@ -233,7 +238,7 @@ const DatePickerInput = React.createClass({
         style={style}
         ref='datePickerInput'
       >
-        <div className='react-datepicker-input'>
+        <div className={cx('react-datepicker-input', { 'is-open': active, 'has-value': hasValue, 'is-small': small })}>
           <input
             valueLink={{ value: this.state.dateString, requestChange: this.onChangeInput }}
             onClick={onInputClick}
@@ -241,7 +246,7 @@ const DatePickerInput = React.createClass({
             {...inputProps}
           />
           <div className='button-wrapper'>
-            {onClear && clearButton}
+            {onClear && hasValue && clearButton}
             {showInputButton && inputButton}
           </div>
         </div>
