@@ -26,6 +26,12 @@ const Example = React.createClass({
     });
   },
 
+  onClear() {
+    this.setState({
+      datePickerDate: null
+    });
+  },
+
   log(x) {
     console.log(x);
   },
@@ -57,7 +63,9 @@ const Example = React.createClass({
               showOnInputClick
               placeholder='placeholder'
               locale='de'
-              iconClassName='calendar icon'/>
+              onClear={this.onClear}
+              iconClearClassName='fa fa-times'
+              iconClassName='fa fa-calendar'/>
           </div>
         }
 
