@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.3/semantic.min.css"></link>
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks.main.css) { %}
       <link rel="stylesheet" href="{%=o.htmlWebpackPlugin.files.chunks.main.css[chunk]%}" media="all">
     {% } %}
