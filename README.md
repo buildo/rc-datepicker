@@ -23,14 +23,14 @@ React.renderComponent(
       value={date}
       className='my-custom-datepicker-component'
       {...anyReactInputProps}/>
-    
+
     // this renders only a fixed datepicker
     <DatePicker onChange={onChange} value={date} />
   </div>,
   document.body);
 ```
 
-You can see a live demo [here](https://cdn.rawgit.com/buildo/react-semantic-datepicker/master/examples/index.html)
+You can see a live demo [here](https://cdn.rawgit.com/buildo/react-semantic-datepicker/master/examples/build/index.html)
 
 or check the full examples [here](https://github.com/buildo/react-semantic-datepicker/tree/master/examples)
 
