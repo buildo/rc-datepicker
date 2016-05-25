@@ -246,7 +246,7 @@ const DatePickerInput = React.createClass({
             {...inputProps}
           />
           <div className='button-wrapper'>
-            {onClear && clearButton}
+            {onClear && hasValue && clearButton}
             {showInputButton && inputButton}
           </div>
         </div>
