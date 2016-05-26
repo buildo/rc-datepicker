@@ -44,8 +44,8 @@ $input-icon-color-open: $charcoal !default;
 
 $input-color-has-value: $charcoal !default;
 
-$input-button-background-color: transparent !default;
-$input-button-background-color-hover: transparent !default;
+$input-button-background: transparent !default;
+$input-button-background-hover: transparent !default;
 $input-button-icon-size: 15px !default;
 $input-clear-button-icon-size: 16px !default;
 $input-clear-button-color: $mediumGrey !default;
@@ -60,19 +60,19 @@ $picker-header-background: $aquamarine !default;
 $picker-header-color: white !default;
 $picker-header-background-hover: $cerulean !default;
 $picker-color: $mediumGrey !default;
-$picker-background-color: white !default;
+$picker-background: white !default;
 $picker-color-hover: $charcoal !default;
-$picker-background-color-hover: alabaster !default;
+$picker-background-hover: alabaster !default;
 $picker-current-color: $charcoal !default;
-$picker-current-background-color: $alabaster !default;
+$picker-current-background: $alabaster !default;
 $picker-current-color-hover: $charcoal !default;
-$picker-current-background-color-hover: $coolGrey !default;
+$picker-current-background-hover: $coolGrey !default;
 $picker-selected-color: white !default;
-$picker-selected-background-color: $aquamarine !default;
+$picker-selected-background: $aquamarine !default;
 $picker-selected-color-hover: white !default;
-$picker-selected-background-color-hover: $aquamarine !default;
+$picker-selected-background-hover: $aquamarine !default;
 $picker-disabled-color: $coolGrey !default;
-$picker-disabled-background-color: white !default;
+$picker-disabled-background: white !default;
 
 
 .react-datepicker-component {
@@ -165,14 +165,14 @@ $picker-disabled-background-color: white !default;
     -webkit-align-items: center;
     justify-content: center;
     -webkit-justify-content: center;
-    background: $input-button-background-color;
+    background: $input-button-background;
     font-size: input-button-icon-size;
     border-radius: 0 $input-border-radius $input-border-radius 0;
     cursor: pointer;
   }
 
   .input-button:hover {
-    background: $input-button-background-color-hover;
+    background: $input-button-background-hover;
   }
 
   .clear-button {
@@ -286,7 +286,7 @@ $picker-disabled-background-color: white !default;
 
   .react-datepicker-picker {
     color: $picker-color;
-    background: $picker-background-color;
+    background: $picker-background;
     cursor: pointer;
     text-decoration: none;
     flex: 1 1 100%;
@@ -312,32 +312,32 @@ $picker-disabled-background-color: white !default;
 
   .react-datepicker-picker:hover {
     color: $picker-color-hover;
-    background: $picker-background-color-hover;
+    background: $picker-background-hover;
   }
   .react-datepicker-picker.selected {
     color: $picker-selected-color;
-    background: $picker-selected-background-color;
+    background: $picker-selected-background;
   }
   .react-datepicker-picker.current {
     color: $picker-current-color;
-    background: $picker-current-background-color;
+    background: $picker-current-background;
     &:hover {
       color: $picker-current-color-hover;
-      background: $picker-current-background-color-hover
+      background: $picker-current-background-hover
 
     }
   }
   .react-datepicker-picker.selected.current {
     color: $picker-selected-color;
-    background: $picker-selected-background-color;
+    background: $picker-selected-background;
   }
   .react-datepicker-picker.disabled {
     cursor: default;
     color: $picker-disabled-color;
-    background: $picker-disabled-background-color;
+    background: $picker-disabled-background;
     &:hover {
       color: $picker-disabled-color;
-      background: $picker-disabled-background-color;
+      background: $picker-disabled-background;
     }
   }
   .react-datepicker-button {
