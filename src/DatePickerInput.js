@@ -238,7 +238,12 @@ const DatePickerInput = React.createClass({
         style={style}
         ref='datePickerInput'
       >
-        <div className={cx('react-datepicker-input', { 'is-open': active, 'has-value': hasValue, 'is-small': small })}>
+        <div className={cx('react-datepicker-input', {
+          'is-open': active,
+          'has-value': hasValue,
+          'is-small': small
+        })}
+        >
           <input
             valueLink={{ value: this.state.dateString, requestChange: this.onChangeInput }}
             onClick={onInputClick}
@@ -259,10 +264,12 @@ const DatePickerInput = React.createClass({
     const { value } = this.getValueLink(nextProps);
     if (value !== INVALID && value !== this.getValueLink().value) {
       if (value) {
-        const date = typeof value === 'string' ? this.parsePropDateString(value, nextProps) : moment(value);
+        const date = typeof value === 'string' ?
+          this.parsePropDateString(value, nextProps) : moment(value);
         this.setState({
           date,
-          dateString: date.isValid() ? this.formatDisplayedDate(date, nextProps) : this.state.dateString
+          dateString: date.isValid() ?
+            this.formatDisplayedDate(date, nextProps) : this.state.dateString
         });
       } else {
         this.setState({

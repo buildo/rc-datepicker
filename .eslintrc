@@ -1,6 +1,7 @@
 {
   "extends": "buildo",
   "rules": {
+    "max-len": 0,
     "react/prefer-es6-class": 0
   }
 }
