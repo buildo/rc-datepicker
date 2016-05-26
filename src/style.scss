@@ -9,6 +9,12 @@ $aquamarine: #6DB2DA;
 $cerulean: #009bde;
 $vermillion: #C93132;
 
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
 
 $font-size: 15px !default;
 $font-weight: normal !default;
@@ -33,7 +39,7 @@ $input-icon-color-hover: $charcoal !default;
 
 $input-background-open: $gradientMediumGrey !default;
 $input-border-color-open: $aquamarine !default;
-$input-color-open: $darkGrey !default;
+$input-color-open: $charcoal !default;
 $input-icon-color-open: $charcoal !default;
 
 $input-color-has-value: $charcoal !default;
@@ -65,10 +71,6 @@ $picker-selected-color: white !default;
 $picker-selected-background-color: $aquamarine !default;
 $picker-selected-color-hover: white !default;
 $picker-selected-background-color-hover: $aquamarine !default;
-$picker-current-selected-color: white !default;
-$picker-current-selected-background-color: $aquamarine !default;
-$picker-current-selected-color-hover: white !default;
-$picker-current-selected-background-color-hover: $aquamarine !default;
 $picker-disabled-color: $coolGrey !default;
 $picker-disabled-background-color: white !default;
 
@@ -111,12 +113,18 @@ $picker-disabled-background-color: white !default;
     &:focus {
       outline: none;
     }
+    @include placeholder {
+      color: $input-color;
+    }
   }
   &:hover {
     background: $input-background-hover;
     border: 1px solid $input-border-color-hover;
     input {
       color: $input-color-hover;
+      @include placeholder {
+        color: $input-color-hover;
+      }
     }
   }
   &.is-open {
@@ -124,6 +132,9 @@ $picker-disabled-background-color: white !default;
     border: 1px solid $input-border-color-open;
     input {
       color: $input-color-open;
+      @include placeholder {
+        color: $input-color-open;
+      }
     }
   }
   &.has-value input {
@@ -305,8 +316,8 @@ $picker-disabled-background-color: white !default;
     }
   }
   .react-datepicker-picker.selected.current {
-    color: $picker-current-selected-color;
-    background: $picker-current-selected-background-color;
+    color: $picker-selected-color;
+    background: $picker-selected-background-color;
   }
   .react-datepicker-picker.disabled {
     cursor: default;
