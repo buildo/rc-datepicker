@@ -241,6 +241,12 @@ $picker-disabled-background-color: white !default;
         text-decoration: none;
         padding: 4px;
         text-align: center;
+        &.button-left {
+          border-top-left-radius: $picker-border-radius;
+        }
+        &.button-right {
+          border-top-right-radius: $picker-border-radius;
+        }
       }
       .react-datepicker-button.button-left .slow {
         margin-left: 10px;
@@ -265,9 +271,16 @@ $picker-disabled-background-color: white !default;
     display: flex;
     margin-top: 0px;
     width: 100%;
-    border-bottom: 1px solid $picker-border;
-    &:first-child {
-      border-top: 1px solid $picker-border;
+    &:not(:last-child) {
+      border-bottom: 1px solid $picker-border;
+    }
+    &:last-child .react-datepicker-picker {
+      &:first-child {
+        border-bottom-left-radius: $picker-border-radius;
+      }
+      &:last-child {
+        border-bottom-right-radius: $picker-border-radius;
+      }
     }
   }
 
@@ -280,9 +293,8 @@ $picker-disabled-background-color: white !default;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: 1px solid $picker-border;
-    &:first-child {
-      border-left: 1px solid $picker-border;
+    &:not(:last-child) {
+      border-right: 1px solid $picker-border;
     }
   }
 
