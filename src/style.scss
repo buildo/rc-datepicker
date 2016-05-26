@@ -1,9 +1,11 @@
 $gradientGrey: linear-gradient(#FAFAFA, #E0E0E0);
 $gradientMediumGrey: linear-gradient(#FAFAFA, #A7ABAB);
+$alabaster: #F3F3F3;
 $coolGrey: #D0D0D0;
 $darkGrey: #767C7E;
 $mediumGrey: #A7ABAB;
 $charcoal: #2D373C;
+$aquamarine: #6DB2DA;
 $cerulean: #009bde;
 $vermillion: #C93132;
 
@@ -30,7 +32,7 @@ $input-color-hover: $charcoal !default;
 $input-icon-color-hover: $charcoal !default;
 
 $input-background-open: $gradientMediumGrey !default;
-$input-border-color-open: $cerulean !default;
+$input-border-color-open: $aquamarine !default;
 $input-color-open: $darkGrey !default;
 $input-icon-color-open: $charcoal !default;
 
@@ -45,9 +47,37 @@ $input-clear-button-color-hover: $vermillion !default;
 
 $input-opacity-disabled: .6 !default;
 
+$picker-border: $coolGrey !default;
+$picker-box-shadow: 2px 2px 2px $coolGrey !default;
+$picker-border-radius: 5px !default;
+$picker-header-background: $aquamarine !default;
+$picker-header-color: white !default;
+$picker-header-background-hover: $cerulean !default;
+$picker-color: $mediumGrey !default;
+$picker-background-color: white !default;
+$picker-color-hover: $charcoal !default;
+$picker-background-color-hover: alabaster !default;
+$picker-current-color: $charcoal !default;
+$picker-current-background-color: $alabaster !default;
+$picker-current-color-hover: $charcoal !default;
+$picker-current-background-color-hover: $coolGrey !default;
+$picker-selected-color: white !default;
+$picker-selected-background-color: $aquamarine !default;
+$picker-selected-color-hover: white !default;
+$picker-selected-background-color-hover: $aquamarine !default;
+$picker-current-selected-color: white !default;
+$picker-current-selected-background-color: $aquamarine !default;
+$picker-current-selected-color-hover: white !default;
+$picker-current-selected-background-color-hover: $aquamarine !default;
+$picker-disabled-color: $coolGrey !default;
+$picker-disabled-background-color: white !default;
+
 
 .react-datepicker-component {
   position: relative;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  font-family: $font-family;
 
   .react-datepicker {
     margin-left: 5px;
@@ -154,6 +184,7 @@ $input-opacity-disabled: .6 !default;
 }
 
 .react-datepicker {
+  font-family: $font-family;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -163,46 +194,41 @@ $input-opacity-disabled: .6 !default;
   display: inline-block;
 
   .react-datepicker-container {
-    border: 1px solid #AEAEAE;
-    border-radius: 4px;
-    background-color: #FFFFFF;
-    width: 200px;
+    border: 1px solid $picker-border;
+    border-radius: ($picker-border-radius + 1);
+    width: 250px;
   }
 
   .react-datepicker-top {
     text-align: center;
-    background-color: #F0F0F0;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom: 1px solid #AEAEAE;
+    background: $picker-header-background;
+    border-top-left-radius: $picker-border-radius;
+    border-top-right-radius: $picker-border-radius;
+    color: $picker-header-color;
 
     .week-days {
-      display: inline-block;
-      height: 20px;
-      margin-top: -4px;
-      margin-bottom: -4px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       .week-day {
-        float: left;
-        width: 24px;
-        margin: 0 1px;
+        flex: 1 1 auto;
         cursor: default;
       }
     }
 
     .display {
-      width: 200px;
       height: 35px;
-      padding: 5px;
+      display: flex;
 
       .react-datepicker-button {
-        float: left;
-        width: 35px;
-        height: 100%;
-        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1 0 auto;
         text-decoration: none;
         padding: 4px;
-        display: block;
         text-align: center;
       }
       .react-datepicker-button.button-left .slow {
@@ -212,93 +238,92 @@ $input-opacity-disabled: .6 !default;
         margin-left: 10px;
       }
       .react-datepicker-button.button-label {
-        width: 119px;
+        width: 120px;
       }
       .react-datepicker-button.button-label.fixed:hover {
-        background-color: transparent;
+        background: transparent;
         cursor: default;
       }
       .react-datepicker-button.button-label:hover {
-        background-color: #DDDDDD;
+        background: $picker-header-background-hover;
       }
     }
   }
 
-  .react-datepicker-body {
-    padding: 0.5em;
-    padding-bottom: 0.3em;
-  }
-
   .react-datepicker-row {
-    display: inline-block;
+    display: flex;
     margin-top: 0px;
     width: 100%;
+    border-bottom: 1px solid $picker-border;
+    &:first-child {
+      border-top: 1px solid $picker-border;
+    }
   }
 
   .react-datepicker-picker {
-    float: left;
-    display: block;
-    text-align: center;
-    color: #BBBBBB;
+    color: $picker-color;
+    background: $picker-background-color;
     cursor: pointer;
-    border-radius: 4px;
     text-decoration: none;
-    padding: 2px;
-    margin-left: 1px;
-    margin-right: 1px;
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid $picker-border;
+    &:first-child {
+      border-left: 1px solid $picker-border;
+    }
   }
 
   .react-datepicker-picker.day {
-    width: 24px;
-    height: 24px;
+    height: 35px;
   }
 
   .react-datepicker-picker.month {
-    width: 23%;
-    margin: 1%;
-    height: 55px;
-    align: center;
-    line-height: 52px;
+    height: 62px;
   }
 
   .react-datepicker-picker.year {
-    width: 23%;
-    margin: 1%;
-    height: 55px;
-    align: center;
-    line-height: 52px;
+    height: 62px;
   }
 
-  .react-datepicker-picker.react-datepicker-button:hover {
-    background-color: #EAEAEA;
+  .react-datepicker-picker:hover {
+    color: $picker-color-hover;
+    background: $picker-background-color-hover;
   }
-  .react-datepicker-picker.react-datepicker-button.selected {
-    color: #F7F7F7;
-    background-color: #3B83C0;
+  .react-datepicker-picker.selected {
+    color: $picker-selected-color;
+    background: $picker-selected-background-color;
   }
   .react-datepicker-picker.current {
-    color: #000000;
+    color: $picker-current-color;
+    background: $picker-current-background-color;
+    &:hover {
+      color: $picker-current-color-hover;
+      background: $picker-current-background-color-hover
+
+    }
   }
   .react-datepicker-picker.selected.current {
-    color: #F7F7F7;
+    color: $picker-current-selected-color;
+    background: $picker-current-selected-background-color;
   }
-  .react-datepicker-picker.react-datepicker-button.disabled {
-    color: #BBBBBB;
-  }
-  .react-datepicker-picker.react-datepicker-button.disabled:hover {
-    color: #BBBBBB;
-    background-color: rgba(0,0,0,0);
+  .react-datepicker-picker.disabled {
     cursor: default;
+    color: $picker-disabled-color;
+    background: $picker-disabled-background-color;
+    &:hover {
+      color: $picker-disabled-color;
+      background: $picker-disabled-background-color;
+    }
   }
   .react-datepicker-button {
     display: block;
     text-align: center;
     cursor: pointer;
-    border-radius: 4px;
     text-decoration: none;
-    padding: 4px;
   }
   .react-datepicker-button:hover {
-    background-color: #DDDDDD;
+    background: $picker-header-background-hover;
   }
 }
