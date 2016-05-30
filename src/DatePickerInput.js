@@ -171,7 +171,7 @@ const DatePickerInput = React.createClass({
   },
 
 
-  onChangeInput(dateString) {
+  onChangeInput({ target: { value: dateString } }) {
     if (dateString || this.state.date) {
       const parsedDate = this.parseInputDateString(dateString);
       const date = parsedDate.isValid() ? parsedDate : this.state.date;
@@ -245,7 +245,8 @@ const DatePickerInput = React.createClass({
         })}
         >
           <input
-            valueLink={{ value: this.state.dateString, requestChange: this.onChangeInput }}
+            value={this.state.dateString}
+            onChange={this.onChangeInput}
             onClick={onInputClick}
             onKeyUp={this.hideOnEnterKey}
             {...inputProps}
