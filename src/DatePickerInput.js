@@ -184,6 +184,8 @@ const DatePickerInput = React.createClass({
         date,
         hasValue: parsedDate.isValid()
       }, () => this.getValueLink().requestChange(jsDate, returnedDateString));
+    } else if (!dateString) {
+      this.setState({ dateString });
     }
   },
 
