@@ -1,1 +1,3 @@
 toggl: no
+branchPrefix: n
+branchSuffix: y
