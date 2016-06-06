@@ -1,36 +1,43 @@
-import React, { PropTypes } from 'react';
-import partial from 'lodash/partial';
+import React from 'react';
+import t from 'tcomb';
+import { props } from 'tcomb-react';
+import { pure, skinnable } from '../utils';
+import { MomentDate, Mode } from '../utils/model';
 import PickerTop from '../PickerTop';
 
-const MonthPickerTop = React.createClass({
+@pure
+@skinnable()
+@props({
+  visibleDate: MomentDate,
+  onChangeMode: t.Function,
+  changeYear: t.Function,
+  fixedMode: t.maybe(t.Boolean)
+})
+export default class MonthPickerTop extends React.Component {
 
-  propTypes: {
-    visibleDate: PropTypes.any.isRequired,
-    onChangeMode: PropTypes.func.isRequired,
-    changeYear: PropTypes.func.isRequired,
-    textClassNames: PropTypes.string,
-    fixedMode: PropTypes.bool
-  },
-
-  changeMode() {
+  onChangeMode = () => {
     if (!this.props.fixedMode) {
-      this.props.onChangeMode('year');
+      this.props.onChangeMode(Mode('year'));
     }
-  },
-
-  render() {
-    const year = this.props.visibleDate.year();
-    return (
-      <PickerTop
-        fixed={this.props.fixedMode}
-        value={year}
-        handleClick={this.changeMode}
-        previousDate={partial(this.props.changeYear, (year - 1))}
-        nextDate={partial(this.props.changeYear, (year + 1))}
-        valueClassName={this.props.textClassNames}
-      />
-    );
   }
-});
 
-export default MonthPickerTop;
+  getYear = () => this.props.visibleDate.year()
+
+  previousDate = () => this.props.changeYear(this.getYear() - 1)
+
+  nextDate = () => this.props.changeYear(this.getYear() + 1)
+
+  getLocals({ fixedMode }) {
+    return {
+      fixed: !!fixedMode,
+      value: this.getYear(),
+      handleClick: this.onChangeMode,
+      previousDate: this.previousDate,
+      nextDate: this.nextDate
+    };
+  }
+
+  template(locales) {
+    return <PickerTop {...locales} />;
+  }
+}

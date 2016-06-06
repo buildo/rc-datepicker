@@ -1,7 +1,8 @@
 import moment from 'moment';
 
-export default {
-  getDisplayFormat(props) {
+export default function format(Component) {
+
+  Component.prototype.getDisplayFormat = function(props) {
     const { displayFormat, fixedMode, startMode } = (props || this.props);
     if (displayFormat) {
       return displayFormat;
@@ -18,33 +19,33 @@ export default {
     }
 
     return 'L';
-  },
+  };
 
-  formatReturnedDate(date, props) {
+  Component.prototype.formatReturnedDate = function(date, props) {
     const { returnFormat } = (props || this.props);
     return date.format(returnFormat);
-  },
+  };
 
-  formatDisplayedDate(date, props) {
+  Component.prototype.formatDisplayedDate = function(date, props) {
     return date.format(this.getDisplayFormat(props));
-  },
+  };
 
-  parsePropDateString(dateString, props) {
+  Component.prototype.parsePropDateString = function(dateString, props) {
     const { returnFormat } = (props || this.props);
     if (!returnFormat) {
       return moment(dateString);
     } else {
       return moment(dateString, returnFormat, true);
     }
-  },
+  };
 
-  parseInputDateString(dateString, props) {
+  Component.prototype.parseInputDateString = function(dateString, props) {
     const format = this.getDisplayFormat(props);
     if (!format) {
       return moment(dateString);
     } else {
       return moment(dateString, format, true);
     }
-  }
+  };
 
-};
+}

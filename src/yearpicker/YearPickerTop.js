@@ -1,29 +1,39 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import t from 'tcomb';
+import { props } from 'tcomb-react';
+import { pure, skinnable } from '../utils';
+import { MomentDate } from '../utils/model';
 import PickerTop from '../PickerTop';
-import partial from 'lodash/partial';
 
-const YearPickerTop = React.createClass({
+@pure
+@skinnable()
+@props({
+  visibleDate: MomentDate,
+  changeYear: t.Function
+})
+export default class YearPickerTop extends React.Component {
 
-  propTypes: {
-    visibleDate: PropTypes.any.isRequired,
-    changeYear: PropTypes.func.isRequired,
-    textClassNames: PropTypes.string
-  },
+  getYear = () => this.props.visibleDate.year()
 
-  render() {
-    const year = this.props.visibleDate.year();
+  previousDate = () => this.props.changeYear(this.getYear() - 10)
+
+  nextDate = () => this.props.changeYear(this.getYear() + 10)
+
+  getLocals() {
+    const year = this.getYear();
     const startDecadeYear = parseInt(year / 10, 10) * 10;
     const endDecadeYear = startDecadeYear + 9;
-    return (
-      <PickerTop
-        fixed
-        nextDate={partial(this.props.changeYear, year + 10)}
-        previousDate={partial(this.props.changeYear, year - 10)}
-        value={`${startDecadeYear}-${endDecadeYear}`}
-        valueClassName={this.props.textClassNames}
-      />
-    );
-  }
-});
 
-export default YearPickerTop;
+    return {
+      fixed: true,
+      previousDate: this.previousDate,
+      nextDate: this.nextDate,
+      value: `${startDecadeYear}-${endDecadeYear}`
+    };
+  }
+
+  template(locals) {
+    return <PickerTop {...locals} />;
+  }
+
+}

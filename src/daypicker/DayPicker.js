@@ -1,46 +1,52 @@
-import React, { PropTypes } from 'react';
-import DateUtils from '../utils/DateUtils.js';
+import React from 'react';
+import t from 'tcomb';
+import { props } from 'tcomb-react';
+import { pure, skinnable } from '../utils';
+import { Value, Mode, MomentDate } from '../utils/model';
 import DayPickerTop from './DayPickerTop';
 import DayPickerBody from './DayPickerBody';
 
-const DayPicker = React.createClass({
+@pure
+@skinnable()
+@props({
+  changeMonth: t.Function,
+  visibleDate: MomentDate,
+  date: t.maybe(Value),
+  minDate: t.maybe(Value),
+  maxDate: t.maybe(Value),
+  onSelectDate: t.Function,
+  onChangeMode: t.Function,
+  mode: Mode,
+  fixedMode: t.maybe(t.Boolean)
+})
+export default class DayPicker extends React.Component {
 
-  propTypes: {
-    changeMonth: PropTypes.func.isRequired,
-    visibleDate: PropTypes.any.isRequired,
-    date: DateUtils.evaluateDateProp,
-    minDate: DateUtils.evaluateDateProp,
-    maxDate: DateUtils.evaluateDateProp,
-    onSelectDate: PropTypes.func.isRequired,
-    onChangeMode: PropTypes.func.isRequired,
-    mode: PropTypes.string.isRequired,
-    fixedMode: React.PropTypes.bool
-  },
+  getLocals({
+    date, visibleDate, onSelectDate, minDate,
+    maxDate, changeMonth, onChangeMode, mode, fixedMode
+  }) {
+    return {
+      dayPickerTopProps: {
+        visibleDate,
+        changeMonth,
+        onChangeMode,
+        fixedMode
+      },
+      dayPickerBodyProps: {
+        date, visibleDate,
+        minDate, maxDate,
+        onSelectDate,
+        mode
+      }
+    };
+  }
 
-  _onSelectDate(date) {
-    this.props.onSelectDate(date);
-  },
-
-  render() {
+  template({ dayPickerTopProps, dayPickerBodyProps }) {
     return (
       <div className='react-datepicker-container day'>
-        <DayPickerTop
-          changeMonth={this.props.changeMonth}
-          visibleDate={this.props.visibleDate}
-          onChangeMode={this.props.onChangeMode}
-          fixedMode={this.props.fixedMode}
-        />
-        <DayPickerBody
-          visibleDate={this.props.visibleDate}
-          date={this.props.date}
-          minDate={this.props.minDate}
-          maxDate={this.props.maxDate}
-          onSelectDate={this._onSelectDate}
-          mode={this.props.mode}
-        />
+        <DayPickerTop {...dayPickerTopProps} />
+        <DayPickerBody {...dayPickerBodyProps} />
       </div>
     );
   }
-});
-
-export default DayPicker;
+}

@@ -1,52 +1,33 @@
-import React from 'react/addons';
+import 'moment/locale/fr.js';
+
+import React from 'react';
 import ReactDOM from 'react-dom';
-import fakeImport from 'moment/locale/fr.js';
-import {DatePicker, DatePickerInput} from '../src';
+import { DatePicker, DatePickerInput } from '../src';
 
 import '../src/style.scss';
 
-const Example = React.createClass({
+class Example extends React.Component {
 
-  propTypes: {},
+  state = {
+    datePickerDate: '2015-05-13',
+    datePickerInputDate: null,
+    datePickerInputDate2: null,
+    showInput: true
+  }
 
-  mixins: [React.addons.LinkedStateMixin],
+  toggleInput = () => this.setState({ showInput: !this.state.showInput })
 
-  getInitialState() {
-    return {
-      datePickerDate: '2015-05-13',
-      datePickerInputDate: null,
-      datePickerInputDate2: null,
-      showInput: true
-    };
-  },
+  onClear = () => this.setState({ datePickerDate: null })
 
-  toggleInput() {
-    this.setState({
-      showInput: !this.state.showInput
-    });
-  },
+  log = (...x) => console.log(...x) // eslint-disable-line no-console
 
-  onClear() {
-    this.setState({
-      datePickerDate: null
-    });
-  },
-
-  log(x) {
-    console.log(x);
-  },
-
-  resetState() {
-    this.setState({
-      datePickerInputDate2: undefined
-    })
-  },
+  resetState = () => this.setState({ datePickerInputDate2: undefined })
 
   render() {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     return (
-      <div style={{margin: 20}}>
+      <div style={{ margin: 20 }}>
         <h1>DatePickerInput</h1>
         <button onClick={this.toggleInput}>toggle DatePickerInput</button>
         <p>onChange(jsDate, dateString)</p>
@@ -57,7 +38,7 @@ const Example = React.createClass({
               displayFormat='DD/MM/YYYY'
               returnFormat='YYYY-MM-DD'
               className='my-react-component'
-              onChange={(jsDate, dateString) => this.setState({datePickerInputDate: dateString})}
+              onChange={(jsDate, dateString) => this.setState({ datePickerInputDate: dateString })}
               onShow={this.log.bind(this, 'show')}
               onHide={this.log.bind(this, 'hide')}
               showOnInputClick
@@ -65,7 +46,8 @@ const Example = React.createClass({
               locale='de'
               onClear={this.onClear}
               iconClearClassName='fa fa-times'
-              iconClassName='fa fa-calendar'/>
+              iconClassName='fa fa-calendar'
+            />
           </div>
         }
 
@@ -76,8 +58,8 @@ const Example = React.createClass({
           className='my-react-datepicker'
           locale='fr'
           value={this.state.datePickerDate}
-          onChange={(jsDate) => this.setState({datePickerDate: jsDate})}/>
-
+          onChange={(jsDate) => this.setState({ datePickerDate: jsDate })}
+        />
         <p></p>
         <p>VALUE LINK</p>
         <button onClick={this.resetState}>reset state</button>
@@ -88,16 +70,19 @@ const Example = React.createClass({
             returnFormat='YYYY-MM-DD'
             className='my-react-component'
             defaultValue={yesterday}
-            valueLink={this.linkState('datePickerInputDate2')}
+            valueLink={{
+              value: this.state.datePickerInputDate2,
+              requestChange: datePickerInputDate2 => this.setState({ datePickerInputDate2 })
+            }}
             showOnInputClick
             placeholder='placeholder'
             locale='de'
-            iconClassName='calendar icon'/>
+            iconClassName='calendar icon'
+          />
         </div>
       </div>
     );
   }
-
-});
+}
 
 ReactDOM.render(<Example />, document.getElementById('container'));

@@ -1,20 +1,31 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import cx from 'classnames';
+import t from 'tcomb';
+import { props } from 'tcomb-react';
+import { pure, skinnable } from './utils';
+import { Mode } from './utils/model';
 
-const Row = React.createClass({
+@pure
+@skinnable()
+@props({
+  pickers: t.list(t.ReactChildren),
+  mode: Mode
+})
+export default class Row extends React.Component {
 
-  propTypes: {
-    pickers: PropTypes.array.isRequired,
-    mode: PropTypes.string.isRequired
-  },
+  getLocals({ mode, pickers }) {
+    return {
+      pickers,
+      className: cx('react-datepicker-row', mode)
+    };
+  }
 
-  render() {
+  template({ className, pickers }) {
     return (
-      <div className={`react-datepicker-row ${this.props.mode}`}>
-        {this.props.pickers}
+      <div className={className}>
+        {pickers}
       </div>
     );
   }
 
-});
-
-export default Row;
+}

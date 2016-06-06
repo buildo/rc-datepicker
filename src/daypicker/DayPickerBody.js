@@ -1,53 +1,66 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import range from 'lodash/range';
+import t from 'tcomb';
+import { props } from 'tcomb-react';
+import { pure, skinnable } from '../utils';
+import { Value, Mode, MomentDate } from '../utils/model';
 import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
 import Row from '../Row';
-import DateUtils from '../utils/DateUtils';
-import range from 'lodash/range';
+import { isInsideTheEnabledArea, getVisibleDays } from '../utils/DateUtils';
 
-const DayPickerBody = React.createClass({
+const COLUMNS = 7;
+const ROWS = 6;
 
-  propTypes: {
-    visibleDate: PropTypes.any.isRequired,
-    date: DateUtils.evaluateDateProp,
-    minDate: DateUtils.evaluateDateProp,
-    maxDate: DateUtils.evaluateDateProp,
-    onSelectDate: PropTypes.func.isRequired,
-    mode: PropTypes.string.isRequired
-  },
+@pure
+@skinnable()
+@props({
+  visibleDate: MomentDate,
+  date: t.maybe(Value),
+  minDate: t.maybe(Value),
+  maxDate: t.maybe(Value),
+  onSelectDate: t.Function,
+  mode: Mode
+})
+export default class DayPickerBody extends React.Component {
 
-  render() {
-    if (!this.props.visibleDate.isValid()) {
-      return <InvalidDate invalidDate={this.props.visibleDate.format()} />;
+  getLocals({ date, visibleDate, minDate, maxDate, onSelectDate, mode }) {
+    if (!visibleDate.isValid()) {
+      return <InvalidDate invalidDate={visibleDate.format()} />;
     }
-    const year = this.props.visibleDate.year();
-    const month = this.props.visibleDate.month();
-    const selectedDate = this.props.date ? this.props.date.format('DD/MM/YYYY') : undefined;
+    const year = visibleDate.year();
+    const month = visibleDate.month();
+    const selectedDateString = date ? date.format('DD/MM/YYYY') : undefined;
 
-    const visibleDays = DateUtils.getVisibleDays(month, year);
-    const days = visibleDays.days.map((dayOfMonth, index) => {
-      const date = this.props.visibleDate.clone();
+    const visibleDays = getVisibleDays(month, year);
+    const pickers = visibleDays.days.map((dayOfMonth, index) => {
+      const date = visibleDate.clone();
       const isCurrent = index >= visibleDays.startCurrent && index <= visibleDays.endCurrent;
       if (!isCurrent) {
         date.add(index < visibleDays.startCurrent ? -1 : 1, 'M');
       }
       date.date(dayOfMonth);
-      return (
-        <Picker
-          date={date}
-          isSelected={date.format('DD/MM/YYYY') === selectedDate}
-          isCurrent={isCurrent}
-          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
-          onSelectDate={this.props.onSelectDate}
-          mode={this.props.mode}
-          key={index}
-        />
-      );
+      const dateString = date.format('DD/MM/YYYY');
+      return {
+        date,
+        isCurrent,
+        onSelectDate,
+        mode,
+        isSelected: dateString === selectedDateString,
+        isEnabled: isInsideTheEnabledArea(date, mode, minDate, maxDate),
+        key: dateString
+      };
     });
-    const nColumns = 7;
-    const nRows = 6;
-    const rows = range(nRows).map(index =>
-      <Row pickers={days.slice(nColumns * index, nColumns * (index + 1))} mode={this.props.mode} key={index} />
+
+    return { pickers, mode };
+  }
+
+  templateDays = ({ pickers }) => pickers.map(p => <Picker {...p} />)
+
+  template({ pickers, mode }) {
+    const days = this.templateDays({ pickers });
+    const rows = range(ROWS).map(index =>
+      <Row pickers={days.slice(COLUMNS * index, COLUMNS * (index + 1))} mode={mode} key={index} />
     );
 
     return (
@@ -56,6 +69,4 @@ const DayPickerBody = React.createClass({
       </div>
     );
   }
-});
-
-export default DayPickerBody;
+}

@@ -1,13 +1,14 @@
+import 'moment/locale/fr';
+import 'moment/locale/de';
+
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
-import fr from 'moment/locale/fr';
-import de from 'moment/locale/de';
 import { DatePickerInput, DatePicker } from '../../src';
 
-describe('DatePickerInput', function() {
+describe('DatePickerInput', () => {
 
-  it('presents the DatePicker when clicking on the calendar button', function() {
+  it('presents the DatePicker when clicking on the calendar button', () => {
 
     const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} />);
 
@@ -22,7 +23,7 @@ describe('DatePickerInput', function() {
 
   });
 
-  it('presents the DatePicker when clicking on the input area', function() {
+  it('presents the DatePicker when clicking on the input area', () => {
 
     const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} showOnInputClick />);
 
@@ -37,16 +38,16 @@ describe('DatePickerInput', function() {
 
   });
 
-  it('should pass the name prop down to the underlying input field', function() {
+  it('should pass the name prop down to the underlying input field', () => {
 
     const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} name='foobar' />);
 
     const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(input, 'input');
-    expect(datePickerInputArea.name).toBe('foobar', 'Underlying input\'s \'name\' prop is \'' + datePickerInputArea.name + '\' intead of \'foobar\'');
+    expect(datePickerInputArea.name).toBe('foobar', `Underlying input's 'name' prop is '${datePickerInputArea.name}' instead of 'foobar'`);
 
   });
 
-  it('DatePicker should be floating above content', function() {
+  it('DatePicker should be floating above content', () => {
 
     const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} />);
 
@@ -61,11 +62,11 @@ describe('DatePickerInput', function() {
 
     const previousHeight = wrapper1.clientHeight;
     const newHeight = wrapper2.clientHeight;
-    expect(newHeight).toBe(previousHeight, 'datepicker component height is ' + newHeight + ' instead of ' + previousHeight);
+    expect(newHeight).toBe(previousHeight, `datepicker component height is ${newHeight} instead of ${previousHeight}`);
 
   });
 
-  it('DatePickers should have correct locales', function() {
+  it('DatePickers should have correct locales', () => {
 
     const inputFr = TestUtils.renderIntoDocument(<DatePicker onChange={() => {}} locale='fr' className='french' />);
     const inputDe = TestUtils.renderIntoDocument(<DatePicker onChange={() => {}} locale='de' className='german' />);
@@ -79,11 +80,11 @@ describe('DatePickerInput', function() {
   });
 
 
-  it('DatePicker should work with valueLink', function() {
+  it('DatePicker should work with valueLink', () => {
 
     let date = new Date('2015-07-15');
 
-    const onChange = (jsDate, dateString) => {
+    const onChange = (jsDate) => {
       date = jsDate;
     };
 
@@ -107,7 +108,7 @@ describe('DatePickerInput', function() {
 
   });
 
-  it('DatePicker should close on select date', function() {
+  it('DatePicker should close on select date', () => {
 
     const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} showOnInputClick autoClose />);
 
@@ -128,7 +129,7 @@ describe('DatePickerInput', function() {
 
   });
 
-  it('DatePicker should close on enter key event on input', function() {
+  it('DatePicker should close on enter key event on input', () => {
 
     const input = TestUtils.renderIntoDocument(<DatePickerInput onChange={() => {}} showOnInputClick />);
 

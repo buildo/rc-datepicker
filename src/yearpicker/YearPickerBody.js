@@ -1,49 +1,61 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import moment from 'moment';
+import t from 'tcomb';
+import { props } from 'tcomb-react';
+import range from 'lodash/range';
+import { pure, skinnable } from '../utils';
+import { Value, Mode, MomentDate } from '../utils/model';
+import { isInsideTheEnabledArea, getVisibleYears } from '../utils/DateUtils';
 import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
 import Row from '../Row';
-import DateUtils from '../utils/DateUtils';
-import range from 'lodash/range';
 
-const YearPickerBody = React.createClass({
+const COLUMNS = 4;
+const ROWS = 3;
 
-  propTypes: {
-    visibleDate: PropTypes.any.isRequired,
-    date: DateUtils.evaluateDateProp,
-    minDate: DateUtils.evaluateDateProp,
-    maxDate: DateUtils.evaluateDateProp,
-    onSelectDate: PropTypes.func.isRequired,
-    mode: PropTypes.string.isRequired
-  },
+@pure
+@skinnable()
+@props({
+  visibleDate: MomentDate,
+  date: t.maybe(Value),
+  minDate: t.maybe(Value),
+  maxDate: t.maybe(Value),
+  onSelectDate: t.Function,
+  mode: Mode
+})
+export default class YearPickerBody extends React.Component {
 
-  render() {
-    if (!this.props.visibleDate.isValid()) {
-      return <InvalidDate invalidDate={this.props.visibleDate.format()} />;
+  getLocals({ date, visibleDate, minDate, maxDate, onSelectDate, mode }) {
+    if (!visibleDate.isValid()) {
+      return <InvalidDate invalidDate={visibleDate.format()} />;
     }
-    const year = this.props.visibleDate.year();
-    const selectedYear = this.props.date ? this.props.date.year() : -1;
+    const year = visibleDate.year();
+    const selectedYear = date ? date.year() : -1;
 
-    const visibleYears = DateUtils.getVisibleYears(year);
-    const years = visibleYears.years.map((_year, index) => {
+    const visibleYears = getVisibleYears(year);
+    const pickers = visibleYears.years.map((_year, index) => {
       const date = moment([_year, 0, 1]);
       const isCurrent = index >= visibleYears.startCurrent && index <= visibleYears.endCurrent;
-      return (
-        <Picker
-          date={date}
-          isSelected={selectedYear === _year}
-          isCurrent={isCurrent}
-          isEnabled={DateUtils.isInsideTheEnabledArea(date, this.props.mode, this.props.minDate, this.props.maxDate)}
-          onSelectDate={this.props.onSelectDate}
-          mode={this.props.mode}
-          key={index}
-        />
-      );
+      return {
+        date,
+        onSelectDate,
+        mode,
+        isCurrent,
+        isSelected: selectedYear === _year,
+        isEnabled: isInsideTheEnabledArea(date, mode, minDate, maxDate),
+        key: index
+      };
     });
-    const nColumns = 4;
-    const nRows = 3;
-    const rows = range(nRows).map(index =>
-      <Row pickers={years.slice(nColumns * index, nColumns * (index + 1))} mode={this.props.mode} key={index} />
+
+    return { pickers, mode };
+  }
+
+  templateYears = ({ pickers }) => pickers.map(p => <Picker {...p} />)
+
+  template({ pickers, mode }) {
+    const years = this.templateYears({ pickers });
+    const rows = range(ROWS).map(index =>
+      <Row pickers={years.slice(COLUMNS * index, COLUMNS * (index + 1))} mode={mode} key={index} />
     );
 
     return (
@@ -52,6 +64,4 @@ const YearPickerBody = React.createClass({
       </div>
     );
   }
-});
-
-export default YearPickerBody;
+}

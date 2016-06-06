@@ -1,110 +1,112 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+import t from 'tcomb';
+import { props } from 'tcomb-react';
 import omit from 'lodash/omit';
 import DatePicker from './DatePicker';
-import DateUtils from './utils/DateUtils';
-import formatMixin from './utils/formatMixin';
+import { Value } from './utils/model';
+import { format, valueLink, skinnable } from './utils';
 import cx from 'classnames';
-import ValueLinkMixin from './utils/ValueLinkMixin.js';
+import Input from './Input';
 
 const INVALID = 'Invalid date';
 const ENTER_KEYCODE = 13;
 
 const propTypes = {
-  onChange: PropTypes.func,
-  onShow: PropTypes.func,
-  onHide: PropTypes.func,
-  value: DateUtils.evaluateDateProp,
-  valueLink: PropTypes.shape({
-    value: DateUtils.evaluateDateProp,
-    requestChange: PropTypes.func.isRequired
-  }),
-  small: PropTypes.bool,
-  defaultValue: DateUtils.evaluateDateProp,
-  minDate: DateUtils.evaluateDateProp,
-  maxDate: DateUtils.evaluateDateProp,
-  locale: PropTypes.string,
-  startMode: PropTypes.string,
-  fixedMode: PropTypes.bool,
-  displayFormat: PropTypes.string,
-  returnFormat: PropTypes.string,
-  format: PropTypes.string,
-  validationFormat: PropTypes.string,
-  showOnInputClick: PropTypes.bool,
-  closeOnClickOutside: PropTypes.bool,
-  showInputButton: PropTypes.bool,
-  autoClose: PropTypes.bool,
-  floating: PropTypes.bool,
-  iconClassName: PropTypes.string,
-  iconClearClassName: PropTypes.string,
-  onClear: PropTypes.func,
-  className: PropTypes.string, // used to omit from inputProps
-  style: PropTypes.object // used to omit from inputProps
+  value: t.maybe(Value),
+  valueLink: t.maybe(t.interface({
+    value: t.maybe(Value),
+    requestChange: t.Function
+  })),
+  onChange: t.maybe(t.Function),
+  onShow: t.maybe(t.Function),
+  onHide: t.maybe(t.Function),
+  onClear: t.maybe(t.Function),
+  small: t.maybe(t.Boolean),
+  defaultValue: t.maybe(Value),
+  minDate: t.maybe(Value),
+  maxDate: t.maybe(Value),
+  locale: t.maybe(t.String),
+  startMode: t.maybe(t.String),
+  fixedMode: t.maybe(t.Boolean),
+  displayFormat: t.maybe(t.String),
+  returnFormat: t.maybe(t.String),
+  format: t.maybe(t.String),
+  validationFormat: t.maybe(t.String),
+  showOnInputClick: t.maybe(t.Boolean),
+  closeOnClickOutside: t.maybe(t.Boolean),
+  showInputButton: t.maybe(t.Boolean),
+  autoClose: t.maybe(t.Boolean),
+  floating: t.maybe(t.Boolean),
+  iconClassName: t.maybe(t.String),
+  iconClearClassName: t.maybe(t.String),
+  className: t.maybe(t.String), // used to omit from inputProps
+  style: t.maybe(t.Object) // used to omit from inputProps
 };
 
-const DatePickerInput = React.createClass({
+@format
+@valueLink
+@skinnable()
+@props(propTypes, { strict: false })
+export default class DatePickerInput extends React.Component {
 
-  propTypes,
+  static defaultProps = {
+    onShow: () => {},
+    onHide: () => {},
+    startMode: 'day',
+    autoClose: true,
+    closeOnClickOutside: true,
+    floating: true,
+    small: false,
+    showInputButton: true,
+    iconClassName: '',
+    iconClearClassName: '',
+    className: '',
+    style: {}
+  }
 
-  mixins: [ ValueLinkMixin, formatMixin ],
-
-  getDefaultProps() {
-    return {
-      onShow: () => {},
-      onHide: () => {},
-      startMode: 'day',
-      autoClose: true,
-      closeOnClickOutside: true,
-      floating: true,
-      small: false,
-      showInputButton: true,
-      iconClassName: '',
-      className: '',
-      style: {}
-    };
-  },
-
-  getInitialState() {
-    const _date = this.getValueLink().value || this.props.defaultValue;
+  constructor(props) {
+    super(props);
+    const _date = this.getValueLink().value || props.defaultValue;
     const date = typeof _date === 'string' ? this.parsePropDateString(_date) : moment(_date);
-    return {
+    this.state = {
       date: _date ? date : undefined,
       hasValue: !!_date,
       dateString: _date ? this.formatDisplayedDate(date) : '',
       showing: false
     };
-  },
+  }
 
   componentDidMount() {
     if (this.props.closeOnClickOutside) {
       this.addOnClickListener();
     }
-  },
+  }
 
-  addOnClickListener() {
+  addOnClickListener = () => {
     if (window.attachEvent) {
       //Internet Explorer
       window.attachEvent('onclick', this.hideOnClickOutside);
     } else if (window.addEventListener) {
       window.addEventListener('click', this.hideOnClickOutside, false);
     }
-  },
+  }
 
-  removeOnClickListener() {
+  removeOnClickListener = () => {
     if (window.detachEvent) {
       //Internet Explorer
       window.detachEvent('onclick', this.hideOnClickOutside);
     } else if (window.removeEventListener) {
       window.removeEventListener('click', this.hideOnClickOutside, false);
     }
-  },
+  }
 
-  getDatePickerInput() {
+  getDatePickerInput = () => {
     return ReactDOM.findDOMNode(this.refs.datePickerInput);
-  },
+  }
 
-  isEventInsideDatePickerInput(el) {
+  isEventInsideDatePickerInput = (el) => {
     if (el === this.getDatePickerInput()) {
       return true;
     } else if (el.parentNode) {
@@ -112,36 +114,36 @@ const DatePickerInput = React.createClass({
     } else {
       return false;
     }
-  },
+  }
 
-  hideOnClickOutside(e) {
+  hideOnClickOutside = (e) => {
     if (!this.isEventInsideDatePickerInput(e.target) && this.state.showing) {
       this.hide();
     }
-  },
+  }
 
-  hide() {
+  hide = () => {
     this.setState({ showing: false }, this.props.onHide);
-  },
+  }
 
-  show() {
+  show = () => {
     if (!this.state.showing) {
       this.setState({ showing: true }, this.props.onShow);
     }
-  },
+  }
 
-  toggleDatePicker() {
+  toggleDatePicker = () => {
     const callback = this.state.showing ? this.props.onHide : this.props.onShow;
     this.setState({ showing: !this.state.showing }, callback);
-  },
+  }
 
-  hideOnEnterKey(event) {
-    if (event.keyCode === ENTER_KEYCODE) {
+  hideOnEnterKey = (e) => {
+    if (e.keyCode === ENTER_KEYCODE) {
       this.hide();
     }
-  },
+  }
 
-  onClear() {
+  onClear = () => {
     const _date = this.props.defaultValue;
     const date = typeof _date === 'string' ? this.parsePropDateString(_date) : moment(_date);
     this.setState(
@@ -152,9 +154,9 @@ const DatePickerInput = React.createClass({
       },
       this.props.onClear
     );
-  },
+  }
 
-  _onChangeDate(jsDate) {
+  _onChangeDate = (jsDate) => {
     const newDate = moment(jsDate);
     const newDateString = this.formatDisplayedDate(newDate);
     if (this.props.autoClose) {
@@ -168,10 +170,9 @@ const DatePickerInput = React.createClass({
         dateString: newDateString
       });
     }
-  },
+  }
 
-
-  onChangeInput({ target: { value: dateString } }) {
+  onChangeInput = ({ target: { value: dateString } }) => {
     if (dateString || this.state.date) {
       const parsedDate = this.parseInputDateString(dateString);
       const date = parsedDate.isValid() ? parsedDate : this.state.date;
@@ -187,29 +188,9 @@ const DatePickerInput = React.createClass({
     } else if (!dateString) {
       this.setState({ dateString });
     }
-  },
+  }
 
-  getDatePicker() {
-    if (this.state.showing) {
-      return (
-        <DatePicker
-          value={this.state.date ? this.state.date.toDate() : undefined}
-          onChange={this._onChangeDate}
-          defaultValue={this.props.defaultValue}
-          minDate={this.props.minDate}
-          maxDate={this.props.maxDate}
-          locale={this.props.locale}
-          startMode={this.props.startMode}
-          fixedMode={this.props.fixedMode}
-          floating={this.props.floating}
-          closeOnClickOutside={this.props.closeOnClickOutside}
-        />
-      );
-    }
-  },
-
-  render() {
-    const inputProps = omit(this.props, Object.keys(propTypes));
+  getLocals(props) {
     const {
       showInputButton,
       iconClassName,
@@ -217,51 +198,58 @@ const DatePickerInput = React.createClass({
       onClear,
       small,
       iconClearClassName,
+      defaultValue,
+      minDate, maxDate,
+      locale,
+      startMode,
+      fixedMode,
+      floating,
+      closeOnClickOutside,
       className,
       style
-    } = this.props;
-    const { showing: active, hasValue } = this.state;
-    const inputButton = (
-      <div className={cx('input-button', { active })} onClick={this.toggleDatePicker}>
-        <i className={iconClassName} />
-      </div>
-    );
+    } = props;
+    const { showing: active, hasValue, dateString: value, date } = this.state;
 
-    const clearButton = (
-      <div className='clear-button' onClick={this.onClear}>
-        <i className={iconClearClassName} />
-      </div>
-    );
-
+    const inputProps = omit(props, Object.keys(propTypes));
     const onInputClick = showOnInputClick ? this.show : undefined;
+    const onButtonClick = showInputButton ? this.toggleDatePicker : undefined;
+    const onInputClear = onClear ? this.onClear : undefined;
+
+    return {
+      style,
+      className: cx('react-datepicker-component', className),
+      inputProps: {
+        value,
+        small, active, hasValue,
+        iconClassName, iconClearClassName,
+        onInputClick, onButtonClick, onInputClear,
+        onInputChange: this.onChangeInput,
+        onInputKeyUp: this.hideOnEnterKey,
+        ...inputProps
+      },
+      datePickerProps: active && {
+        defaultValue,
+        minDate,
+        maxDate,
+        locale,
+        startMode,
+        fixedMode,
+        floating,
+        closeOnClickOutside,
+        value: date ? date.toDate() : undefined,
+        onChange: this._onChangeDate
+      }
+    };
+  }
+
+  template({ className, style, inputProps, datePickerProps }) {
     return (
-      <div
-        className={cx('react-datepicker-component', className)}
-        style={style}
-        ref='datePickerInput'
-      >
-        <div className={cx('react-datepicker-input', {
-          'is-open': active,
-          'has-value': hasValue,
-          'is-small': small
-        })}
-        >
-          <input
-            value={this.state.dateString}
-            onChange={this.onChangeInput}
-            onClick={onInputClick}
-            onKeyUp={this.hideOnEnterKey}
-            {...inputProps}
-          />
-          <div className='button-wrapper'>
-            {onClear && hasValue && clearButton}
-            {showInputButton && inputButton}
-          </div>
-        </div>
-        {this.getDatePicker()}
+      <div {...{ style, className }} ref='datePickerInput'>
+        <Input {...inputProps} />
+        {datePickerProps && <DatePicker {...datePickerProps} />}
       </div>
     );
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     const { value } = this.getValueLink(nextProps);
@@ -281,14 +269,11 @@ const DatePickerInput = React.createClass({
         });
       }
     }
-  },
+  }
 
   componentWillUnmount() {
     if (this.props.closeOnClickOutside) {
       this.removeOnClickListener();
     }
   }
-
-});
-
-export default DatePickerInput;
+}

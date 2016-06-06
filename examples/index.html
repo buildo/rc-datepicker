@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,700,800,200" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks.main.css) { %}
       <link rel="stylesheet" href="{%=o.htmlWebpackPlugin.files.chunks.main.css[chunk]%}" media="all">
     {% } %}
   </head>
   <body>
-    <div id='container'></div>
-    {%
-      for (var chunk in o.htmlWebpackPlugin.files.chunks) {
-    %}<script type='text/javascript' src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}__GZIP__"></script>{%
-      }
-    %}
+    <div id="container"></div>
+    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+      <script type='text/javascript' src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}" charset="utf-8"></script>
+    {% } %}
   </body>
 </html>

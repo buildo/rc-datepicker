@@ -1,13 +1,13 @@
 import moment from 'moment';
 import range from 'lodash/range';
 
-const daysInMonthCount = (month, year) => moment([year, month]).endOf('month').date();
+export const daysInMonthCount = (month, year) => moment([year, month]).endOf('month').date();
 
-const getArrayByBoundary = (start, end) => {
+export const getArrayByBoundary = (start, end) => {
   return range(end - start).map(i => i + start);
 };
 
-const getWeekdaysMin = () => {
+export const getWeekdaysMin = () => {
   const offset = moment().localeData().firstDayOfWeek();
   const weekdaysMin = moment.weekdaysMin();
 
@@ -18,7 +18,7 @@ const getWeekdaysMin = () => {
   return weekdaysMin;
 };
 
-const getVisibleDays = (month, year) => {
+export const getVisibleDays = (month, year) => {
   const offset = moment([year, month]).startOf('month').weekday();
   const previousMonth = month === 0 ? 11 : (month - 1);
   const previousYear = month === 0 ? (year - 1) : year;
@@ -36,7 +36,7 @@ const getVisibleDays = (month, year) => {
   };
 };
 
-const getVisibleYears = (year) => {
+export const getVisibleYears = (year) => {
   const startDecadeYear = parseInt(year / 10, 10) * 10;
   const endDecadeYear = startDecadeYear + 9;
   const previous = [startDecadeYear - 1];
@@ -49,14 +49,14 @@ const getVisibleYears = (year) => {
   };
 };
 
-const evaluateDateProp = (props, propName, componentName) => {
+export const evaluateDateProp = (props, propName, componentName) => {
   const dateProp = props[propName];
   if (dateProp && (typeof dateProp !== 'string' && !(dateProp instanceof Date) && !moment.isMoment(dateProp))) {
     return new Error(`${propName} validation failed in ${componentName}`);
   }
 };
 
-const isInsideTheEnabledArea = (date, mode, minDate, maxDate) => {
+export const isInsideTheEnabledArea = (date, mode, minDate, maxDate) => {
   if (!minDate && !maxDate) {
     return true;
   }
@@ -80,14 +80,4 @@ const isInsideTheEnabledArea = (date, mode, minDate, maxDate) => {
   }
 
   return (!minDate || date.format(format) >= minDateMoment.format(format)) && (!maxDate || date.format(format) <= maxDateMoment.format(format));
-};
-
-export default {
-  daysInMonthCount,
-  getVisibleDays,
-  getVisibleYears,
-  getWeekdaysMin,
-  evaluateDateProp,
-  isInsideTheEnabledArea,
-  getArrayByBoundary
 };
