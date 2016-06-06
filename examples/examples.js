@@ -1,6 +1,7 @@
+import 'moment/locale/fr.js';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import fakeImport from 'moment/locale/fr.js'; // eslint-disable-line no-unused-vars
 import { DatePicker, DatePickerInput } from '../src';
 
 import '../src/style.scss';

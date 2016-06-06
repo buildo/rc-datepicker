@@ -1,8 +1,9 @@
+import 'moment/locale/fr';
+import 'moment/locale/de';
+
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
-import fr from 'moment/locale/fr'; // eslint-disable-line no-unused-vars
-import de from 'moment/locale/de'; // eslint-disable-line no-unused-vars
 import { DatePickerInput, DatePicker } from '../../src';
 
 describe('DatePickerInput', () => {
