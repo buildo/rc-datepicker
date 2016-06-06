@@ -1,60 +1,60 @@
-import React, { PropTypes } from 'react';
-import classNames from 'classnames';
-import DateUtils from './utils/DateUtils.js';
+import React from 'react';
+import cx from 'classnames';
+import t from 'tcomb';
+import { props } from 'tcomb-react';
+import { pure, skinnable } from './utils';
+import { MomentDate, Value, Mode } from './utils/model';
 
-const Picker = React.createClass({
+@pure
+@skinnable()
+@props({
+  date: MomentDate,
+  minDate: t.maybe(Value),
+  maxDate: t.maybe(Value),
+  isSelected: t.Boolean,
+  isCurrent: t.Boolean,
+  isEnabled: t.Boolean,
+  isDisabled: t.maybe(t.Boolean),
+  onSelectDate: t.Function,
+  mode: Mode
+})
+export default class Picker extends React.Component {
 
-  propTypes: {
-    date: PropTypes.any.isRequired,
-    minDate: DateUtils.evaluateDateProp,
-    maxDate: DateUtils.evaluateDateProp,
-    isSelected: PropTypes.bool.isRequired,
-    isCurrent: PropTypes.bool.isRequired,
-    isEnabled: PropTypes.bool.isRequired,
-    isDisabled: PropTypes.bool,
-    onSelectDate: PropTypes.func.isRequired,
-    mode: PropTypes.string.isRequired
-  },
-
-  handleClick(e) {
+  onClick = e => {
     e.preventDefault();
     if (this.props.isEnabled) {
       this.props.onSelectDate(this.props.date);
     }
-  },
+  }
 
-  render() {
-    let formatMode;
-
-    switch (this.props.mode) {
-      case 'day':
-        formatMode = 'D';
-        break;
-
-      case 'month':
-        formatMode = 'MMM';
-        break;
-
-      case 'year':
-        formatMode = 'YYYY';
-        break;
+  getFormat = mode => {
+    switch (mode) {
+      case Mode('day'): return 'D';
+      case Mode('month'): return 'MMM';
+      case Mode('year'): return 'YYYY';
     }
-    const string = this.props.date.format(formatMode);
-    const value = string.charAt(0).toUpperCase() + string.slice(1); // first letter always uppercase
+  }
 
-    const classes = classNames({
-      [this.props.mode]: true,
-      current: this.props.isCurrent,
-      selected: this.props.isSelected,
-      disabled: !this.props.isEnabled
-    });
+  getLocals({ date, mode, isCurrent, isSelected, isEnabled }) {
+    const string = date.format(this.getFormat(mode));
 
+    return {
+      value: string.charAt(0).toUpperCase() + string.slice(1), // first letter always uppercase
+      className: cx('react-datepicker-picker', {
+        [mode]: true,
+        current: isCurrent,
+        selected: isSelected,
+        disabled: !isEnabled
+      }),
+      onClick: this.onClick
+    };
+  }
+
+  template({ className, onClick, value }) {
     return (
-      <div className={`react-datepicker-picker ${classes}`} onClick={this.handleClick}>
+      <div {...{ className, onClick }}>
         <span>{value}</span>
       </div>
     );
   }
-});
-
-export default Picker;
+}
