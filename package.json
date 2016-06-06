@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/buildo/react-semantic-datepicker.git"
+    "url": "https://github.com/buildo/rc-datepicker.git"
   },
   "keywords": [
     "react",
@@ -27,11 +27,10 @@
   "author": "Francesco Cioria <francesco@buildo.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buildo/react-semantic-datepicker/issues"
+    "url": "https://github.com/buildo/rc-datepicker/issues"
   },
-  "homepage": "https://github.com/buildo/react-semantic-datepicker",
+  "homepage": "https://github.com/buildo/rc-datepicker",
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-cli": "^6.8.0",
     "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.4",
