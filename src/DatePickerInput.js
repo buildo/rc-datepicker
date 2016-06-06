@@ -14,14 +14,15 @@ const INVALID = 'Invalid date';
 const ENTER_KEYCODE = 13;
 
 const propTypes = {
-  onChange: t.maybe(t.Function),
-  onShow: t.maybe(t.Function),
-  onHide: t.maybe(t.Function),
   value: t.maybe(Value),
   valueLink: t.maybe(t.interface({
     value: t.maybe(Value),
     requestChange: t.Function
   })),
+  onChange: t.maybe(t.Function),
+  onShow: t.maybe(t.Function),
+  onHide: t.maybe(t.Function),
+  onClear: t.maybe(t.Function),
   small: t.maybe(t.Boolean),
   defaultValue: t.maybe(Value),
   minDate: t.maybe(Value),
@@ -40,7 +41,6 @@ const propTypes = {
   floating: t.maybe(t.Boolean),
   iconClassName: t.maybe(t.String),
   iconClearClassName: t.maybe(t.String),
-  onClear: t.maybe(t.Function),
   className: t.maybe(t.String), // used to omit from inputProps
   style: t.maybe(t.Object) // used to omit from inputProps
 };
@@ -213,6 +213,7 @@ export default class DatePickerInput extends React.Component {
     const inputProps = omit(props, Object.keys(propTypes));
     const onInputClick = showOnInputClick ? this.show : undefined;
     const onButtonClick = showInputButton ? this.toggleDatePicker : undefined;
+    const onInputClear = onClear ? this.onClear : undefined;
 
     return {
       style,
@@ -221,10 +222,9 @@ export default class DatePickerInput extends React.Component {
         value,
         small, active, hasValue,
         iconClassName, iconClearClassName,
-        onInputClick, onButtonClick,
+        onInputClick, onButtonClick, onInputClear,
         onInputChange: this.onChangeInput,
         onInputKeyUp: this.hideOnEnterKey,
-        onInputClear: onClear,
         ...inputProps
       },
       datePickerProps: active && {

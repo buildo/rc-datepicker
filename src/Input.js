@@ -9,13 +9,14 @@ import pure from './utils/pure';
 @skinnable()
 @props({
   value: t.maybe(t.String),
+  onInputChange: t.Function,
   iconClearClassName: t.String,
   iconClassName: t.String,
   hasValue: t.Boolean,
   active: t.Boolean,
   small: t.Boolean,
-  onButtonClick: t.Function,
-  onInputClick: t.Function,
+  onButtonClick: t.maybe(t.Function),
+  onInputClick: t.maybe(t.Function),
   onInputClear: t.maybe(t.Function),
   onInputKeyUp: t.Function
 }, { strict: false })
