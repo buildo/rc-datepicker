@@ -7,6 +7,7 @@ import DateUtils from './utils/DateUtils';
 import formatMixin from './utils/formatMixin';
 import cx from 'classnames';
 import ValueLinkMixin from './utils/ValueLinkMixin.js';
+import Input from './Input';
 
 const INVALID = 'Invalid date';
 const ENTER_KEYCODE = 13;
@@ -60,6 +61,7 @@ const DatePickerInput = React.createClass({
       small: false,
       showInputButton: true,
       iconClassName: '',
+      iconClearClassName: '',
       className: '',
       style: {}
     };
@@ -220,44 +222,26 @@ const DatePickerInput = React.createClass({
       className,
       style
     } = this.props;
-    const { showing: active, hasValue } = this.state;
-    const inputButton = (
-      <div className={cx('input-button', { active })} onClick={this.toggleDatePicker}>
-        <i className={iconClassName} />
-      </div>
-    );
-
-    const clearButton = (
-      <div className='clear-button' onClick={this.onClear}>
-        <i className={iconClearClassName} />
-      </div>
-    );
-
+    const { showing: active, hasValue, dateString } = this.state;
     const onInputClick = showOnInputClick ? this.show : undefined;
+    const onButtonClick = showInputButton ? this.toggleDatePicker : undefined;
+
     return (
       <div
         className={cx('react-datepicker-component', className)}
         style={style}
         ref='datePickerInput'
       >
-        <div className={cx('react-datepicker-input', {
-          'is-open': active,
-          'has-value': hasValue,
-          'is-small': small
-        })}
-        >
-          <input
-            value={this.state.dateString}
-            onChange={this.onChangeInput}
-            onClick={onInputClick}
-            onKeyUp={this.hideOnEnterKey}
-            {...inputProps}
-          />
-          <div className='button-wrapper'>
-            {onClear && hasValue && clearButton}
-            {showInputButton && inputButton}
-          </div>
-        </div>
+        <Input
+          value={dateString}
+          onButtonClick={onButtonClick}
+          onInputChange={this.onChangeInput}
+          onInputClick={onInputClick}
+          onInputKeyUp={this.hideOnEnterKey}
+          onInputClear={onClear}
+          {...{ hasValue, small, active, iconClassName, iconClearClassName }}
+          {...inputProps}
+        />
         {this.getDatePicker()}
       </div>
     );
