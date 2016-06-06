@@ -1,9 +1,5 @@
 {
   "extends": "buildo",
-  "globals": {
-    "describe": true,
-    "it": true,
-  },
   "rules": {
     "max-len": 0
   }
