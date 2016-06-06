@@ -1,14 +1,14 @@
 'use strict';
 
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var paths = {
+const paths = {
   SRC: path.resolve(__dirname, 'src'),
   TEST: path.resolve(__dirname, 'test')
 };
 
-module.exports = function (config) {
+module.exports = (config) => {
   config.set({
 
     browserNoActivityTimeout: 30000,
@@ -24,13 +24,13 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      'karma.js': [ 'webpack' ],
+      'karma.js': [ 'webpack' ]
     },
 
     reporters: process.env.CONTINUOUS_INTEGRATION ? [ 'bamboo', 'coverage' ] : [ 'dots', 'coverage' ],
 
     bambooReporter: {
-      filename: 'mocha.json',
+      filename: 'mocha.json'
     },
 
     coverageReporter: {
@@ -38,7 +38,7 @@ module.exports = function (config) {
         process.env.CONTINUOUS_INTEGRATION ?
         { type: 'lcov', subdir: 'lcov-report' } :
         { type: 'html', subdir: 'html-report' }
-      ],
+      ]
     },
 
     webpack: {
@@ -46,15 +46,15 @@ module.exports = function (config) {
         loaders: [
           {
             test: /\.jsx?$/,
-            loader: 'babel?stage=0&loose',
+            loader: 'babel',
             include: [paths.SRC, paths.TEST],
-            exclude: /node_modules/
+            exclude: [/node_modules/]
           }
         ],
         preLoaders: [
           {
             test: /\.jsx?$/,
-            loader: 'isparta?{babel: {stage: 0, loose: true}}',
+            loader: 'isparta',
             include: paths.SRC,
             exclude: /node_modules/
           }, {

@@ -1,7 +1,10 @@
 {
   "extends": "buildo",
+  "globals": {
+    "describe": true,
+    "it": true,
+  },
   "rules": {
-    "max-len": 0,
-    "react/prefer-es6-class": 0
+    "max-len": 0
   }
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && node-sass src -o lib && babel src -d lib",
-    "lint": "eslint src examples/examples.js",
+    "lint": "eslint src examples/examples.js test",
     "prepublish": "npm run build",
     "preversion": "npm run lint && npm run test && npm run build-examples",
     "build-examples": "npm run clean && webpack --config examples/webpack.config.build.babel.js --progress",
@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/buildo/react-semantic-datepicker",
   "devDependencies": {
+    "babel": "^6.5.2",
     "babel-cli": "^6.8.0",
     "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.4",
@@ -40,6 +41,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.9.0",
     "compression-webpack-plugin": "^0.3.1",
     "css-loader": "^0.23.1",
     "debug": "^2.2.0",
