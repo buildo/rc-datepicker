@@ -70,8 +70,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "peerDependencies": {
-    "react": "^0.14 || ^0.15",
-    "react-dom": "^0.14 || ^0.15"
+    "react": "^0.14 || ^15.0",
+    "react-dom": "^0.14 || ^15.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
