@@ -55,6 +55,7 @@ $input-clear-button-color-hover: $vermillion !default;
 
 $input-opacity-disabled: .6 !default;
 
+$picker-width: 250px !default;
 $picker-border: $coolGrey !default;
 $picker-box-shadow: 2px 2px 2px $coolGrey !default;
 $picker-border-radius: 5px !default;
@@ -196,7 +197,7 @@ $picker-disabled-background: white !default;
   .react-datepicker-container {
     border: 1px solid $picker-border;
     border-radius: ($picker-border-radius + 1);
-    width: 250px;
+    width: $picker-width;
   }
 
   .react-datepicker-top {
