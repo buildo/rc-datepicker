@@ -1,3 +1,5 @@
+@import '~react-flexview/lib/flexView.css';
+
 $gradientGrey: linear-gradient(#FAFAFA, #E0E0E0);
 $gradientMediumGrey: linear-gradient(#FAFAFA, #A7ABAB);
 $alabaster: #F3F3F3;
@@ -149,39 +151,26 @@ $picker-disabled-background: white !default;
     right: 0;
     top: 0;
     height: 100%;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-  }
 
-  .input-button {
-    margin: 0;
-    height: 100%;
-    width: 50px;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
-    background: $input-button-background;
-    font-size: input-button-icon-size;
-    border-radius: 0 $input-border-radius $input-border-radius 0;
-    cursor: pointer;
-  }
+    .input-button {
+      margin: 0 10px;
+      background: $input-button-background;
+      font-size: $input-button-icon-size;
+      border-radius: 0 $input-border-radius $input-border-radius 0;
+      cursor: pointer;
 
-  .input-button:hover {
-    background: $input-button-background-hover;
-  }
+      &:hover {
+        background: $input-button-background-hover;
+      }
+    }
 
-  .clear-button {
-    margin-right: 10px;
-    cursor: pointer;
-    font-size: $input-clear-button-icon-size;
-    color: $input-clear-button-color;
-    &:hover {
-      color: $input-clear-button-color-hover;
+    .clear-button {
+      cursor: pointer;
+      font-size: $input-clear-button-icon-size;
+      color: $input-clear-button-color;
+      &:hover {
+        color: $input-clear-button-color-hover;
+      }
     }
   }
 }
@@ -219,43 +208,27 @@ $picker-disabled-background: white !default;
 
     .week-days {
       height: 35px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
       .week-day {
-        flex: 1 1 auto;
         cursor: default;
       }
     }
 
     .display {
       height: 35px;
-      display: flex;
 
       .react-datepicker-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 1 0 auto;
         text-decoration: none;
         padding: 4px;
         text-align: center;
         &.button-left {
+          padding: 4px 16px;
           border-top-left-radius: $picker-border-radius;
         }
         &.button-right {
+          padding: 4px 16px;
           border-top-right-radius: $picker-border-radius;
         }
-      }
-      .react-datepicker-button.button-left .slow {
-        margin-left: 10px;
-      }
-      .react-datepicker-button.button-right .fast{
-        margin-left: 10px;
-      }
-      .react-datepicker-button.button-label {
-        width: 120px;
       }
       .react-datepicker-button.button-label.fixed:hover {
         background: transparent;
@@ -268,7 +241,6 @@ $picker-disabled-background: white !default;
   }
 
   .react-datepicker-row {
-    display: flex;
     margin-top: 0px;
     width: 100%;
     &:not(:last-child) {
@@ -289,25 +261,21 @@ $picker-disabled-background: white !default;
     background: $picker-background;
     cursor: pointer;
     text-decoration: none;
-    flex: 1 1 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     &:not(:last-child) {
       border-right: 1px solid $picker-border;
     }
   }
 
   .react-datepicker-picker.day {
-    height: 35px;
+    min-height: 30px;
   }
 
   .react-datepicker-picker.month {
-    height: 62px;
+    min-height: 65px;
   }
 
   .react-datepicker-picker.year {
-    height: 62px;
+    min-height: 65px;
   }
 
   .react-datepicker-picker:hover {
@@ -341,7 +309,6 @@ $picker-disabled-background: white !default;
     }
   }
   .react-datepicker-button {
-    display: block;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
