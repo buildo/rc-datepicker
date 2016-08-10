@@ -7,13 +7,18 @@ export const paths = {
   SRC: path.resolve(__dirname, '../src'),
   ENTRY: path.resolve(__dirname, 'examples.js'),
   BUILD: path.resolve(__dirname, 'build'),
-  EXAMPLES: path.resolve(__dirname)
+  EXAMPLES: path.resolve(__dirname),
+  NODE_MODULES: path.resolve(__dirname, 'node_modules')
 };
 
 export default {
   output: {
     path: paths.BUILD,
     filename: 'bundle.js'
+  },
+
+  resolve: {
+    root: [paths.NODE_MODULES]
   },
 
   module: {
