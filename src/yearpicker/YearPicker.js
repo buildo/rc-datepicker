@@ -1,6 +1,7 @@
 import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
+import View from 'react-flexview';
 import { pure, skinnable } from '../utils';
 import { MomentDate, Value, Mode } from '../utils/model';
 import YearPickerTop from './YearPickerTop';
@@ -52,10 +53,10 @@ export default class YearPicker extends React.Component {
 
   template({ yearPickerTopProps, yearPickerBodyProps }) {
     return (
-      <div className='react-datepicker-container year'>
+      <View column className='react-datepicker-container year'>
         <YearPickerTop {...yearPickerTopProps} />
         <YearPickerBody {...yearPickerBodyProps} />
-      </div>
+      </View>
     );
   }
 }

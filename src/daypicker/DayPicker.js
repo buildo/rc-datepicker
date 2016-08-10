@@ -1,6 +1,7 @@
 import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
+import View from 'react-flexview';
 import { pure, skinnable } from '../utils';
 import { Value, Mode, MomentDate } from '../utils/model';
 import DayPickerTop from './DayPickerTop';
@@ -43,10 +44,10 @@ export default class DayPicker extends React.Component {
 
   template({ dayPickerTopProps, dayPickerBodyProps }) {
     return (
-      <div className='react-datepicker-container day'>
+      <View column className='react-datepicker-container day'>
         <DayPickerTop {...dayPickerTopProps} />
         <DayPickerBody {...dayPickerBodyProps} />
-      </div>
+      </View>
     );
   }
 }

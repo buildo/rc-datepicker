@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
+import View from 'react-flexview';
 import { pure, skinnable } from './utils';
 import { Mode } from './utils/model';
 
@@ -22,9 +23,9 @@ export default class Row extends React.Component {
 
   template({ className, pickers }) {
     return (
-      <div className={className}>
+      <View className={className} width='100%' basis='100%' shrink>
         {pickers}
-      </div>
+      </View>
     );
   }
 

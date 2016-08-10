@@ -2,6 +2,7 @@ import React from 'react';
 import capitalize from 'lodash/capitalize';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
+import View from 'react-flexview';
 import { pure, skinnable } from '../utils';
 import { MomentDate, Mode } from '../utils/model';
 import { getWeekdaysMin } from '../utils/DateUtils.js';
@@ -41,9 +42,17 @@ export default class DayPickerTop extends React.Component {
   }
 
   templateWeekDays = ({ weekDays }) => (
-    <div className='week-days'>
-      {weekDays.map((dayMin, i) => <div className='week-day' key={i}>{dayMin}</div>)}
-    </div>
+    <View className='week-days' shrink={false}>
+      {weekDays.map((dayMin, i) => (
+        <View
+          className='week-day' basis='100%' shrink
+          hAlignContent='center' vAlignContent='center'
+          key={i}
+        >
+          {dayMin}
+        </View>
+      ))}
+    </View>
   )
 
   template({ weekDays, ...locales }) {

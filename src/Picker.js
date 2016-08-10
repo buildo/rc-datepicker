@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
+import View from 'react-flexview';
 import { pure, skinnable } from './utils';
 import { MomentDate, Value, Mode } from './utils/model';
 
@@ -52,9 +53,13 @@ export default class Picker extends React.Component {
 
   template({ className, onClick, value }) {
     return (
-      <div {...{ className, onClick }}>
+      <View
+        {...{ className, onClick }}
+        hAlignContent='center' vAlignContent='center'
+        basis='100%' shrink height='100%'
+      >
         <span>{value}</span>
-      </div>
+      </View>
     );
   }
 }

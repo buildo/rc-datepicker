@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
+import View from 'react-flexview';
 import { pure, skinnable } from './utils';
 
 @pure
@@ -17,26 +18,32 @@ import { pure, skinnable } from './utils';
 export default class PickerTop extends React.Component {
   template({ value, fixed, previousDate, nextDate, handleClick, weekDays }) {
     return (
-      <div className='react-datepicker-top'>
-        <div className='display'>
-          <div className='react-datepicker-button button-left'
+      <View column className='react-datepicker-top'>
+        <View shrink={false} className='display'>
+          <View
+            className='react-datepicker-button button-left'
             onClick={previousDate}
+            vAlignContent='center' shrink={false}
           >
             &lt;
-          </div>
-          <div className={cx('react-datepicker-button button-label', { fixed })}
+          </View>
+          <View
+            className={cx('react-datepicker-button button-label', { fixed })}
             onClick={handleClick}
+            hAlignContent='center' vAlignContent='center' grow
           >
             <strong>{value}</strong>
-          </div>
-          <div className='react-datepicker-button button-right'
+          </View>
+          <View
+            className='react-datepicker-button button-right'
             onClick={nextDate}
+            vAlignContent='center' shrink={false}
           >
             &gt;
-          </div>
-        </div>
+          </View>
+        </View>
         {weekDays}
-      </div>
+      </View>
     );
   }
 }
