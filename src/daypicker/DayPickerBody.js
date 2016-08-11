@@ -2,6 +2,7 @@ import React from 'react';
 import range from 'lodash/range';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
+import View from 'react-flexview';
 import { pure, skinnable } from '../utils';
 import { Value, Mode, MomentDate } from '../utils/model';
 import InvalidDate from '../InvalidDate';
@@ -64,9 +65,9 @@ export default class DayPickerBody extends React.Component {
     );
 
     return (
-      <div className='react-datepicker-body'>
+      <View column className='react-datepicker-body'>
         {rows}
-      </div>
+      </View>
     );
   }
 }

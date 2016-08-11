@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { props } from 'tcomb-react';
 import t from 'tcomb';
+import View from 'react-flexview';
 import skinnable from './utils/skinnable';
 import pure from './utils/pure';
 
@@ -63,17 +64,17 @@ export default class Input extends React.Component {
 
   templateInputButton({ className, onButtonClick, iconClassName }) {
     return (
-      <div className={className} onClick={onButtonClick}>
+      <View shrink={false} className={className} onClick={onButtonClick}>
         <i className={iconClassName} />
-      </div>
+      </View>
     );
   }
 
   templateClearButton({ onInputClear, iconClearClassName }) {
     return (
-      <div className='clear-button' onClick={onInputClear}>
+      <View shrink={false} className='clear-button' onClick={onInputClear}>
         <i className={iconClearClassName} />
-      </div>
+      </View>
     );
   }
 
@@ -81,10 +82,10 @@ export default class Input extends React.Component {
     return (
       <div className={className}>
         <input {...inputProps} />
-        <div className='button-wrapper'>
-          {inputButtonProps && this.templateInputButton(inputButtonProps)}
+        <View className='button-wrapper' vAlignContent='center'>
           {clearButtonProps && this.templateClearButton(clearButtonProps)}
-        </div>
+          {inputButtonProps && this.templateInputButton(inputButtonProps)}
+        </View>
       </div>
     );
   }
