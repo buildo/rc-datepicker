@@ -1,6 +1,6 @@
 build:
   rc-datepicker:
-    image: node:5
+    image: quay.io/buildo/node5-npm3-chrome
     environment:
       - NPM_CONFIG_CACHE=/drone/.npm
       - NPM_CONFIG_LOGLEVEL=warn
@@ -10,7 +10,7 @@ build:
       - npm test
 
   generate-readme:
-    image: node:5
+    image: quay.io/buildo/node5-npm3-chrome
     commands:
       - npm run generate-readme
       - git add src/README.md
