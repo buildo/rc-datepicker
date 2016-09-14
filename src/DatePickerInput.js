@@ -13,7 +13,7 @@ import Input from './Input';
 const INVALID = 'Invalid date';
 const ENTER_KEYCODE = 13;
 
-const propTypes = {
+export const Props = {
   value: t.maybe(Value),
   valueLink: t.maybe(t.interface({
     value: t.maybe(Value),
@@ -28,7 +28,7 @@ const propTypes = {
   minDate: t.maybe(Value),
   maxDate: t.maybe(Value),
   locale: t.maybe(t.String),
-  startMode: t.maybe(t.String),
+  startMode: t.maybe(t.enums.of(['day', 'month', 'year'])),
   fixedMode: t.maybe(t.Boolean),
   displayFormat: t.maybe(t.String),
   returnFormat: t.maybe(t.String),
@@ -45,10 +45,38 @@ const propTypes = {
   style: t.maybe(t.Object) // used to omit from inputProps
 };
 
+/** A decent and pretty date picker to be used with React
+ * @param value - current date
+ * @param valueLink - valueLink object to replace "value" and "onChange"
+ * @param onChange - called when value changes
+ * @param onShow - called when datepicker is opened
+ * @param onHide - called when datepicker is closed
+ * @param onClear - called when value is cleared
+ * @param small - whether it's small or not
+ * @param defaultValue - default date
+ * @param minDate - minimum date selectable by the user
+ * @param maxDate - maximum date selectable by the user
+ * @param locale - locale used for translations
+ * @param startMode - the start view of the datepicker
+ * @param fixedMode - whether the user can use multiple views or not
+ * @param displayFormat - MomentJS format used to display current date
+ * @param returnFormat - MomentJS format used to format date before returing through "onChange"
+ * @param format - MomentJS format used to format date before returing through "onChange"
+ * @param validationFormat - MomentJS format used to format date before returing through "onChange"
+ * @param showOnInputClick - whether the datepicker should open when user click on the input
+ * @param closeOnClickOutside - whether the datepicker should close when user clicks outside of it
+ * @param showInputButton - whether the input-button should be rendered
+ * @param autoClose - pass true if you want the datepicker to close automatically after the user selects a value
+ * @param floating - whether the datepicker should float over the page content (absolute position)
+ * @param iconClassName - classname used for the icon
+ * @param iconClearClassName - classname used for the clear icon
+ */
+
+
 @format
 @valueLink
 @skinnable()
-@props(propTypes, { strict: false })
+@props(Props, { strict: false })
 export default class DatePickerInput extends React.Component {
 
   static defaultProps = {
