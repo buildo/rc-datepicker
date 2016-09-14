@@ -238,7 +238,7 @@ export default class DatePickerInput extends React.Component {
     } = props;
     const { showing: active, hasValue, dateString: value, date } = this.state;
 
-    const inputProps = omit(props, Object.keys(propTypes));
+    const inputProps = omit(props, Object.keys(Props));
     const onInputClick = showOnInputClick ? this.show : undefined;
     const onButtonClick = showInputButton ? this.toggleDatePicker : undefined;
     const onInputClear = onClear ? this.onClear : undefined;
