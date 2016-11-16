@@ -61,6 +61,7 @@ $picker-width: 250px !default;
 $picker-border: $coolGrey !default;
 $picker-box-shadow: 2px 2px 2px $coolGrey !default;
 $picker-border-radius: 2px !default;
+$picker-arrow-size: 5px !default;
 $picker-header-background: $aquamarine !default;
 $picker-header-color: white !default;
 $picker-header-background-hover: $cerulean !default;
@@ -200,7 +201,33 @@ $picker-disabled-background: white !default;
     border: 1px solid $picker-border;
     border-radius: ($picker-border-radius + 1);
     width: $picker-width;
+    position: relative;
   }
+
+  .react-datepicker-container:after,
+  .react-datepicker-container:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .react-datepicker-container:after {
+    border-bottom-color: $picker-header-background;
+    border-width: $picker-arrow-size;
+    margin-left: -1 * $picker-arrow-size;
+  }
+  .react-datepicker-container:before {
+    border-bottom-color: $picker-border;
+    border-width: ($picker-arrow-size + 1);
+    margin-left: -1 * ($picker-arrow-size + 1);
+  }
+
+
 
   .react-datepicker-top {
     text-align: center;
