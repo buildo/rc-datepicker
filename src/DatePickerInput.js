@@ -88,8 +88,8 @@ export default class DatePickerInput extends React.Component {
     floating: true,
     small: false,
     showInputButton: true,
-    iconClassName: '',
-    iconClearClassName: '',
+    iconClassName: 'icon-rc-datepicker icon-rc-datepicker_calendar',
+    iconClearClassName: 'icon-rc-datepicker icon-rc-datepicker_clear',
     className: '',
     style: {}
   }

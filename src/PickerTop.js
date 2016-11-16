@@ -13,10 +13,12 @@ import { pure, skinnable } from './utils';
   nextDate: t.maybe(t.Function),
   previousDate: t.maybe(t.Function),
   value: t.union([t.String, t.Number]),
-  weekDays: t.maybe(t.ReactChildren)
+  weekDays: t.maybe(t.ReactChildren),
+  prevIconClassName: t.maybe(t.String),
+  nextIconClassName: t.maybe(t.String)
 })
 export default class PickerTop extends React.Component {
-  template({ value, fixed, previousDate, nextDate, handleClick, weekDays }) {
+  template({ value, fixed, previousDate, nextDate, handleClick, weekDays, prevIconClassName, nextIconClassName }) {
     return (
       <View column className='react-datepicker-top'>
         <View shrink={false} className='display'>
@@ -25,7 +27,7 @@ export default class PickerTop extends React.Component {
             onClick={previousDate}
             vAlignContent='center' shrink={false}
           >
-            &lt;
+            <i className={prevIconClassName} />
           </View>
           <View
             className={cx('react-datepicker-button button-label', { fixed })}
@@ -39,7 +41,7 @@ export default class PickerTop extends React.Component {
             onClick={nextDate}
             vAlignContent='center' shrink={false}
           >
-            &gt;
+            <i className={nextIconClassName} />
           </View>
         </View>
         {weekDays}

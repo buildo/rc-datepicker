@@ -14,7 +14,9 @@ import PickerTop from '../PickerTop';
   changeMonth: t.Function,
   visibleDate: MomentDate,
   onChangeMode: t.Function,
-  fixedMode: t.maybe(t.Boolean)
+  fixedMode: t.maybe(t.Boolean),
+  prevIconClassName: t.maybe(t.String),
+  nextIconClassName: t.maybe(t.String)
 })
 export default class DayPickerTop extends React.Component {
 
@@ -30,14 +32,16 @@ export default class DayPickerTop extends React.Component {
 
   nextDate = () => this.props.changeMonth(this.getMonth() + 1)
 
-  getLocals({ visibleDate, fixedMode }) {
+  getLocals({ visibleDate, fixedMode, prevIconClassName, nextIconClassName }) {
     return {
       fixed: !!fixedMode,
       value: capitalize(visibleDate.format('MMMM YYYY')),
       handleClick: this.onChangeMode,
       previousDate: this.previousDate,
       nextDate: this.nextDate,
-      weekDays: getWeekdaysMin()
+      weekDays: getWeekdaysMin(),
+      prevIconClassName,
+      nextIconClassName
     };
   }
 

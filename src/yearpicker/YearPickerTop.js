@@ -9,7 +9,9 @@ import PickerTop from '../PickerTop';
 @skinnable()
 @props({
   visibleDate: MomentDate,
-  changeYear: t.Function
+  changeYear: t.Function,
+  prevIconClassName: t.maybe(t.String),
+  nextIconClassName: t.maybe(t.String)
 })
 export default class YearPickerTop extends React.Component {
 
@@ -25,6 +27,8 @@ export default class YearPickerTop extends React.Component {
     const endDecadeYear = startDecadeYear + 9;
 
     return {
+      prevIconClassName: this.props.prevIconClassName,
+      nextIconClassName: this.props.nextIconClassName,
       fixed: true,
       previousDate: this.previousDate,
       nextDate: this.nextDate,

@@ -11,7 +11,9 @@ import PickerTop from '../PickerTop';
   visibleDate: MomentDate,
   onChangeMode: t.Function,
   changeYear: t.Function,
-  fixedMode: t.maybe(t.Boolean)
+  fixedMode: t.maybe(t.Boolean),
+  prevIconClassName: t.maybe(t.String),
+  nextIconClassName: t.maybe(t.String)
 })
 export default class MonthPickerTop extends React.Component {
 
@@ -29,6 +31,8 @@ export default class MonthPickerTop extends React.Component {
 
   getLocals({ fixedMode }) {
     return {
+      prevIconClassName: this.props.prevIconClassName,
+      nextIconClassName: this.props.nextIconClassName,
       fixed: !!fixedMode,
       value: this.getYear(),
       handleClick: this.onChangeMode,

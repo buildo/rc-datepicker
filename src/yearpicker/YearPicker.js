@@ -19,7 +19,9 @@ import YearPickerBody from './YearPickerBody';
   onSelectDate: t.Function,
   onChangeMode: t.Function,
   mode: Mode,
-  fixedMode: t.maybe(t.Boolean)
+  fixedMode: t.maybe(t.Boolean),
+  prevIconClassName: t.String,
+  nextIconClassName: t.String
 })
 export default class YearPicker extends React.Component {
 
@@ -35,12 +37,15 @@ export default class YearPicker extends React.Component {
 
   getLocals({
     date, visibleDate, minDate,
-    maxDate, changeYear, mode
+    maxDate, changeYear, mode,
+    prevIconClassName, nextIconClassName
   }) {
     return {
       yearPickerTopProps: {
         visibleDate,
-        changeYear
+        changeYear,
+        prevIconClassName,
+        nextIconClassName
       },
       yearPickerBodyProps: {
         date, visibleDate,

@@ -29,6 +29,8 @@ import cx from 'classnames';
   floating: t.maybe(t.Boolean),
   closeOnClickOutside: t.maybe(t.Boolean), // used only with DatePickerInput
   className: t.maybe(t.String),
+  prevIconClassName: t.maybe(t.String),
+  nextIconClassName: t.maybe(t.String),
   style: t.maybe(t.Object)
 })
 export default class DatePicker extends React.Component {
@@ -36,6 +38,8 @@ export default class DatePicker extends React.Component {
   static defaultProps = {
     startMode: 'day',
     className: '',
+    prevIconClassName: 'icon-rc-datepicker icon-rc-datepicker_prev',
+    nextIconClassName: 'icon-rc-datepicker icon-rc-datepicker_next',
     style: {}
   }
 
@@ -87,9 +91,8 @@ export default class DatePicker extends React.Component {
     this.setState({ visibleDate: this.state.visibleDate.clone().month(month) });
   }
 
-  getLocals({ className, style, floating, minDate, maxDate, fixedMode }) {
+  getLocals({ className, style, floating, minDate, maxDate, fixedMode, prevIconClassName, nextIconClassName }) {
     const { mode, date, visibleDate } = this.state;
-
     return {
       style,
       className: cx('react-datepicker', className, { floating }),
@@ -98,6 +101,8 @@ export default class DatePicker extends React.Component {
         minDate, maxDate,
         mode,
         fixedMode,
+        prevIconClassName,
+        nextIconClassName,
         changeMonth: this.changeMonth,
         onSelectDate: this.onChangeSelectedDate,
         onChangeMode: this.onChangeMode
@@ -107,6 +112,8 @@ export default class DatePicker extends React.Component {
         minDate, maxDate,
         mode,
         fixedMode,
+        prevIconClassName,
+        nextIconClassName,
         changeYear: this.changeYear,
         onSelectDate: this.onChangeSelectedDate,
         onChangeMode: this.onChangeMode,
@@ -117,6 +124,8 @@ export default class DatePicker extends React.Component {
         minDate, maxDate,
         mode,
         fixedMode,
+        prevIconClassName,
+        nextIconClassName,
         changeYear: this.changeYear,
         onSelectDate: this.onChangeSelectedDate,
         onChangeMode: this.onChangeMode,
