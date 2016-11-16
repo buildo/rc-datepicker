@@ -20,6 +20,7 @@ $vermillion: #C93132;
 
 $font-size: 15px !default;
 $font-weight: normal !default;
+$font-weight-selected: bold !default;
 $font-family: sans-serif !default;
 
 $input-height: 38px !default;
@@ -286,6 +287,7 @@ $picker-disabled-background: white !default;
   .react-datepicker-picker.selected {
     color: $picker-selected-color;
     background: $picker-selected-background;
+    font-weight: $font-weight-selected;
   }
   .react-datepicker-picker.current {
     color: $picker-current-color;
