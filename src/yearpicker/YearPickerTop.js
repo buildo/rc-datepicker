@@ -21,14 +21,14 @@ export default class YearPickerTop extends React.Component {
 
   nextDate = () => this.props.changeYear(this.getYear() + 10)
 
-  getLocals() {
+  getLocals(prevIconClassName, nextIconClassName) {
     const year = this.getYear();
     const startDecadeYear = parseInt(year / 10, 10) * 10;
     const endDecadeYear = startDecadeYear + 9;
 
     return {
-      prevIconClassName: this.props.prevIconClassName,
-      nextIconClassName: this.props.nextIconClassName,
+      prevIconClassName,
+      nextIconClassName,
       fixed: true,
       previousDate: this.previousDate,
       nextDate: this.nextDate,
