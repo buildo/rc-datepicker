@@ -12,8 +12,8 @@ import PickerTop from '../PickerTop';
   onChangeMode: t.Function,
   changeYear: t.Function,
   fixedMode: t.maybe(t.Boolean),
-  prevIconClassName: t.maybe(t.String),
-  nextIconClassName: t.maybe(t.String)
+  prevIconClassName: t.String,
+  nextIconClassName: t.String
 })
 export default class MonthPickerTop extends React.Component {
 

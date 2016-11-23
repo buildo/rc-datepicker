@@ -19,8 +19,8 @@ import DayPickerBody from './DayPickerBody';
   onChangeMode: t.Function,
   mode: Mode,
   fixedMode: t.maybe(t.Boolean),
-  prevIconClassName: t.maybe(t.String),
-  nextIconClassName: t.maybe(t.String)
+  prevIconClassName: t.String,
+  nextIconClassName: t.String
 })
 export default class DayPicker extends React.Component {
 

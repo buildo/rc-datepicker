@@ -14,8 +14,8 @@ import { pure, skinnable } from './utils';
   previousDate: t.maybe(t.Function),
   value: t.union([t.String, t.Number]),
   weekDays: t.maybe(t.ReactChildren),
-  prevIconClassName: t.maybe(t.String),
-  nextIconClassName: t.maybe(t.String)
+  prevIconClassName: t.String,
+  nextIconClassName: t.String
 })
 export default class PickerTop extends React.Component {
   template({ value, fixed, previousDate, nextDate, handleClick, weekDays, prevIconClassName, nextIconClassName }) {

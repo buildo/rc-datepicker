@@ -15,8 +15,8 @@ import PickerTop from '../PickerTop';
   visibleDate: MomentDate,
   onChangeMode: t.Function,
   fixedMode: t.maybe(t.Boolean),
-  prevIconClassName: t.maybe(t.String),
-  nextIconClassName: t.maybe(t.String)
+  prevIconClassName: t.String,
+  nextIconClassName: t.String
 })
 export default class DayPickerTop extends React.Component {
 
