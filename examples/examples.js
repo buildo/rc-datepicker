@@ -60,7 +60,7 @@ class Example extends React.Component {
           value={this.state.datePickerDate}
           onChange={(jsDate) => this.setState({ datePickerDate: jsDate })}
         />
-        <p></p>
+        <p/>
         <p>VALUE LINK</p>
         <button onClick={this.resetState}>reset state</button>
         <p>jsDate = {String(this.state.datePickerInputDate2)}</p>
