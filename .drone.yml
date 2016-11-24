@@ -5,7 +5,8 @@ build:
       - NPM_CONFIG_CACHE=/drone/.npm
       - NPM_CONFIG_LOGLEVEL=warn
     commands:
-      - npm i
+      - npm i -g yarn
+      - yarn
       - npm run lint
       - npm test
 
