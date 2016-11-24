@@ -10,7 +10,7 @@
     "prepublish": "npm run build",
     "preversion": "npm run lint && npm run test && npm run build-examples",
     "build-examples": "npm run clean && webpack --config examples/webpack.config.build.babel.js --progress",
-    "start": "npm run clean && webpack-dev-server --config examples/webpack.config.babel.js --progress --hot --inline",
+    "start": "webpack-dev-server --config examples/webpack.config.babel.js --progress --hot --inline",
     "clean": "rm -rf examples/build",
     "generate-readme": "babel-node ./generateReadme.js"
   },
