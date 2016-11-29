@@ -29,8 +29,8 @@ import cx from 'classnames';
   floating: t.maybe(t.Boolean),
   closeOnClickOutside: t.maybe(t.Boolean), // used only with DatePickerInput
   className: t.maybe(t.String),
-  prevIconClassName: t.String,
-  nextIconClassName: t.String,
+  prevIconClassName: t.maybe(t.String),
+  nextIconClassName: t.maybe(t.String),
   style: t.maybe(t.Object)
 })
 export default class DatePicker extends React.Component {
