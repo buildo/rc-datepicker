@@ -18,20 +18,25 @@ import DayPickerBody from './DayPickerBody';
   onSelectDate: t.Function,
   onChangeMode: t.Function,
   mode: Mode,
-  fixedMode: t.maybe(t.Boolean)
+  fixedMode: t.maybe(t.Boolean),
+  prevIconClassName: t.String,
+  nextIconClassName: t.String
 })
 export default class DayPicker extends React.Component {
 
   getLocals({
     date, visibleDate, onSelectDate, minDate,
-    maxDate, changeMonth, onChangeMode, mode, fixedMode
+    maxDate, changeMonth, onChangeMode, mode, fixedMode,
+    prevIconClassName, nextIconClassName
   }) {
     return {
       dayPickerTopProps: {
         visibleDate,
         changeMonth,
         onChangeMode,
-        fixedMode
+        fixedMode,
+        prevIconClassName,
+        nextIconClassName
       },
       dayPickerBodyProps: {
         date, visibleDate,

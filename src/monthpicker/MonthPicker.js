@@ -18,7 +18,9 @@ import MonthPickerBody from './MonthPickerBody';
   onSelectDate: t.Function,
   onChangeMode: t.Function,
   mode: Mode,
-  fixedMode: t.maybe(t.Boolean)
+  fixedMode: t.maybe(t.Boolean),
+  prevIconClassName: t.String,
+  nextIconClassName: t.String
 })
 export default class MonthPicker extends React.Component {
 
@@ -34,14 +36,17 @@ export default class MonthPicker extends React.Component {
 
   getLocals({
     date, visibleDate, minDate,
-    maxDate, changeYear, onChangeMode, mode, fixedMode
+    maxDate, changeYear, onChangeMode, mode, fixedMode,
+    prevIconClassName, nextIconClassName
   }) {
     return {
       monthPickerTopProps: {
         visibleDate,
         changeYear,
         onChangeMode,
-        fixedMode
+        fixedMode,
+        prevIconClassName,
+        nextIconClassName
       },
       monthPickerBodyProps: {
         date, visibleDate,

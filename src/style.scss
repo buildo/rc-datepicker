@@ -1,4 +1,5 @@
 @import '~react-flexview/lib/flexView.css';
+@import './icons.css';
 
 $gradientGrey: linear-gradient(#FAFAFA, #E0E0E0);
 $gradientMediumGrey: linear-gradient(#FAFAFA, #A7ABAB);
@@ -20,13 +21,14 @@ $vermillion: #C93132;
 
 $font-size: 15px !default;
 $font-weight: normal !default;
+$font-weight-selected: bold !default;
 $font-family: sans-serif !default;
 
 $input-height: 38px !default;
 $input-height-small: 30px !default;
 $input-min-width: 150px !default;
 
-$input-border-radius: 5px !default;
+$input-border-radius: 2px !default;
 $input-font-size: 15px !default;
 
 $input-background: $gradientGrey !default;
@@ -58,7 +60,8 @@ $input-opacity-disabled: .6 !default;
 $picker-width: 250px !default;
 $picker-border: $coolGrey !default;
 $picker-box-shadow: 2px 2px 2px $coolGrey !default;
-$picker-border-radius: 5px !default;
+$picker-border-radius: 2px !default;
+$picker-arrow-size: 5px !default;
 $picker-header-background: $aquamarine !default;
 $picker-header-color: white !default;
 $picker-header-background-hover: $cerulean !default;
@@ -198,6 +201,29 @@ $picker-disabled-background: white !default;
     border: 1px solid $picker-border;
     border-radius: ($picker-border-radius + 1);
     width: $picker-width;
+    position: relative;
+      &:after,
+      &:before {
+        bottom: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      &:after {
+        border-bottom-color: $picker-header-background;
+        border-width: $picker-arrow-size;
+        margin-left: -1 * $picker-arrow-size;
+      }
+      &:before {
+        border-bottom-color: $picker-border;
+        border-width: ($picker-arrow-size + 1);
+        margin-left: -1 * ($picker-arrow-size + 1);
+      }
   }
 
   .react-datepicker-top {
@@ -286,6 +312,7 @@ $picker-disabled-background: white !default;
   .react-datepicker-picker.selected {
     color: $picker-selected-color;
     background: $picker-selected-background;
+    font-weight: $font-weight-selected;
   }
   .react-datepicker-picker.current {
     color: $picker-current-color;
