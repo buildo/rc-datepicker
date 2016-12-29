@@ -84,6 +84,10 @@
     "moment": "^2.13.0",
     "react-flexview": "^1.0.1",
     "revenge": "^0.4.4",
+    "stylefmt": "^5.0.3",
+    "stylelint": "^7.7.0",
+    "stylelint-config-buildo": "0.0.2",
+    "stylelint-webpack-plugin": "^0.4.2",
     "tcomb": "^3.2.1",
     "tcomb-react": "^0.9.0"
   }
