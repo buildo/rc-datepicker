@@ -356,6 +356,10 @@ $picker-disabled-color: $_coolGrey !default;
     color: $picker-selected-color;
     background: $picker-selected-background;
     font-weight: $font-weight-selected;
+    margin-left: -1px;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    border: 1px solid $picker-selected-background;
   }
   .react-datepicker-picker.current {
     color: $picker-current-color;
