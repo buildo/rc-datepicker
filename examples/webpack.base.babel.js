@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import StyleLintPlugin from 'stylelint-webpack-plugin';
 
 export const indexHtml = fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf8');
 
@@ -20,6 +21,14 @@ export default {
   resolve: {
     root: [paths.NODE_MODULES]
   },
+
+  plugins: [
+    new StyleLintPlugin({
+      files: '**/*.scss',
+      failOnError: false,
+      syntax: 'scss'
+    })
+  ],
 
   module: {
     loaders: [

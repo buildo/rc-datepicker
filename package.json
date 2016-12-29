@@ -7,6 +7,8 @@
     "test": "./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && node-sass src -o lib && babel src -d lib",
     "lint": "eslint src examples/examples.js test",
+    "lint-style": "stylelint ./**/*.scss --syntax scss",
+    "lint-style-fix": "stylefmt ./**/*.scss",
     "prepublish": "npm run build",
     "preversion": "npm run lint && npm run test && npm run build-examples",
     "build-examples": "npm run clean && webpack --config examples/webpack.config.build.babel.js --progress",
@@ -84,6 +86,10 @@
     "moment": "^2.13.0",
     "react-flexview": "^1.0.1",
     "revenge": "^0.4.4",
+    "stylefmt": "^5.0.3",
+    "stylelint": "^7.7.0",
+    "stylelint-config-buildo": "0.0.2",
+    "stylelint-webpack-plugin": "^0.4.2",
     "tcomb": "^3.2.1",
     "tcomb-react": "^0.9.0"
   }

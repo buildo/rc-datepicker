@@ -15,6 +15,7 @@ export default {
 
   devServer: {
     contentBase: paths.BUILD,
+    host: '0.0.0.0',
     port: '8080'
   },
 
@@ -27,6 +28,7 @@ export default {
   },
 
   plugins: [
+    ...webpackBase.plugins,
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('development') }),
     new HtmlWebpackPlugin({ bundle: false, templateContent: indexHtml }),
     new ExtractTextPlugin('style', 'style.[hash].min.css')
