@@ -27,7 +27,7 @@ class Example extends React.Component {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     return (
-      <div style={{ margin: 20 }}>
+      <div style={{ margin: 20, fontFamily: 'sans-serif' }}>
         <h1>DatePickerInput</h1>
         <button onClick={this.toggleInput}>toggle DatePickerInput</button>
         <p>onChange(jsDate, dateString)</p>
@@ -45,8 +45,6 @@ class Example extends React.Component {
               placeholder='placeholder'
               locale='de'
               onClear={this.onClear}
-              iconClearClassName='fa fa-times'
-              iconClassName='fa fa-calendar'
             />
           </div>
         }
@@ -77,7 +75,6 @@ class Example extends React.Component {
             showOnInputClick
             placeholder='placeholder'
             locale='de'
-            iconClassName='calendar icon'
           />
         </div>
       </div>
