@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.0](https://github.com/buildo/rc-datepicker/tree/v5.0.0) (2016-12-29)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.0-beta2...v5.0.0)
+
+#### New features:
+
+- [style] update style with new mockup [#98](https://github.com/buildo/rc-datepicker/issues/98)
+
 ## [v5.0.0-beta2](https://github.com/buildo/rc-datepicker/tree/v5.0.0-beta2) (2016-06-06)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.0-beta1...v5.0.0-beta2)
 
@@ -13,6 +20,7 @@
 - Find an alternative to valueLink [#88](https://github.com/buildo/rc-datepicker/issues/88)
 - [style] improve picker style [#86](https://github.com/buildo/rc-datepicker/issues/86)
 - [style] improve button style [#82](https://github.com/buildo/rc-datepicker/issues/82)
+- [style] improve UI following styleguide [#81](https://github.com/buildo/rc-datepicker/issues/81)
 
 #### Fixes (bugs & defects):
 
