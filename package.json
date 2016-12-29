@@ -7,7 +7,7 @@
     "test": "./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && node-sass src -o lib && babel src -d lib",
     "lint": "eslint src examples/examples.js test",
-    "lint-style": "stylelint \"src/**/*.scss\" \"examples/**/*.scss\" --syntax scss",
+    "lint-style": "stylelint ./**/*.scss --syntax scss",
     "lint-style-fix": "stylefmt ./**/*.scss",
     "prepublish": "npm run build",
     "preversion": "npm run lint && npm run test && npm run build-examples",
