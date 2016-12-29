@@ -13,7 +13,7 @@
     "start": "webpack-dev-server --config examples/webpack.config.babel.js --progress --hot --inline",
     "clean": "rm -rf examples/build",
     "generate-readme": "babel-node ./generateReadme.js",
-    "release-version": "smooth-release --validations --npm-version --npm-publish"
+    "release-version": "smooth-release"
   },
   "repository": {
     "type": "git",
