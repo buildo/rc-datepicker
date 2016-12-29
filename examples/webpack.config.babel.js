@@ -27,6 +27,7 @@ export default {
   },
 
   plugins: [
+    ...webpackBase.plugins,
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('development') }),
     new HtmlWebpackPlugin({ bundle: false, templateContent: indexHtml }),
     new ExtractTextPlugin('style', 'style.[hash].min.css')
