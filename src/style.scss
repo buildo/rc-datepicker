@@ -54,7 +54,7 @@ $input-button-icon-size: 15px !default;
 $input-button-background: transparent !default;
 $input-button-background-hover: transparent !default;
 
-$input-clear-button-icon-size: 16px !default;
+$input-clear-button-icon-size: 13px !default;
 $input-clear-button-color: $input-button-icon-color !default;
 $input-clear-button-color-hover: $_strawberry !default;
 
@@ -78,12 +78,12 @@ $picker-box-shadow: 2px 2px 2px $_coolGrey !default;
 $picker-arrow-size: 5px !default;
 
 $picker-header-background: $_gradientAzure !default;
-$picker-header-background-hover: $picker-header-background !default;
+$picker-header-background-hover: rgba(0, 0, 0, .075) !default;
 $picker-header-color: white !default;
 $picker-header-border-color: $_cerulean !default;
 
 $picker-current-background: $_paleGrey !default;
-$picker-current-background-hover: $picker-current-background !default;
+$picker-current-background-hover: darken($picker-current-background, 5%) !default;
 $picker-current-color: $_darkGrey !default;
 $picker-current-color-hover: $picker-current-color !default;
 
@@ -126,6 +126,7 @@ $picker-disabled-color: $_coolGrey !default;
   background: $input-background;
   border: 1px solid $input-border-color;
   border-radius: $input-border-radius;
+
   &.is-small {
     height: $input-height-small;
   }
@@ -139,11 +140,13 @@ $picker-disabled-color: $_coolGrey !default;
     padding-right: 60px;
     font-size: $input-font-size;
     color: $input-color;
+    font-weight: 600;
     &:focus {
       outline: none;
     }
     @include placeholder {
       color: $input-placeholder-color;
+      font-weight: 600;
     }
   }
   &:hover {
@@ -276,6 +279,8 @@ $picker-disabled-color: $_coolGrey !default;
 
       .week-day {
         cursor: default;
+        font-weight: 400;
+        font-size: 13px;
       }
     }
 
@@ -286,21 +291,31 @@ $picker-disabled-color: $_coolGrey !default;
         text-decoration: none;
         padding: 4px;
         text-align: center;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+
         &.button-left {
+          font-size: 13px;
           padding: 4px 16px;
           border-top-left-radius: $picker-border-radius;
         }
+
         &.button-right {
+          font-size: 13px;
           padding: 4px 16px;
           border-top-right-radius: $picker-border-radius;
         }
-      }
-      .react-datepicker-button.button-label.fixed:hover {
-        background: transparent;
-        cursor: default;
-      }
-      .react-datepicker-button.button-label:hover {
-        background: $picker-header-background-hover;
+
+        &:hover {
+          background: $picker-header-background-hover;
+          border-radius: 4px;
+        }
+
+        &.fixed:hover {
+          background: transparent;
+          cursor: default;
+        }
       }
     }
   }
@@ -334,6 +349,7 @@ $picker-disabled-color: $_coolGrey !default;
     background: $picker-background;
     cursor: pointer;
     text-decoration: none;
+    font-weight: 400;
     &:not(:last-child) {
       border-right: 1px solid $picker-border-color;
     }
@@ -365,12 +381,12 @@ $picker-disabled-color: $_coolGrey !default;
     border: 1px solid $picker-selected-background;
   }
   .react-datepicker-picker.current {
+    font-weight: 600;
     color: $picker-current-color;
     background: $picker-current-background;
     &:hover {
       color: $picker-current-color-hover;
-      background: $picker-current-background-hover
-
+      background: $picker-current-background-hover;
     }
   }
   .react-datepicker-picker.selected.current {
