@@ -331,6 +331,8 @@ $picker-disabled-color: $_coolGrey !default;
   .react-datepicker-row {
     margin-top: 0px;
     width: 100%;
+    min-height: 30px;
+
     &:not(:last-child) {
       border-bottom: 1px solid $picker-border-color;
     }
