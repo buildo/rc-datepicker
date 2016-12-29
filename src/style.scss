@@ -1,16 +1,15 @@
 @import '~react-flexview/lib/flexView.css';
 @import './icons.css';
 
-$gradientGrey: linear-gradient(#FAFAFA, #E0E0E0);
-$gradientMediumGrey: linear-gradient(#FAFAFA, #A7ABAB);
-$alabaster: #F3F3F3;
-$coolGrey: #D0D0D0;
-$darkGrey: #767C7E;
-$mediumGrey: #A7ABAB;
-$charcoal: #2D373C;
-$aquamarine: #6DB2DA;
-$cerulean: #009bde;
-$vermillion: #C93132;
+$gradientGrey: linear-gradient(#FFFFFF, #F2F4F7);
+$gradientDarkGrey:linear-gradient(#FFFFFF, #DFE3E8);
+$silver: #CED0DA;
+$cloudyGrey: #B5C0CE;
+$coolGrey: #9098A7;
+$darkGrey: #354052;
+$cerulean: #009BDE;
+$strawberry: #DB242C;
+
 
 @mixin placeholder {
   &::-webkit-input-placeholder {@content}
