@@ -229,6 +229,8 @@ $picker-disabled-color: $_coolGrey !default;
   -ms-user-select: none;
   user-select: none;
   display: inline-block;
+  font-size: $font-size;
+  font-weight: $font-weight;
 
   .react-datepicker-container {
     width: $picker-width;
