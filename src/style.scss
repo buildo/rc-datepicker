@@ -72,7 +72,7 @@ $picker-background: white !default;
 $picker-background-hover: !default;
 
 $picker-border-radius: 2px !default;
-$picker-border-color: $_cerulean !default;
+$picker-border-color: #D9DEE3 !default;
 
 $picker-box-shadow: 2px 2px 2px $_coolGrey !default;
 $picker-arrow-size: 5px !default;
@@ -80,6 +80,7 @@ $picker-arrow-size: 5px !default;
 $picker-header-background: $_gradientAzure !default;
 $picker-header-background-hover: $picker-header-background !default;
 $picker-header-color: white !default;
+$picker-header-border-color: $_cerulean !default;
 
 $picker-current-background: $_paleGrey !default;
 $picker-current-background-hover: $picker-current-background !default;
@@ -229,40 +230,43 @@ $picker-disabled-color: $_coolGrey !default;
   display: inline-block;
 
   .react-datepicker-container {
-    border: 1px solid $picker-border-color;
-    border-radius: ($picker-border-radius + 1);
     width: $picker-width;
     position: relative;
-      &:after,
-      &:before {
-        bottom: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-      }
-
-      &:after {
-        border-bottom-color: $picker-border-color;
-        border-width: $picker-arrow-size;
-        margin-left: -1 * $picker-arrow-size;
-      }
-      &:before {
-        border-bottom-color: $picker-border-color;
-        border-width: ($picker-arrow-size + 1);
-        margin-left: -1 * ($picker-arrow-size + 1);
-      }
   }
 
   .react-datepicker-top {
     text-align: center;
     background: $picker-header-background;
+    color: $picker-header-color;
+    border-top: 1px solid $picker-header-border-color;
+    border-left: 1px solid $picker-header-border-color;
+    border-right: 1px solid $picker-header-border-color;
     border-top-left-radius: $picker-border-radius;
     border-top-right-radius: $picker-border-radius;
-    color: $picker-header-color;
+
+    &:after,
+    &:before {
+      bottom: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    &:after {
+      border-bottom-color: $picker-header-border-color;
+      border-width: $picker-arrow-size;
+      margin-left: -1 * $picker-arrow-size;
+    }
+
+    &:before {
+      border-bottom-color: $picker-border-color;
+      border-width: ($picker-arrow-size + 1);
+      margin-left: -1 * ($picker-arrow-size + 1);
+    }
 
     .week-days {
       height: 35px;
@@ -296,6 +300,14 @@ $picker-disabled-color: $_coolGrey !default;
         background: $picker-header-background-hover;
       }
     }
+  }
+
+  .react-datepicker-body {
+    border-left: 1px solid $picker-border-color;
+    border-right: 1px solid $picker-border-color;
+    border-bottom: 1px solid $picker-border-color;
+    border-bottom-right-radius: $picker-border-radius;
+    border-bottom-left-radius: $picker-border-radius;
   }
 
   .react-datepicker-row {
