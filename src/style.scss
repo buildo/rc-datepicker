@@ -6,6 +6,7 @@
 $_gradientGrey: linear-gradient(#FFFFFF, #F2F4F7);
 $_gradientDarkGrey:linear-gradient(#FFFFFF, #DFE3E8);
 $_gradientAzure:linear-gradient(#2DA1F8, #1789DD);
+$_paleGrey: #F0F3F8;
 $_silver: #CED0DA;
 $_cloudyGrey: #B5C0CE;
 $_coolGrey: #9098A7;
@@ -80,15 +81,15 @@ $picker-header-background: $_gradientAzure !default;
 $picker-header-background-hover: $picker-header-background !default;
 $picker-header-color: white !default;
 
-$picker-current-background:  !default;
-$picker-current-background-hover: $_coolGrey !default;
+$picker-current-background: $_paleGrey !default;
+$picker-current-background-hover: $picker-current-background !default;
 $picker-current-color: $_darkGrey !default;
-$picker-current-color-hover: $_darkGrey !default;
+$picker-current-color-hover: $picker-current-color !default;
 
-$picker-selected-background: $_cerulean !default;
-$picker-selected-background-hover: $_cerulean !default;
-$picker-selected-color: white !default;
-$picker-selected-color-hover: white !default;
+$picker-selected-background: #BAD7F2 !default;
+$picker-selected-background-hover: $picker-selected-background !default;
+$picker-selected-color: $_darkGrey !default;
+$picker-selected-color-hover: $picker-selected-color !default;
 
 $picker-disabled-background: white !default;
 $picker-disabled-color: $_coolGrey !default;
