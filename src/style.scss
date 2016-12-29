@@ -218,6 +218,7 @@ $picker-disabled-color: $_coolGrey !default;
 .react-datepicker.floating {
   position: absolute;
   z-index: 10000;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
 }
 
 .react-datepicker {
