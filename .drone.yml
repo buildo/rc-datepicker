@@ -8,6 +8,7 @@ build:
       - npm i -g yarn
       - yarn
       - npm run lint
+      - npm run lint-style
       - npm test
 
   generate-readme:
