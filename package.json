@@ -12,7 +12,8 @@
     "build-examples": "npm run clean && webpack --config examples/webpack.config.build.babel.js --progress",
     "start": "webpack-dev-server --config examples/webpack.config.babel.js --progress --hot --inline",
     "clean": "rm -rf examples/build",
-    "generate-readme": "babel-node ./generateReadme.js"
+    "generate-readme": "babel-node ./generateReadme.js",
+    "release-version": "smooth-release --validations --npm-version --npm-publish"
   },
   "repository": {
     "type": "git",
@@ -68,6 +69,7 @@
     "require-dir": "^0.3.0",
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^3.2.0",
+    "smooth-release": "^5.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
