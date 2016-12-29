@@ -1,16 +1,102 @@
 @import '~react-flexview/lib/flexView.css';
 @import './icons.css';
 
-$gradientGrey: linear-gradient(#FAFAFA, #E0E0E0);
-$gradientMediumGrey: linear-gradient(#FAFAFA, #A7ABAB);
-$alabaster: #F3F3F3;
-$coolGrey: #D0D0D0;
-$darkGrey: #767C7E;
-$mediumGrey: #A7ABAB;
-$charcoal: #2D373C;
-$aquamarine: #6DB2DA;
-$cerulean: #009bde;
-$vermillion: #C93132;
+// PALETTE
+
+$_gradientGrey: linear-gradient(#FFFFFF, #F2F4F7);
+$_gradientDarkGrey:linear-gradient(#FFFFFF, #DFE3E8);
+$_gradientAzure:linear-gradient(#2DA1F8, #1789DD);
+$_paleGrey: #F0F3F8;
+$_silver: #CED0DA;
+$_cloudyGrey: #B5C0CE;
+$_coolGrey: #9098A7;
+$_darkGrey: #354052;
+$_cerulean: #2DA1F8;
+$_waterBlue: #1991EB;
+$_strawberry: #DB242C;
+
+
+// INPUT VARIABLES
+
+$font-size: 14px !default;
+$font-weight: 600 !default;
+$font-weight-selected: bold !default;
+
+$input-height: 36px !default;
+$input-height-small: 32px !default;
+$input-min-width: 150px !default;
+
+$input-font-size: 14px !default;
+
+$input-border-radius: 4px !default;
+$input-border-color: $_silver !default;
+$input-border-color-hover: $input-border-color !default;
+$input-border-color-open: $_cerulean !default;
+
+$input-background: $_gradientGrey !default;
+$input-background-hover: $_gradientDarkGrey !default;
+$input-background-open: $_gradientDarkGrey !default;
+
+$input-color: $_darkGrey !default;
+$input-color-hover: $input-color !default;
+$input-color-open: $input-color !default;
+$input-color-has-value: $_darkGrey !default;
+
+$input-placeholder-color: $_coolGrey !default;
+$input-placeholder-color-hover: $input-placeholder-color !default;
+
+$input-button-icon-color: $_cloudyGrey !default;
+$input-button-icon-color-hover: $_coolGrey !default;
+$input-button-icon-color-open: $input-button-icon-color !default;
+
+$input-button-icon-size: 15px !default;
+
+$input-button-background: transparent !default;
+$input-button-background-hover: transparent !default;
+
+$input-clear-button-icon-size: 13px !default;
+$input-clear-button-color: $input-button-icon-color !default;
+$input-clear-button-color-hover: $_strawberry !default;
+
+$input-opacity-disabled: .5 !default;
+
+
+// PICKER VARIABLES
+
+$picker-width: 250px !default;
+
+$picker-color: $_coolGrey !default;
+$picker-color-hover: $_darkGrey !default;
+
+$picker-background: white !default;
+$picker-background-hover: !default;
+
+$picker-border-radius: 2px !default;
+$picker-border-color: #D9DEE3 !default;
+
+$picker-box-shadow: 2px 2px 2px $_coolGrey !default;
+$picker-arrow-size: 5px !default;
+
+$picker-header-background: $_gradientAzure !default;
+$picker-header-background-hover: rgba(0, 0, 0, .075) !default;
+$picker-header-color: white !default;
+$picker-header-border-color: $_cerulean !default;
+
+$picker-current-background: $_paleGrey !default;
+$picker-current-background-hover: darken($picker-current-background, 5%) !default;
+$picker-current-color: $_darkGrey !default;
+$picker-current-color-hover: $picker-current-color !default;
+
+$picker-selected-background: #BAD7F2 !default;
+$picker-selected-background-hover: $picker-selected-background !default;
+$picker-selected-color: $_darkGrey !default;
+$picker-selected-color-hover: $picker-selected-color !default;
+
+$picker-disabled-background: white !default;
+$picker-disabled-color: $_coolGrey !default;
+
+
+// STYLE
 
 @mixin placeholder {
   &::-webkit-input-placeholder {@content}
@@ -19,73 +105,10 @@ $vermillion: #C93132;
   &:-ms-input-placeholder      {@content}
 }
 
-$font-size: 15px !default;
-$font-weight: normal !default;
-$font-weight-selected: bold !default;
-$font-family: sans-serif !default;
-
-$input-height: 38px !default;
-$input-height-small: 30px !default;
-$input-min-width: 150px !default;
-
-$input-border-radius: 2px !default;
-$input-font-size: 15px !default;
-
-$input-background: $gradientGrey !default;
-$input-border-color: $coolGrey !default;
-$input-color: $mediumGrey !default;
-$input-icon-color: $mediumGrey !default;
-
-$input-background-hover: $gradientMediumGrey !default;
-$input-border-color-hover: $input-border-color !default;
-$input-color-hover: $charcoal !default;
-$input-icon-color-hover: $charcoal !default;
-
-$input-background-open: $gradientMediumGrey !default;
-$input-border-color-open: $aquamarine !default;
-$input-color-open: $charcoal !default;
-$input-icon-color-open: $charcoal !default;
-
-$input-color-has-value: $charcoal !default;
-
-$input-button-background: transparent !default;
-$input-button-background-hover: transparent !default;
-$input-button-icon-size: 15px !default;
-$input-clear-button-icon-size: 16px !default;
-$input-clear-button-color: $mediumGrey !default;
-$input-clear-button-color-hover: $vermillion !default;
-
-$input-opacity-disabled: .6 !default;
-
-$picker-width: 250px !default;
-$picker-border: $coolGrey !default;
-$picker-box-shadow: 2px 2px 2px $coolGrey !default;
-$picker-border-radius: 2px !default;
-$picker-arrow-size: 5px !default;
-$picker-header-background: $aquamarine !default;
-$picker-header-color: white !default;
-$picker-header-background-hover: $cerulean !default;
-$picker-color: $mediumGrey !default;
-$picker-background: white !default;
-$picker-color-hover: $charcoal !default;
-$picker-background-hover: alabaster !default;
-$picker-current-color: $charcoal !default;
-$picker-current-background: $alabaster !default;
-$picker-current-color-hover: $charcoal !default;
-$picker-current-background-hover: $coolGrey !default;
-$picker-selected-color: white !default;
-$picker-selected-background: $aquamarine !default;
-$picker-selected-color-hover: white !default;
-$picker-selected-background-hover: $aquamarine !default;
-$picker-disabled-color: $coolGrey !default;
-$picker-disabled-background: white !default;
-
-
 .react-datepicker-component {
   position: relative;
   font-size: $font-size;
   font-weight: $font-weight;
-  font-family: $font-family;
 
   .react-datepicker {
     margin-left: 5px;
@@ -103,6 +126,7 @@ $picker-disabled-background: white !default;
   background: $input-background;
   border: 1px solid $input-border-color;
   border-radius: $input-border-radius;
+
   &.is-small {
     height: $input-height-small;
   }
@@ -116,11 +140,13 @@ $picker-disabled-background: white !default;
     padding-right: 60px;
     font-size: $input-font-size;
     color: $input-color;
+    font-weight: 600;
     &:focus {
       outline: none;
     }
     @include placeholder {
-      color: $input-color;
+      color: $input-placeholder-color;
+      font-weight: 600;
     }
   }
   &:hover {
@@ -129,8 +155,12 @@ $picker-disabled-background: white !default;
     input {
       color: $input-color-hover;
       @include placeholder {
-        color: $input-color-hover;
+        color: $input-placeholder-color-hover;
       }
+    }
+
+    .button-wrapper .input-button {
+      color: $input-button-icon-color-hover;
     }
   }
   &.is-open {
@@ -141,6 +171,10 @@ $picker-disabled-background: white !default;
       @include placeholder {
         color: $input-color-open;
       }
+    }
+
+    .button-wrapper .input-button {
+      color: $input-button-icon-color-open;
     }
   }
   &.has-value input {
@@ -162,9 +196,11 @@ $picker-disabled-background: white !default;
       font-size: $input-button-icon-size;
       border-radius: 0 $input-border-radius $input-border-radius 0;
       cursor: pointer;
+      color: $input-button-icon-color;
 
       &:hover {
         background: $input-button-background-hover;
+        color: $input-button-icon-color-hover;
       }
     }
 
@@ -185,10 +221,10 @@ $picker-disabled-background: white !default;
 .react-datepicker.floating {
   position: absolute;
   z-index: 10000;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
 }
 
 .react-datepicker {
-  font-family: $font-family;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -196,48 +232,55 @@ $picker-disabled-background: white !default;
   -ms-user-select: none;
   user-select: none;
   display: inline-block;
+  font-size: $font-size;
+  font-weight: $font-weight;
 
   .react-datepicker-container {
-    border: 1px solid $picker-border;
-    border-radius: ($picker-border-radius + 1);
     width: $picker-width;
     position: relative;
-      &:after,
-      &:before {
-        bottom: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-      }
-
-      &:after {
-        border-bottom-color: $picker-header-background;
-        border-width: $picker-arrow-size;
-        margin-left: -1 * $picker-arrow-size;
-      }
-      &:before {
-        border-bottom-color: $picker-border;
-        border-width: ($picker-arrow-size + 1);
-        margin-left: -1 * ($picker-arrow-size + 1);
-      }
   }
 
   .react-datepicker-top {
     text-align: center;
     background: $picker-header-background;
+    color: $picker-header-color;
+    border-top: 1px solid $picker-header-border-color;
+    border-left: 1px solid $picker-header-border-color;
+    border-right: 1px solid $picker-header-border-color;
     border-top-left-radius: $picker-border-radius;
     border-top-right-radius: $picker-border-radius;
-    color: $picker-header-color;
+
+    &:after,
+    &:before {
+      bottom: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    &:after {
+      border-bottom-color: $picker-header-border-color;
+      border-width: $picker-arrow-size;
+      margin-left: -1 * $picker-arrow-size;
+    }
+
+    &:before {
+      border-bottom-color: $picker-border-color;
+      border-width: ($picker-arrow-size + 1);
+      margin-left: -1 * ($picker-arrow-size + 1);
+    }
 
     .week-days {
       height: 35px;
 
       .week-day {
         cursor: default;
+        font-weight: 400;
+        font-size: 13px;
       }
     }
 
@@ -248,30 +291,50 @@ $picker-disabled-background: white !default;
         text-decoration: none;
         padding: 4px;
         text-align: center;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+
         &.button-left {
+          font-size: 13px;
           padding: 4px 16px;
           border-top-left-radius: $picker-border-radius;
         }
+
         &.button-right {
+          font-size: 13px;
           padding: 4px 16px;
           border-top-right-radius: $picker-border-radius;
         }
-      }
-      .react-datepicker-button.button-label.fixed:hover {
-        background: transparent;
-        cursor: default;
-      }
-      .react-datepicker-button.button-label:hover {
-        background: $picker-header-background-hover;
+
+        &:hover {
+          background: $picker-header-background-hover;
+          border-radius: 4px;
+        }
+
+        &.fixed:hover {
+          background: transparent;
+          cursor: default;
+        }
       }
     }
+  }
+
+  .react-datepicker-body {
+    border-left: 1px solid $picker-border-color;
+    border-right: 1px solid $picker-border-color;
+    border-bottom: 1px solid $picker-border-color;
+    border-bottom-right-radius: $picker-border-radius;
+    border-bottom-left-radius: $picker-border-radius;
   }
 
   .react-datepicker-row {
     margin-top: 0px;
     width: 100%;
+    min-height: 30px;
+
     &:not(:last-child) {
-      border-bottom: 1px solid $picker-border;
+      border-bottom: 1px solid $picker-border-color;
     }
     &:last-child .react-datepicker-picker {
       &:first-child {
@@ -288,8 +351,9 @@ $picker-disabled-background: white !default;
     background: $picker-background;
     cursor: pointer;
     text-decoration: none;
+    font-weight: 400;
     &:not(:last-child) {
-      border-right: 1px solid $picker-border;
+      border-right: 1px solid $picker-border-color;
     }
   }
 
@@ -313,14 +377,18 @@ $picker-disabled-background: white !default;
     color: $picker-selected-color;
     background: $picker-selected-background;
     font-weight: $font-weight-selected;
+    margin-left: -1px;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    border: 1px solid $picker-selected-background;
   }
   .react-datepicker-picker.current {
+    font-weight: 600;
     color: $picker-current-color;
     background: $picker-current-background;
     &:hover {
       color: $picker-current-color-hover;
-      background: $picker-current-background-hover
-
+      background: $picker-current-background-hover;
     }
   }
   .react-datepicker-picker.selected.current {
