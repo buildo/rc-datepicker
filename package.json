@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start",
-    "build": "rm -rf lib && mkdir lib && node-sass src -o lib && babel src -d lib",
+    "build": "rm -rf lib temp && mkdir lib temp && node-sass src -o temp && css-bundler temp/style.css lib/style.css && babel src -d lib && rm -rf temp",
     "lint": "eslint src examples/examples.js test",
     "lint-style": "stylelint ./**/*.scss --syntax scss",
     "lint-style-fix": "stylefmt ./**/*.scss",
@@ -46,6 +46,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "compression-webpack-plugin": "^0.3.1",
+    "css-bundler": "^0.1.2",
     "css-loader": "^0.23.1",
     "debug": "^2.2.0",
     "eslint": "^2.11.1",
