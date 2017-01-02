@@ -46,7 +46,6 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "compression-webpack-plugin": "^0.3.1",
-    "css-bundler": "^0.1.2",
     "css-loader": "^0.23.1",
     "debug": "^2.2.0",
     "eslint": "^2.11.1",
