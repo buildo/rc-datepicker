@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start",
-    "build": "rm -rf lib temp && mkdir lib temp && node-sass src -o temp && css-bundler temp/style.css lib/style.css && babel src -d lib && rm -rf temp",
+    "build": "rm -rf lib && mkdir lib && babel src -d lib && webpack --config webpack.config.build.babel.js && rm lib/bundle.js",
     "lint": "eslint src examples/examples.js test",
     "lint-style": "stylelint ./**/*.scss --syntax scss",
     "lint-style-fix": "stylefmt ./**/*.scss",
