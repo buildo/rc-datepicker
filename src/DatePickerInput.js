@@ -114,7 +114,7 @@ export default class DatePickerInput extends React.Component {
 
   addOnClickListener = () => {
     if (window.attachEvent) {
-      //Internet Explorer
+      // Internet Explorer
       window.attachEvent('onclick', this.hideOnClickOutside);
     } else if (window.addEventListener) {
       window.addEventListener('click', this.hideOnClickOutside, false);
@@ -123,7 +123,7 @@ export default class DatePickerInput extends React.Component {
 
   removeOnClickListener = () => {
     if (window.detachEvent) {
-      //Internet Explorer
+      // Internet Explorer
       window.detachEvent('onclick', this.hideOnClickOutside);
     } else if (window.removeEventListener) {
       window.removeEventListener('click', this.hideOnClickOutside, false);
