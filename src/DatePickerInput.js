@@ -248,7 +248,7 @@ export default class DatePickerInput extends React.Component {
 
     return {
       style,
-      className: cx('react-datepicker-component', { disabled }, className),
+      className: cx('react-datepicker-component', { 'is-disabled': disabled }, className),
       inputProps: {
         value,
         small, active, hasValue,
