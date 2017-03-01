@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>RC Datepicker</title>
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,700,800,200" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-    {% for (var chunk in o.htmlWebpackPlugin.files.chunks.main.css) { %}
-      <link rel="stylesheet" href="{%=o.htmlWebpackPlugin.files.chunks.main.css[chunk]%}" media="all">
-    {% } %}
+    <% for (var chunk in htmlWebpackPlugin.files.chunks.main.css) { %>
+      <link
+        rel="stylesheet"
+        href="<%= htmlWebpackPlugin.files.chunks.main.css[chunk]%>"
+        media="all"
+      />
+    <% } %>
   </head>
   <body>
     <div id="container"></div>
-    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
-      <script type='text/javascript' src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}" charset="utf-8"></script>
-    {% } %}
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+      <script
+        type='text/javascript'
+        src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"
+      ></script>
+    <% } %>
   </body>
 </html>

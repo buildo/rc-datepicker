@@ -1,12 +1,10 @@
-import fs from 'fs';
 import path from 'path';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
-
-export const indexHtml = fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf8');
 
 export const paths = {
   SRC: path.resolve(__dirname, '../src'),
   ENTRY: path.resolve(__dirname, 'examples.js'),
+  INDEX_HTML: path.resolve(__dirname, 'index.html'),
   BUILD: path.resolve(__dirname, 'build'),
   EXAMPLES: path.resolve(__dirname),
   NODE_MODULES: path.resolve(__dirname, 'node_modules')
