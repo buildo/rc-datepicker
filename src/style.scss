@@ -121,6 +121,11 @@ $picker-disabled-color: $_coolGrey !default;
   font-size: $font-size;
   font-weight: $font-weight;
 
+  &.disabled {
+    pointer-events: none;
+    opacity: $input-opacity-disabled;
+  }
+
   .react-datepicker {
     margin-left: 5px;
     margin-top: 5px;
@@ -228,10 +233,6 @@ $picker-disabled-color: $_coolGrey !default;
 
     &.has-value input {
       color: $input-color-has-value;
-    }
-
-    &.is-disabled {
-      opacity: $input-opacity-disabled;
     }
   }
 }

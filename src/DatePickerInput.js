@@ -39,6 +39,7 @@ export const Props = {
   showInputButton: t.maybe(t.Boolean),
   autoClose: t.maybe(t.Boolean),
   floating: t.maybe(t.Boolean),
+  disabled: t.maybe(t.Boolean),
   iconClassName: t.maybe(t.String),
   iconClearClassName: t.maybe(t.String),
   className: t.maybe(t.String), // used to omit from inputProps
@@ -68,6 +69,7 @@ export const Props = {
  * @param showInputButton - whether the input-button should be rendered
  * @param autoClose - pass true if you want the datepicker to close automatically after the user selects a value
  * @param floating - whether the datepicker should float over the page content (absolute position)
+ * @param disabled - whether the datepicker should be disabled or not
  * @param iconClassName - classname used for the icon
  * @param iconClearClassName - classname used for the clear icon
  */
@@ -234,6 +236,7 @@ export default class DatePickerInput extends React.Component {
       floating,
       closeOnClickOutside,
       className,
+      disabled,
       style
     } = props;
     const { showing: active, hasValue, dateString: value, date } = this.state;
@@ -245,7 +248,7 @@ export default class DatePickerInput extends React.Component {
 
     return {
       style,
-      className: cx('react-datepicker-component', className),
+      className: cx('react-datepicker-component', { disabled }, className),
       inputProps: {
         value,
         small, active, hasValue,
