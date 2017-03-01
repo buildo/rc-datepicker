@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.2](https://github.com/buildo/rc-datepicker/tree/v5.0.2) (2017-03-01)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.1...v5.0.2)
+
+#### New features:
+
+- add "disabled" functionality to DatePickerInput [#109](https://github.com/buildo/rc-datepicker/issues/109)
+
 ## [v5.0.1](https://github.com/buildo/rc-datepicker/tree/v5.0.1) (2017-01-02)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.0...v5.0.1)
 
