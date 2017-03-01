@@ -12,7 +12,8 @@ class Example extends React.Component {
     datePickerDate: '2015-05-13',
     datePickerInputDate: null,
     datePickerInputDate2: null,
-    showInput: true
+    showInput: true,
+    disabled: false
   }
 
   toggleInput = () => this.setState({ showInput: !this.state.showInput })
@@ -32,9 +33,11 @@ class Example extends React.Component {
         <button onClick={this.toggleInput}>toggle DatePickerInput</button>
         <p>onChange(jsDate, dateString)</p>
         <p>dateString = "{this.state.datePickerInputDate}"</p>
+        <button onClick={() => this.setState({ disabled: !this.state.disabled })}>toggle disable</button>
         {this.state.showInput &&
           <div className='ui input'>
             <DatePickerInput
+              disabled={this.state.disabled}
               displayFormat='DD/MM/YYYY'
               returnFormat='YYYY-MM-DD'
               className='my-react-component'
