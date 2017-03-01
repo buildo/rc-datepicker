@@ -284,6 +284,8 @@ export default class DatePickerInput extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { value } = this.getValueLink(nextProps);
+
+    // Update `date` and `dateString` if `props.value` has changed
     if (value !== INVALID && value !== this.getValueLink().value) {
       if (value) {
         const date = typeof value === 'string' ?
@@ -299,6 +301,11 @@ export default class DatePickerInput extends React.Component {
           dateString: ''
         });
       }
+    }
+
+    // Close datepicker if `disabled` has switched to `true`
+    if (nextProps.disabled && !this.props.disabled) {
+      this.hide();
     }
   }
 
