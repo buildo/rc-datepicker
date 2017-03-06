@@ -2,6 +2,9 @@
 
 
 
+## [v5.0.3](https://github.com/buildo/rc-datepicker/tree/v5.0.3) (2017-03-06)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.2...v5.0.3)
+
 ## [v5.0.2](https://github.com/buildo/rc-datepicker/tree/v5.0.2) (2017-03-01)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.1...v5.0.2)
 
