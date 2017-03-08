@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.4](https://github.com/buildo/rc-datepicker/tree/v5.0.4) (2017-03-08)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.3...v5.0.4)
+
+#### New features:
+
+- DatePickerInput: add ability to open the popup on top [#112](https://github.com/buildo/rc-datepicker/issues/112)
+
 ## [v5.0.3](https://github.com/buildo/rc-datepicker/tree/v5.0.3) (2017-03-06)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.2...v5.0.3)
 
