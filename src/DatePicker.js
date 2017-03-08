@@ -31,6 +31,7 @@ import cx from 'classnames';
   className: t.maybe(t.String),
   prevIconClassName: t.maybe(t.String),
   nextIconClassName: t.maybe(t.String),
+  position: t.maybe(t.enums.of(['top', 'bottom'])),
   style: t.maybe(t.Object)
 })
 export default class DatePicker extends React.Component {
@@ -40,7 +41,8 @@ export default class DatePicker extends React.Component {
     className: '',
     prevIconClassName: 'icon-rc-datepicker icon-rc-datepicker_prev',
     nextIconClassName: 'icon-rc-datepicker icon-rc-datepicker_next',
-    style: {}
+    style: {},
+    position: 'bottom'
   }
 
   constructor(props) {
@@ -91,11 +93,11 @@ export default class DatePicker extends React.Component {
     this.setState({ visibleDate: this.state.visibleDate.clone().month(month) });
   }
 
-  getLocals({ className, style, floating, minDate, maxDate, fixedMode, prevIconClassName, nextIconClassName }) {
+  getLocals({ className, style, floating, minDate, maxDate, fixedMode, prevIconClassName, nextIconClassName, position }) {
     const { mode, date, visibleDate } = this.state;
     return {
       style,
-      className: cx('react-datepicker', className, { floating }),
+      className: cx('react-datepicker', className, { floating, 'position-top': position === 'top' }),
       dayPickerProps: mode === Mode('day') && {
         date, visibleDate,
         minDate, maxDate,
