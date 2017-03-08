@@ -40,6 +40,7 @@ export const Props = {
   autoClose: t.maybe(t.Boolean),
   floating: t.maybe(t.Boolean),
   disabled: t.maybe(t.Boolean),
+  position: t.maybe(t.enums.of(['top', 'bottom'])),
   iconClassName: t.maybe(t.String),
   iconClearClassName: t.maybe(t.String),
   className: t.maybe(t.String), // used to omit from inputProps
@@ -69,6 +70,7 @@ export const Props = {
  * @param showInputButton - whether the input-button should be rendered
  * @param autoClose - pass true if you want the datepicker to close automatically after the user selects a value
  * @param floating - whether the datepicker should float over the page content (absolute position)
+ * @param position - whether the datepicker should be rendered above or below the input field
  * @param disabled - whether the datepicker should be disabled or not
  * @param iconClassName - classname used for the icon
  * @param iconClearClassName - classname used for the clear icon
@@ -90,6 +92,7 @@ export default class DatePickerInput extends React.Component {
     floating: true,
     small: false,
     showInputButton: true,
+    position: 'bottom',
     iconClassName: 'icon-rc-datepicker icon-rc-datepicker_calendar',
     iconClearClassName: 'icon-rc-datepicker icon-rc-datepicker_clear',
     className: '',
@@ -237,6 +240,7 @@ export default class DatePickerInput extends React.Component {
       closeOnClickOutside,
       className,
       disabled,
+      position,
       style
     } = props;
     const { showing: active, hasValue, dateString: value, date } = this.state;
@@ -266,6 +270,7 @@ export default class DatePickerInput extends React.Component {
         startMode,
         fixedMode,
         floating,
+        position,
         closeOnClickOutside,
         value: date ? date.toDate() : undefined,
         onChange: this._onChangeDate

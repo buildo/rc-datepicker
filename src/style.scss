@@ -256,6 +256,68 @@ $picker-disabled-color: $_coolGrey !default;
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .1);
   }
 
+  &.position-top {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 5px;
+
+    .react-datepicker-container {
+      &::after,
+      &::before {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: ' ';
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      &::after {
+        border-top-color: $picker-border-color;
+        border-width: $picker-arrow-size;
+        margin-left: -1 * $picker-arrow-size;
+      }
+
+      &::before {
+        border-top-color: $picker-border-color;
+        border-width: ($picker-arrow-size + 1);
+        margin-left: -1 * ($picker-arrow-size + 1);
+      }
+    }
+  }
+
+  &:not(.position-top) {
+    .react-datepicker-container {
+      .react-datepicker-top {
+        &::after,
+        &::before {
+          bottom: 100%;
+          left: 50%;
+          border: solid transparent;
+          content: ' ';
+          height: 0;
+          width: 0;
+          position: absolute;
+          pointer-events: none;
+        }
+
+        &::after {
+          border-bottom-color: $picker-header-border-color;
+          border-width: $picker-arrow-size;
+          margin-left: -1 * $picker-arrow-size;
+        }
+
+        &::before {
+          border-bottom-color: $picker-border-color;
+          border-width: ($picker-arrow-size + 1);
+          margin-left: -1 * ($picker-arrow-size + 1);
+        }
+      }
+    }
+  }
+
   .react-datepicker-container {
     width: $picker-width;
     position: relative;
@@ -269,30 +331,6 @@ $picker-disabled-color: $_coolGrey !default;
       border-right: 1px solid $picker-header-border-color;
       border-top-left-radius: $picker-border-radius;
       border-top-right-radius: $picker-border-radius;
-
-      &::after,
-      &::before {
-        bottom: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: ' ';
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-      }
-
-      &::after {
-        border-bottom-color: $picker-header-border-color;
-        border-width: $picker-arrow-size;
-        margin-left: -1 * $picker-arrow-size;
-      }
-
-      &::before {
-        border-bottom-color: $picker-border-color;
-        border-width: ($picker-arrow-size + 1);
-        margin-left: -1 * ($picker-arrow-size + 1);
-      }
 
       .week-days {
         height: 35px;
