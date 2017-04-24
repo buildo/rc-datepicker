@@ -101,6 +101,9 @@ export default class DatePickerInput extends React.Component {
 
   constructor(props) {
     super(props);
+    if (props.locale) {
+      moment.locale(props.locale);
+    }
     const _date = this.getValueLink().value || props.defaultValue;
     const date = typeof _date === 'string' ? this.parsePropDateString(_date) : moment(_date);
     this.state = {
