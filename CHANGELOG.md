@@ -2,6 +2,14 @@
 
 
 
+## [v5.0.5](https://github.com/buildo/rc-datepicker/tree/v5.0.5) (2017-04-26)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.4...v5.0.5)
+
+#### Fixes (bugs & defects):
+
+- DatePickerInput is ignoring locale when initialized [#114](https://github.com/buildo/rc-datepicker/issues/114)
+- Can not find lib/style.css. [#111](https://github.com/buildo/rc-datepicker/issues/111)
+
 ## [v5.0.4](https://github.com/buildo/rc-datepicker/tree/v5.0.4) (2017-03-08)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.3...v5.0.4)
 
