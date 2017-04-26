@@ -27,7 +27,9 @@ A decent and pretty date picker to be used with React
 | **showInputButton** | <code>Boolean</code> | <code>true</code> | *optional*. Whether the input-button should be rendered |
 | **autoClose** | <code>Boolean</code> | <code>true</code> | *optional*. Pass true if you want the datepicker to close automatically after the user selects a value |
 | **floating** | <code>Boolean</code> | <code>true</code> | *optional*. Whether the datepicker should float over the page content (absolute position) |
-| **iconClassName** | <code>String</code> | <code>""</code> | *optional*. Classname used for the icon |
-| **iconClearClassName** | <code>String</code> | <code>""</code> | *optional*. Classname used for the clear icon |
+| **disabled** | <code>Boolean</code> |  | *optional*. Whether the datepicker should be disabled or not |
+| **position** | <code>enum("top" &#124; "bottom")</code> | <code>"bottom"</code> | *optional*. Whether the datepicker should be rendered above or below the input field |
+| **iconClassName** | <code>String</code> | <code>"icon-rc-datepicker icon-rc-datepicker_calendar"</code> | *optional*. Classname used for the icon |
+| **iconClearClassName** | <code>String</code> | <code>"icon-rc-datepicker icon-rc-datepicker_clear"</code> | *optional*. Classname used for the clear icon |
 | **className** | <code>String</code> | <code>""</code> | *optional*. Additional `className` for wrapper element |
 | **style** | <code>Object</code> | <code>{}</code> | *optional*. Inline-style overrides for wrapper element |
