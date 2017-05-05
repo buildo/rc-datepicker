@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.6](https://github.com/buildo/rc-datepicker/tree/v5.0.6) (2017-05-05)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.5...v5.0.6)
+
+#### New features:
+
+- typescript support [#105](https://github.com/buildo/rc-datepicker/issues/105)
+
 ## [v5.0.5](https://github.com/buildo/rc-datepicker/tree/v5.0.5) (2017-04-26)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.4...v5.0.5)
 
