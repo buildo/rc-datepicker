@@ -3,6 +3,13 @@
   "version": "5.0.5",
   "description": "DatePicker and DatePickerInput to be used with React",
   "main": "index.js",
+  "files": [
+    "src",
+    "lib",
+    "examples",
+    "index.js",
+    "styles.js"
+  ],
   "scripts": {
     "test": "./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && babel src -d lib && webpack --config webpack.config.build.babel.js && rm lib/bundle.js",
