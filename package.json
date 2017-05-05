@@ -75,7 +75,7 @@
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^3.2.0",
     "smooth-release": "^8.0.3",
-    "scriptoni": "^0.4.3",
+    "scriptoni": "^0.4.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
@@ -91,7 +91,6 @@
     "moment": "^2.13.0",
     "react-flexview": "^1.0.1",
     "revenge": "^0.4.4",
-    "stylelint-webpack-plugin": "^0.4.2",
     "tcomb": "^3.2.1",
     "tcomb-react": "^0.9.0"
   }
