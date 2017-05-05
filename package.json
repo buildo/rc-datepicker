@@ -8,8 +8,10 @@
     "lib",
     "examples",
     "index.js",
-    "styles.js"
+    "styles.js",
+    "index.d.ts"
   ],
+  "types": "./index.d.ts",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && babel src -d lib && webpack --config webpack.config.build.babel.js && rm lib/bundle.js",
@@ -84,6 +86,7 @@
     "react-dom": "^0.14 || ^15.0"
   },
   "dependencies": {
+    "@types/react": "^15.0.23",
     "classnames": "^2.2.5",
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
