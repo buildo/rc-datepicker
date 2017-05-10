@@ -24,6 +24,7 @@ import cx from 'classnames';
   maxDate: t.maybe(Value),
   locale: t.maybe(t.String),
   startMode: t.maybe(Mode),
+  startDate: t.maybe(Value),
   fixedMode: t.maybe(t.Boolean),
   returnFormat: t.maybe(t.String),
   floating: t.maybe(t.Boolean),
@@ -58,9 +59,11 @@ export default class DatePicker extends React.Component {
 
   getStateFromProps = (_props) => {
     const { value } = this.getValueLink(_props);
-    const { defaultValue, startMode } = _props;
+    const { defaultValue, startDate, startMode } = _props;
     const date = typeof value === 'string' ? this.parsePropDateString(value) : moment(value);
-    const initialDate = typeof defaultValue === 'string' ? this.parsePropDateString(defaultValue) : moment(defaultValue);
+    const initialDate = defaultValue ?
+      typeof defaultValue === 'string' ? this.parsePropDateString(defaultValue) : moment(defaultValue) :
+      typeof startDate === 'string' ? this.parsePropDateString(startDate) : moment(startDate);
 
     const visibleDate = value ? date.clone() : initialDate; // must be copy, otherwise they get linked
     return {
