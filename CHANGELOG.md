@@ -2,6 +2,14 @@
 
 
 
+## [v5.0.7](https://github.com/buildo/rc-datepicker/tree/v5.0.7) (2017-05-29)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.6...v5.0.7)
+
+#### New features:
+
+- backport scriptoni@0.6 [#124](https://github.com/buildo/rc-datepicker/issues/124)
+- Add the ability to specify the initial visible date [#122](https://github.com/buildo/rc-datepicker/issues/122)
+
 ## [v5.0.6](https://github.com/buildo/rc-datepicker/tree/v5.0.6) (2017-05-05)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.5...v5.0.6)
 
