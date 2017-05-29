@@ -93,7 +93,7 @@ describe('DatePickerInput', () => {
       requestChange: onChange
     };
 
-    const input = TestUtils.renderIntoDocument(<DatePickerInput locale='de' valueLink={valueLink} showOnInputClick/>);
+    const input = TestUtils.renderIntoDocument(<DatePickerInput locale='de' valueLink={valueLink} showOnInputClick />);
 
     const datePickerInputArea = TestUtils.findRenderedDOMComponentWithTag(input, 'input');
     TestUtils.Simulate.click(datePickerInputArea);
