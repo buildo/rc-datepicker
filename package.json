@@ -74,8 +74,8 @@
     "require-dir": "^0.3.0",
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^3.2.0",
+    "scriptoni": "^0.6.0",
     "smooth-release": "^8.0.3",
-    "scriptoni": "^0.4.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
