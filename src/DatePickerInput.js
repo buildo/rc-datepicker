@@ -61,6 +61,7 @@ export const Props = {
  * @param maxDate - maximum date selectable by the user
  * @param locale - locale used for translations
  * @param startMode - the start view of the datepicker
+ * @param startDate - specify an initial "visible" date with no need to select a defaultValue
  * @param fixedMode - whether the user can use multiple views or not
  * @param displayFormat - MomentJS format used to display current date
  * @param returnFormat - MomentJS format used to format date before returing through "onChange"
