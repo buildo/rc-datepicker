@@ -2,6 +2,14 @@
 
 
 
+## [v5.0.8](https://github.com/buildo/rc-datepicker/tree/v5.0.8) (2017-06-20)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.7...v5.0.8)
+
+#### Fixes (bugs & defects):
+
+- [.d.ts] onChange first param should be a Date [#129](https://github.com/buildo/rc-datepicker/issues/129)
+- Ci is failing with Error: Missing description for prop 'startDate' in 'DatePickerInput'. [#126](https://github.com/buildo/rc-datepicker/issues/126)
+
 ## [v5.0.7](https://github.com/buildo/rc-datepicker/tree/v5.0.7) (2017-05-29)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.6...v5.0.7)
 
