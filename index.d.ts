@@ -50,7 +50,7 @@ export interface DatePickerInputProps {
 export class DatePickerInput extends React.Component<DatePickerInputProps, void> {}
 
 export interface DatePickerProps {
-  onChange?: (e: React.SyntheticEvent<KeyboardEvent | MouseEvent>) => void,
+  onChange?: (e: Date) => void,
   value?: Value,
   valueLink?: ValueLink,
   defaultValue?: Value,
