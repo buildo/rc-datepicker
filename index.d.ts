@@ -13,13 +13,13 @@ export type Value = string | Date | moment.Moment  ; // | MomentDate
 
 export type ValueLink = {
   value? : Value,
-  requestChange(e: React.SyntheticEvent<KeyboardEvent | MouseEvent>): void
+  requestChange(e: Date): void
 }
 
 export interface DatePickerInputProps {
   value?: Value,
   valueLink?: ValueLink,
-  onChange?(e: React.SyntheticEvent<KeyboardEvent | MouseEvent>): void,
+  onChange?(e: Date): void,
   onShow?: () => void,
   onHide?: () => void,
   onClear?: () => void,
