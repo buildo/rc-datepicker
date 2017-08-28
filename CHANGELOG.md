@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.9](https://github.com/buildo/rc-datepicker/tree/v5.0.9) (2017-08-28)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.8...v5.0.9)
+
+#### Fixes (bugs & defects):
+
+- replace t.ReactChildren with exported ReactChildren [#131](https://github.com/buildo/rc-datepicker/issues/131)
+
 ## [v5.0.8](https://github.com/buildo/rc-datepicker/tree/v5.0.8) (2017-06-20)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.7...v5.0.8)
 
