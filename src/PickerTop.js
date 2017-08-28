@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import t from 'tcomb';
-import { props } from 'tcomb-react';
+import { props, ReactChildren } from 'tcomb-react';
 import View from 'react-flexview';
 import { pure, skinnable } from './utils';
 
@@ -13,7 +13,7 @@ import { pure, skinnable } from './utils';
   nextDate: t.maybe(t.Function),
   previousDate: t.maybe(t.Function),
   value: t.union([t.String, t.Number]),
-  weekDays: t.maybe(t.ReactChildren),
+  weekDays: t.maybe(ReactChildren),
   prevIconClassName: t.String,
   nextIconClassName: t.String
 })
