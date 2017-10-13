@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.10](https://github.com/buildo/rc-datepicker/tree/v5.0.10) (2017-10-13)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.9...v5.0.10)
+
+#### Fixes (bugs & defects):
+
+- Typescript: `void` as state complains [#136](https://github.com/buildo/rc-datepicker/issues/136)
+
 ## [v5.0.9](https://github.com/buildo/rc-datepicker/tree/v5.0.9) (2017-08-28)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.8...v5.0.9)
 
