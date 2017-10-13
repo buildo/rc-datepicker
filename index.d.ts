@@ -47,7 +47,7 @@ export interface DatePickerInputProps {
   style?: object // used to omit from inputProps
 }
 
-export class DatePickerInput extends React.Component<DatePickerInputProps, void> {}
+export class DatePickerInput extends React.Component<DatePickerInputProps, {}> {}
 
 export interface DatePickerProps {
   onChange?: (e: Date) => void,
