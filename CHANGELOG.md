@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.11](https://github.com/buildo/rc-datepicker/tree/v5.0.11) (2018-02-26)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.10...v5.0.11)
+
+#### Fixes (bugs & defects):
+
+- Add react16 to list of peerDependencies [#142](https://github.com/buildo/rc-datepicker/issues/142)
+
 ## [v5.0.10](https://github.com/buildo/rc-datepicker/tree/v5.0.10) (2017-10-13)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.9...v5.0.10)
 
