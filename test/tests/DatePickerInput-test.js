@@ -74,7 +74,7 @@ describe('DatePickerInput', () => {
     const frenchWeekDays = TestUtils.scryRenderedDOMComponentsWithClass(inputFr, 'week-day');
     const germanWeekDays = TestUtils.scryRenderedDOMComponentsWithClass(inputDe, 'week-day');
 
-    expect(frenchWeekDays[0].innerHTML).toBe('Lu', 'First DatePicker is not in french');
+    expect(frenchWeekDays[0].innerHTML).toBe('lu', 'First DatePicker is not in french');
     expect(germanWeekDays[0].innerHTML).toBe('Mo', 'Second DatePicker is not in german');
 
   });
