@@ -101,7 +101,7 @@ export default class DatePickerInput extends React.Component {
     style: {}
   }
 
-  textInputRef = null;
+  datePickerInputRef = null;
 
   constructor(props) {
     super(props);
@@ -143,7 +143,7 @@ export default class DatePickerInput extends React.Component {
   }
 
   getDatePickerInput = () => {
-    return ReactDOM.findDOMNode(this.textInputRef);
+    return ReactDOM.findDOMNode(this.datePickerInputRef);
   }
 
   isEventInsideDatePickerInput = (el) => {
@@ -289,7 +289,7 @@ export default class DatePickerInput extends React.Component {
 
   template({ className, style, inputProps, datePickerProps }) {
     return (
-      <div {...{ style, className }} ref={input => { this.textInputRef = input; }}>
+      <div {...{ style, className }} ref={input => { this.datePickerInputRef = input; }}>
         <Input {...inputProps} />
         {datePickerProps && <DatePicker {...datePickerProps} />}
       </div>
