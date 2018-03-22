@@ -101,6 +101,8 @@ export default class DatePickerInput extends React.Component {
     style: {}
   }
 
+  textInputRef = null;
+
   constructor(props) {
     super(props);
     if (props.locale) {
@@ -141,7 +143,7 @@ export default class DatePickerInput extends React.Component {
   }
 
   getDatePickerInput = () => {
-    return ReactDOM.findDOMNode(this.refs.datePickerInput);
+    return ReactDOM.findDOMNode(this.textInputRef);
   }
 
   isEventInsideDatePickerInput = (el) => {
@@ -287,7 +289,7 @@ export default class DatePickerInput extends React.Component {
 
   template({ className, style, inputProps, datePickerProps }) {
     return (
-      <div {...{ style, className }} ref='datePickerInput'>
+      <div {...{ style, className }} ref={input => { this.textInputRef = input; }}>
         <Input {...inputProps} />
         {datePickerProps && <DatePicker {...datePickerProps} />}
       </div>
