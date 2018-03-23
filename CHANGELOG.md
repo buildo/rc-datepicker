@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.12](https://github.com/buildo/rc-datepicker/tree/v5.0.12) (2018-03-23)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.11...v5.0.12)
+
+#### Fixes (bugs & defects):
+
+- String refs are deprecated [#144](https://github.com/buildo/rc-datepicker/issues/144)
+
 ## [v5.0.11](https://github.com/buildo/rc-datepicker/tree/v5.0.11) (2018-02-26)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.10...v5.0.11)
 
