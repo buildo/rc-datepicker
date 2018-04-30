@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.13](https://github.com/buildo/rc-datepicker/tree/v5.0.13) (2018-04-30)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.12...v5.0.13)
+
+#### Fixes (bugs & defects):
+
+- @types/react should not be a dependency [#146](https://github.com/buildo/rc-datepicker/issues/146)
+
 ## [v5.0.12](https://github.com/buildo/rc-datepicker/tree/v5.0.12) (2018-03-23)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.11...v5.0.12)
 
