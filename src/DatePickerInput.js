@@ -229,7 +229,7 @@ export default class DatePickerInput extends React.Component {
       const parsedDate = this.parseInputDateString(dateString);
       const date = parsedDate.isValid() ? parsedDate : this.state.date;
       const jsDate = parsedDate.isValid() ? parsedDate.toDate() : INVALID;
-      let returnedDateString = dateString;
+      let returnedDateString = INVALID;
       if (formatReturnDate) {
         returnedDateString = parsedDate.isValid() ? this.formatReturnedDate(parsedDate) : INVALID;
       }
