@@ -40,11 +40,12 @@ export default function format(Component) {
   };
 
   Component.prototype.parseInputDateString = function(dateString, props) {
-    const format = this.getDisplayFormat(props);
-    if (!format) {
+    const { format } = (props || this.props);
+    const parseFormat = format ? format : this.getDisplayFormat(props);
+    if (!parseFormat) {
       return moment(dateString);
     } else {
-      return moment(dateString, format, true);
+      return moment(dateString, parseFormat, true);
     }
   };
 

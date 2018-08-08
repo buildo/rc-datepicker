@@ -33,7 +33,7 @@ export const Props = {
   fixedMode: t.maybe(t.Boolean),
   displayFormat: t.maybe(t.String),
   returnFormat: t.maybe(t.String),
-  format: t.maybe(t.String),
+  format: t.maybe(t.Array),
   validationFormat: t.maybe(t.String),
   showOnInputClick: t.maybe(t.Boolean),
   closeOnClickOutside: t.maybe(t.Boolean),
