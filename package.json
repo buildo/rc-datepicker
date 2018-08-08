@@ -1,6 +1,6 @@
 {
-  "name": "rc-datepicker",
-  "version": "5.0.13",
+  "name": "rc-datepicker-multi-format",
+  "version": "5.0.16",
   "description": "DatePicker and DatePickerInput to be used with React",
   "main": "index.js",
   "files": [
@@ -79,7 +79,8 @@
     "smooth-release": "^8.0.3",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "stylelint-webpack-plugin": "^0.10.5"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0 || ^16.0",
