@@ -44,7 +44,8 @@ export interface DatePickerInputProps {
   iconClassName?: string,
   iconClearClassName?: string,
   className?: string, // used to omit from inputProps
-  style?: object // used to omit from inputProps
+  style?: object, // used to omit from inputProps
+  placeholder?: string
 }
 
 export class DatePickerInput extends React.Component<DatePickerInputProps, {}> {}
@@ -66,7 +67,8 @@ export interface DatePickerProps {
   prevIconClassName?: string,
   nextIconClassName?: string,
   position: Position,
-  style?: object
+  style?: object,
+  placeholder?: string
 }
 
 export class DatePicker extends React.Component<DatePickerProps, void> {}
