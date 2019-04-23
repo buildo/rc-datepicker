@@ -33,7 +33,8 @@ import cx from 'classnames';
   prevIconClassName: t.maybe(t.String),
   nextIconClassName: t.maybe(t.String),
   position: t.maybe(t.enums.of(['top', 'bottom'])),
-  style: t.maybe(t.Object)
+  style: t.maybe(t.Object),
+  placeholder: t.maybe(t.String)
 })
 export default class DatePicker extends React.Component {
 
