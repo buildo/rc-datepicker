@@ -2,6 +2,14 @@
 
 
 
+## [v5.0.14](https://github.com/buildo/rc-datepicker/tree/v5.0.14) (2019-04-23)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.13...v5.0.14)
+
+#### New features:
+
+- Allow already-working "placeholder" props in typings [#161](https://github.com/buildo/rc-datepicker/issues/161)
+- Logo Design for rc-datepicker [#154](https://github.com/buildo/rc-datepicker/issues/154)
+
 ## [v5.0.13](https://github.com/buildo/rc-datepicker/tree/v5.0.13) (2018-04-30)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.12...v5.0.13)
 
