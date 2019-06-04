@@ -269,6 +269,7 @@ export default class DatePickerInput extends React.Component {
         onInputClick, onButtonClick, onInputClear,
         onInputChange: this.onChangeInput,
         onInputKeyUp: this.hideOnEnterKey,
+        placeholder: props.placeholder,
         ...inputProps
       },
       datePickerProps: active && {
