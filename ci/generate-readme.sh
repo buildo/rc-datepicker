@@ -2,10 +2,6 @@
 
 set -e
 
-# needed to generate readme
-apt-get update -qq
-apt-get install -qy git
-
 yarn install --no-progress
 yarn generate-readme
 git add src/README.md
