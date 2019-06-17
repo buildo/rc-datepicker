@@ -77,6 +77,9 @@ export const Props = {
  * @param disabled - whether the datepicker should be disabled or not
  * @param iconClassName - classname used for the icon
  * @param iconClearClassName - classname used for the clear icon
+ * @param className - className used for the wrapper div
+ * @param style - style used for the wrapper div
+ * @param placeholder
  */
 
 
