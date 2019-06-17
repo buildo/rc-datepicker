@@ -6,7 +6,7 @@ set -e
 apt-get update -qq
 apt-get install -qy git
 
-yarn
+yarn install --no-progress
 yarn lint
 yarn lint-style
 yarn test

@@ -6,7 +6,7 @@ set -e
 apt-get update -qq
 apt-get install -qy git
 
-yarn
+yarn install --no-progress
 yarn generate-readme
 git add src/README.md
 if !git diff-index --quiet HEAD -- src/README.md; then
