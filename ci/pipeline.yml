@@ -48,7 +48,7 @@ jobs:
             status: failure
             context: concourse
 
-  - name: test-and-generate-readme
+  - name: test
     plan:
       - get: rc-datepicker
         resource: master
@@ -57,5 +57,3 @@ jobs:
           - task: test
             file: rc-datepicker/ci/test.yml
             attempts: 2
-          - task: generate-readme
-            file: rc-datepicker/ci/generate-readme.yml

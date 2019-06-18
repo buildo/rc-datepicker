@@ -17,6 +17,7 @@ A decent and pretty date picker to be used with React
 | **maxDate** | <code>union(String &#124; Date &#124; MomentDate)</code> |  | *optional*. Maximum date selectable by the user |
 | **locale** | <code>String</code> |  | *optional*. Locale used for translations |
 | **startMode** | <code>enum("day" &#124; "month" &#124; "year")</code> | <code>"day"</code> | *optional*. The start view of the datepicker |
+| **startDate** | <code>union(String &#124; Date &#124; MomentDate)</code> |  | *optional*. Specify an initial "visible" date with no need to select a defaultValue |
 | **fixedMode** | <code>Boolean</code> |  | *optional*. Whether the user can use multiple views or not |
 | **displayFormat** | <code>String</code> |  | *optional*. MomentJS format used to display current date |
 | **returnFormat** | <code>String</code> |  | *optional*. MomentJS format used to format date before returing through "onChange" |
@@ -31,5 +32,6 @@ A decent and pretty date picker to be used with React
 | **position** | <code>enum("top" &#124; "bottom")</code> | <code>"bottom"</code> | *optional*. Whether the datepicker should be rendered above or below the input field |
 | **iconClassName** | <code>String</code> | <code>"icon-rc-datepicker icon-rc-datepicker_calendar"</code> | *optional*. Classname used for the icon |
 | **iconClearClassName** | <code>String</code> | <code>"icon-rc-datepicker icon-rc-datepicker_clear"</code> | *optional*. Classname used for the clear icon |
-| **className** | <code>String</code> | <code>""</code> | *optional*. Additional `className` for wrapper element |
-| **style** | <code>Object</code> | <code>{}</code> | *optional*. Inline-style overrides for wrapper element |
+| **className** | <code>String</code> | <code>""</code> | *optional*. ClassName used for the wrapper div |
+| **style** | <code>Object</code> | <code>{}</code> | *optional*. Style used for the wrapper div |
+| **placeholder** | <code>String</code> |  | *optional*.  |
