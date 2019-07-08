@@ -415,15 +415,15 @@ $picker-disabled-color: $_coolGrey !default;
           }
 
           &.day {
-            min-height: 30px;
+            min-height: 30px !important;
           }
 
           &.month {
-            min-height: 65px;
+            min-height: 65px !important;
           }
 
           &.year {
-            min-height: 65px;
+            min-height: 65px !important;
           }
 
           &:hover {
