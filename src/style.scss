@@ -439,6 +439,7 @@ $picker-disabled-color: $_coolGrey !default;
             margin-top: -1px;
             margin-bottom: -1px;
             border: 1px solid $picker-selected-background;
+            box-sizing: content-box !important;
           }
 
           &.current {
