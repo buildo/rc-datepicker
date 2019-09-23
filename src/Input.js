@@ -81,7 +81,12 @@ export default class Input extends React.Component {
   template({ className, inputButtonProps, clearButtonProps, inputProps }) {
     return (
       <div className={className}>
-        <input {...inputProps} />
+        
+        <fieldset>
+          <legend class="icon-user icon-user"></legend>
+          <input {...inputProps} />
+        </fieldset>
+      
         <View className='button-wrapper' vAlignContent='center'>
           {clearButtonProps && this.templateClearButton(clearButtonProps)}
           {inputButtonProps && this.templateInputButton(inputButtonProps)}
