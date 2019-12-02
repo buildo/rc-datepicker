@@ -16,10 +16,14 @@ export type ValueLink = {
   requestChange(e: Date): void
 }
 
+export type DateOnChangeHandler = {
+  (jsDate: Date, dateString: string): void;
+}
+
 export interface DatePickerInputProps {
   value?: Value,
   valueLink?: ValueLink,
-  onChange?(e: Date): void,
+  onChange?: DateOnChangeHandler,
   onShow?: () => void,
   onHide?: () => void,
   onClear?: () => void,
@@ -51,7 +55,7 @@ export interface DatePickerInputProps {
 export class DatePickerInput extends React.Component<DatePickerInputProps, {}> {}
 
 export interface DatePickerProps {
-  onChange?: (e: Date) => void,
+  onChange?: DateOnChangeHandler;
   value?: Value,
   valueLink?: ValueLink,
   defaultValue?: Value,

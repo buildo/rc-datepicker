@@ -7,7 +7,7 @@ A decent and pretty date picker to be used with React
 |----|----|-------|-----------|
 | **value** | <code>union(String &#124; Date &#124; MomentDate)</code> |  | *optional*. Current date |
 | **valueLink** | <code>{value: ?String &#124; Date &#124; MomentDate, requestChange: Function}</code> |  | *optional*. ValueLink object to replace "value" and "onChange" |
-| **onChange** | <code>Function</code> |  | *optional*. Called when value changes |
+| **onChange** | <code>{jsDate: Date, dateString: string}</code> |  | *optional*. Called when value changes |
 | **onShow** | <code>Function</code> | <code>"onShow"</code> | *optional*. Called when datepicker is opened |
 | **onHide** | <code>Function</code> | <code>"onHide"</code> | *optional*. Called when datepicker is closed |
 | **onClear** | <code>Function</code> |  | *optional*. Called when value is cleared |
