@@ -216,7 +216,10 @@ export default class DatePickerInput extends React.Component {
     }
   }
 
-  onChangeInput = ({ target: { value: dateString } }) => {
+  onChangeInput = (event) => {
+    const { target: { value: dateString } } = event;
+    event.persist();
+
     if (dateString || this.state.date) {
       const parsedDate = this.parseInputDateString(dateString);
       const date = parsedDate.isValid() ? parsedDate : this.state.date;
@@ -228,7 +231,7 @@ export default class DatePickerInput extends React.Component {
         dateString,
         date,
         hasValue: parsedDate.isValid()
-      }, () => this.getValueLink().requestChange(jsDate, returnedDateString));
+      }, () => this.getValueLink().requestChange(jsDate, returnedDateString, event));
     } else if (!dateString) {
       this.setState({ dateString });
     }

@@ -16,14 +16,18 @@ export type ValueLink = {
   requestChange(e: Date): void
 }
 
+export type DateOnChangeHandlerWithEvent = {
+  // Event will not emit if it's selected from DatePicker (not typed)
+  (jsDate: Date, dateString: string, event?: React.ChangeEvent<HTMLInputElement>): void;
+}
+
 export type DateOnChangeHandler = {
   (jsDate: Date, dateString: string): void;
 }
-
 export interface DatePickerInputProps {
   value?: Value,
   valueLink?: ValueLink,
-  onChange?: DateOnChangeHandler,
+  onChange?: DateOnChangeHandlerWithEvent,
   onShow?: () => void,
   onHide?: () => void,
   onClear?: () => void,

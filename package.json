@@ -67,7 +67,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.5.3",
     "node-libs-browser": "^1.0.0",
-    "node-sass": "^3.7.0",
+    "node-sass": "^4.13.0",
     "react": "^0.14",
     "react-addons-test-utils": "^0.14.8",
     "react-dom": "^0.14",
