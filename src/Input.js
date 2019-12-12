@@ -19,7 +19,8 @@ import pure from './utils/pure';
   onButtonClick: t.maybe(t.Function),
   onInputClick: t.maybe(t.Function),
   onInputClear: t.maybe(t.Function),
-  onInputKeyUp: t.Function
+  onInputKeyUp: t.Function,
+  onInputBlur: t.maybe(t.Function)
 }, { strict: false })
 export default class Input extends React.Component {
 
@@ -36,6 +37,7 @@ export default class Input extends React.Component {
       onInputChange,
       onInputClear,
       onInputKeyUp,
+      onInputBlur,
       ...inputProps
     } = props;
 
@@ -57,6 +59,7 @@ export default class Input extends React.Component {
         onChange: onInputChange,
         onClick: onInputClick,
         onKeyUp: onInputKeyUp,
+        onBlur: onInputBlur,
         ...inputProps
       }
     };

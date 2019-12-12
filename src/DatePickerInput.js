@@ -31,9 +31,10 @@ export const Props = {
   startMode: t.maybe(t.enums.of(['day', 'month', 'year'])),
   startDate: t.maybe(Value),
   fixedMode: t.maybe(t.Boolean),
+  formatOnBlurOnly: t.maybe(t.Boolean),
   displayFormat: t.maybe(t.String),
   returnFormat: t.maybe(t.String),
-  format: t.maybe(t.String),
+  format: t.maybe(t.Array),
   validationFormat: t.maybe(t.String),
   showOnInputClick: t.maybe(t.Boolean),
   closeOnClickOutside: t.maybe(t.Boolean),
@@ -64,6 +65,7 @@ export const Props = {
  * @param startMode - the start view of the datepicker
  * @param startDate - specify an initial "visible" date with no need to select a defaultValue
  * @param fixedMode - whether the user can use multiple views or not
+ * @param formatOnBlurOnly - format input value with MomentJS only when focus is changed
  * @param displayFormat - MomentJS format used to display current date
  * @param returnFormat - MomentJS format used to format date before returing through "onChange"
  * @param format - MomentJS format used to format date before returing through "onChange"
@@ -217,13 +219,24 @@ export default class DatePickerInput extends React.Component {
   }
 
   onChangeInput = ({ target: { value: dateString } }) => {
+    this.handleChangeInput(dateString, !this.props.formatOnBlurOnly);
+  }
+
+  onBlur = ({ target: { value: dateString } }) => {
+    if (this.props.formatOnBlurOnly) {
+      this.handleChangeInput(dateString, true);
+    }
+  }
+
+  handleChangeInput = (dateString, formatReturnDate) => {
     if (dateString || this.state.date) {
       const parsedDate = this.parseInputDateString(dateString);
       const date = parsedDate.isValid() ? parsedDate : this.state.date;
-
       const jsDate = parsedDate.isValid() ? parsedDate.toDate() : INVALID;
-      const returnedDateString = jsDate ? this.formatReturnedDate(parsedDate) : INVALID;
-
+      let returnedDateString = INVALID;
+      if (formatReturnDate) {
+        returnedDateString = parsedDate.isValid() ? this.formatReturnedDate(parsedDate) : INVALID;
+      }
       this.setState({
         dateString,
         date,
@@ -272,6 +285,7 @@ export default class DatePickerInput extends React.Component {
         onInputClick, onButtonClick, onInputClear,
         onInputChange: this.onChangeInput,
         onInputKeyUp: this.hideOnEnterKey,
+        onInputBlur: this.onBlur,
         ...inputProps
       },
       datePickerProps: active && {

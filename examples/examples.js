@@ -38,6 +38,8 @@ class Example extends React.Component {
           <div className='ui input'>
             <DatePickerInput
               disabled={this.state.disabled}
+              format={['YYYYMMDD', 'YYYY-MM-DD', 'YYMMDD', 'YY-MM-DD']}
+              formatOnBlurOnly
               displayFormat='DD/MM/YYYY'
               returnFormat='YYYY-MM-DD'
               className='my-react-component'
