@@ -13,6 +13,7 @@
   ],
   "types": "./index.d.ts",
   "scripts": {
+    "test": "./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && babel src -d lib && webpack --config webpack.config.build.babel.js && rm lib/bundle.js",
     "lint": "scriptoni lint src examples/examples.js test",
     "lint-fix": "scriptoni lint src examples/examples.js test --fix",
