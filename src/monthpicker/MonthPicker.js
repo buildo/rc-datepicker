@@ -1,12 +1,11 @@
 import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
-import { pure, skinnable } from '../utils';
+import { skinnable } from '../utils';
 import { MomentDate, Value, Mode } from '../utils/model';
 import MonthPickerTop from './MonthPickerTop';
 import MonthPickerBody from './MonthPickerBody';
 
-@pure
 @skinnable()
 @props({
   changeYear: t.Function,
@@ -22,7 +21,7 @@ import MonthPickerBody from './MonthPickerBody';
   prevIconClassName: t.String,
   nextIconClassName: t.String
 })
-export default class MonthPicker extends React.Component {
+export default class MonthPicker extends React.PureComponent {
 
   onSelectDate = (date) => {
     const { fixedMode, onSelectDate, onChangeMode, onChangeVisibleDate } = this.props;

@@ -2,12 +2,11 @@ import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
 import View from 'react-flexview';
-import { pure, skinnable } from '../utils';
+import { skinnable } from '../utils';
 import { Value, Mode, MomentDate } from '../utils/model';
 import DayPickerTop from './DayPickerTop';
 import DayPickerBody from './DayPickerBody';
 
-@pure
 @skinnable()
 @props({
   changeMonth: t.Function,
@@ -22,7 +21,7 @@ import DayPickerBody from './DayPickerBody';
   prevIconClassName: t.String,
   nextIconClassName: t.String
 })
-export default class DayPicker extends React.Component {
+export default class DayPicker extends React.PureComponent {
 
   getLocals({
     date, visibleDate, onSelectDate, minDate,

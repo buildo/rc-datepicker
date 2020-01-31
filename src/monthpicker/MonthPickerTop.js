@@ -1,11 +1,10 @@
 import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
-import { pure, skinnable } from '../utils';
+import { skinnable } from '../utils';
 import { MomentDate, Mode } from '../utils/model';
 import PickerTop from '../PickerTop';
 
-@pure
 @skinnable()
 @props({
   visibleDate: MomentDate,
@@ -15,7 +14,7 @@ import PickerTop from '../PickerTop';
   prevIconClassName: t.String,
   nextIconClassName: t.String
 })
-export default class MonthPickerTop extends React.Component {
+export default class MonthPickerTop extends React.PureComponent {
 
   onChangeMode = () => {
     if (!this.props.fixedMode) {

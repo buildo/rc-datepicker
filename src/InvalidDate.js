@@ -1,14 +1,13 @@
 import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
-import { pure, skinnable } from './utils';
+import { skinnable } from './utils';
 
-@pure
 @skinnable()
 @props({
   invalidDate: t.maybe(t.String)
 })
-export default class InvalidDate extends React.Component {
+export default class InvalidDate extends React.PureComponent {
   template({ invalidDate }) {
     return (
       <div className='react-datepicker-body'>

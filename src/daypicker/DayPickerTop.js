@@ -3,12 +3,11 @@ import capitalize from 'lodash/capitalize';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
 import View from 'react-flexview';
-import { pure, skinnable } from '../utils';
+import { skinnable } from '../utils';
 import { MomentDate, Mode } from '../utils/model';
 import { getWeekdaysMin } from '../utils/DateUtils.js';
 import PickerTop from '../PickerTop';
 
-@pure
 @skinnable()
 @props({
   changeMonth: t.Function,
@@ -18,7 +17,7 @@ import PickerTop from '../PickerTop';
   prevIconClassName: t.String,
   nextIconClassName: t.String
 })
-export default class DayPickerTop extends React.Component {
+export default class DayPickerTop extends React.PureComponent {
 
   onChangeMode = () => {
     if (!this.props.fixedMode) {

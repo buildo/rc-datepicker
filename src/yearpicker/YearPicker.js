@@ -2,12 +2,11 @@ import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
 import View from 'react-flexview';
-import { pure, skinnable } from '../utils';
+import { skinnable } from '../utils';
 import { MomentDate, Value, Mode } from '../utils/model';
 import YearPickerTop from './YearPickerTop';
 import YearPickerBody from './YearPickerBody';
 
-@pure
 @skinnable()
 @props({
   changeYear: t.Function,
@@ -23,7 +22,7 @@ import YearPickerBody from './YearPickerBody';
   prevIconClassName: t.String,
   nextIconClassName: t.String
 })
-export default class YearPicker extends React.Component {
+export default class YearPicker extends React.PureComponent {
 
   onSelectDate = (date) => {
     const { fixedMode, onSelectDate, onChangeMode, onChangeVisibleDate } = this.props;

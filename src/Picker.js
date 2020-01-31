@@ -3,10 +3,9 @@ import cx from 'classnames';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
 import View from 'react-flexview';
-import { pure, skinnable } from './utils';
+import { skinnable } from './utils';
 import { MomentDate, Value, Mode } from './utils/model';
 
-@pure
 @skinnable()
 @props({
   date: MomentDate,
@@ -19,7 +18,7 @@ import { MomentDate, Value, Mode } from './utils/model';
   onSelectDate: t.Function,
   mode: Mode
 })
-export default class Picker extends React.Component {
+export default class Picker extends React.PureComponent {
 
   onClick = e => {
     e.preventDefault();

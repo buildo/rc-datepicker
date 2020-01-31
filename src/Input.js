@@ -4,9 +4,7 @@ import { props } from 'tcomb-react';
 import t from 'tcomb';
 import View from 'react-flexview';
 import skinnable from './utils/skinnable';
-import pure from './utils/pure';
 
-@pure
 @skinnable()
 @props({
   value: t.maybe(t.String),
@@ -21,7 +19,7 @@ import pure from './utils/pure';
   onInputClear: t.maybe(t.Function),
   onInputKeyUp: t.Function
 }, { strict: false })
-export default class Input extends React.Component {
+export default class Input extends React.PureComponent {
 
   getLocals(props) {
     const {

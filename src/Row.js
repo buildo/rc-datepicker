@@ -3,16 +3,15 @@ import cx from 'classnames';
 import t from 'tcomb';
 import { props, ReactChildren } from 'tcomb-react';
 import View from 'react-flexview';
-import { pure, skinnable } from './utils';
+import { skinnable } from './utils';
 import { Mode } from './utils/model';
 
-@pure
 @skinnable()
 @props({
   pickers: t.list(ReactChildren),
   mode: Mode
 })
-export default class Row extends React.Component {
+export default class Row extends React.PureComponent {
 
   getLocals({ mode, pickers }) {
     return {

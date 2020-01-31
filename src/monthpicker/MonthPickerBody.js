@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
-import { pure, skinnable } from '../utils';
+import { skinnable } from '../utils';
 import { Value, Mode, MomentDate } from '../utils/model';
 import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
@@ -13,7 +13,6 @@ import range from 'lodash/range';
 const COLUMNS = 4;
 const ROWS = 3;
 
-@pure
 @skinnable()
 @props({
   visibleDate: MomentDate,
@@ -23,7 +22,7 @@ const ROWS = 3;
   onSelectDate: t.Function,
   mode: Mode
 })
-export default class MonthPickerBody extends React.Component {
+export default class MonthPickerBody extends React.PureComponent {
 
   getLocals({ date, visibleDate, minDate, maxDate, onSelectDate, mode }) {
     if (!visibleDate.isValid()) {

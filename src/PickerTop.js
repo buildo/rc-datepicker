@@ -3,9 +3,8 @@ import cx from 'classnames';
 import t from 'tcomb';
 import { props, ReactChildren } from 'tcomb-react';
 import View from 'react-flexview';
-import { pure, skinnable } from './utils';
+import { skinnable } from './utils';
 
-@pure
 @skinnable()
 @props({
   fixed: t.maybe(t.Boolean),
@@ -17,7 +16,7 @@ import { pure, skinnable } from './utils';
   prevIconClassName: t.String,
   nextIconClassName: t.String
 })
-export default class PickerTop extends React.Component {
+export default class PickerTop extends React.PureComponent {
   template({ value, fixed, previousDate, nextDate, handleClick, weekDays, prevIconClassName, nextIconClassName }) {
     return (
       <View column className='react-datepicker-top'>

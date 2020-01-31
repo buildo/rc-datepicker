@@ -1,11 +1,10 @@
 import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
-import { pure, skinnable } from '../utils';
+import { skinnable } from '../utils';
 import { MomentDate } from '../utils/model';
 import PickerTop from '../PickerTop';
 
-@pure
 @skinnable()
 @props({
   visibleDate: MomentDate,
@@ -13,7 +12,7 @@ import PickerTop from '../PickerTop';
   prevIconClassName: t.String,
   nextIconClassName: t.String
 })
-export default class YearPickerTop extends React.Component {
+export default class YearPickerTop extends React.PureComponent {
 
   getYear = () => this.props.visibleDate.year()
 
