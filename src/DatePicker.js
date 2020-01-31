@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
-import { format, valueLink, skinnable } from './utils';
+import { format, valueLink } from './utils';
 import { Value, Mode } from './utils/model';
 import DayPicker from './daypicker/DayPicker';
 import MonthPicker from './monthpicker/MonthPicker';
@@ -11,7 +11,6 @@ import cx from 'classnames';
 
 @valueLink
 @format
-@skinnable()
 @props({
   onChange: t.maybe(t.Function),
   value: t.maybe(Value),
@@ -97,50 +96,52 @@ export default class DatePicker extends React.Component {
     this.setState({ visibleDate: this.state.visibleDate.clone().month(month) });
   }
 
-  getLocals({ className, style, floating, minDate, maxDate, fixedMode, prevIconClassName, nextIconClassName, position }) {
+  render() {
+    const {
+      className, style, floating, minDate, maxDate, fixedMode, prevIconClassName, nextIconClassName, position
+    } = this.props;
     const { mode, date, visibleDate } = this.state;
-    return {
-      style,
-      className: cx('react-datepicker', className, { floating, 'position-top': position === 'top' }),
-      dayPickerProps: mode === Mode('day') && {
-        date, visibleDate,
-        minDate, maxDate,
-        mode,
-        fixedMode,
-        prevIconClassName,
-        nextIconClassName,
-        changeMonth: this.changeMonth,
-        onSelectDate: this.onChangeSelectedDate,
-        onChangeMode: this.onChangeMode
-      },
-      monthPickerProps: mode === Mode('month') && {
-        date, visibleDate,
-        minDate, maxDate,
-        mode,
-        fixedMode,
-        prevIconClassName,
-        nextIconClassName,
-        changeYear: this.changeYear,
-        onSelectDate: this.onChangeSelectedDate,
-        onChangeMode: this.onChangeMode,
-        onChangeVisibleDate: this.onChangeVisibleDate
-      },
-      yearPickerProps: mode === Mode('year') && {
-        date, visibleDate,
-        minDate, maxDate,
-        mode,
-        fixedMode,
-        prevIconClassName,
-        nextIconClassName,
-        changeYear: this.changeYear,
-        onSelectDate: this.onChangeSelectedDate,
-        onChangeMode: this.onChangeMode,
-        onChangeVisibleDate: this.onChangeVisibleDate
-      }
+    const className = cx(
+      'react-datepicker',
+      className,
+      { floating, 'position-top': position === 'top' }
+    );
+    const dayPickerProps = mode === Mode('day') && {
+      date, visibleDate,
+      minDate, maxDate,
+      mode,
+      fixedMode,
+      prevIconClassName,
+      nextIconClassName,
+      changeMonth: this.changeMonth,
+      onSelectDate: this.onChangeSelectedDate,
+      onChangeMode: this.onChangeMode
     };
-  }
+    const monthPickerProps = mode === Mode('month') && {
+      date, visibleDate,
+      minDate, maxDate,
+      mode,
+      fixedMode,
+      prevIconClassName,
+      nextIconClassName,
+      changeYear: this.changeYear,
+      onSelectDate: this.onChangeSelectedDate,
+      onChangeMode: this.onChangeMode,
+      onChangeVisibleDate: this.onChangeVisibleDate
+    };
+    const yearPickerProps = mode === Mode('year') && {
+        date, visibleDate,
+        minDate, maxDate,
+        mode,
+        fixedMode,
+        prevIconClassName,
+        nextIconClassName,
+        changeYear: this.changeYear,
+        onSelectDate: this.onChangeSelectedDate,
+        onChangeMode: this.onChangeMode,
+        onChangeVisibleDate: this.onChangeVisibleDate
+      };
 
-  template({ className, style, dayPickerProps, monthPickerProps, yearPickerProps }) {
     return (
       <div {...{ className, style }}>
         {dayPickerProps && <DayPicker {...dayPickerProps} />}

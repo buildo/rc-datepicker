@@ -3,7 +3,6 @@ import range from 'lodash/range';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
 import View from 'react-flexview';
-import { skinnable } from '../utils';
 import { Value, Mode, MomentDate } from '../utils/model';
 import InvalidDate from '../InvalidDate';
 import Picker from '../Picker';
@@ -13,7 +12,6 @@ import { isInsideTheEnabledArea, getVisibleDays } from '../utils/DateUtils';
 const COLUMNS = 7;
 const ROWS = 6;
 
-@skinnable()
 @props({
   visibleDate: MomentDate,
   date: t.maybe(Value),
@@ -24,10 +22,13 @@ const ROWS = 6;
 })
 export default class DayPickerBody extends React.PureComponent {
 
-  getLocals({ date, visibleDate, minDate, maxDate, onSelectDate, mode }) {
+  render() {
+    const { date, visibleDate, minDate, maxDate, onSelectDate, mode } = this.props;
+    
     if (!visibleDate.isValid()) {
       return <InvalidDate invalidDate={visibleDate.format()} />;
     }
+
     const year = visibleDate.year();
     const month = visibleDate.month();
     const selectedDateString = date ? date.format('DD/MM/YYYY') : undefined;
@@ -52,13 +53,7 @@ export default class DayPickerBody extends React.PureComponent {
       };
     });
 
-    return { pickers, mode };
-  }
-
-  templateDays = ({ pickers }) => pickers.map(p => <Picker {...p} />)
-
-  template({ pickers, mode }) {
-    const days = this.templateDays({ pickers });
+    const days = pickers.map(p => <Picker {...p} />);
     const rows = range(ROWS).map(index =>
       <Row pickers={days.slice(COLUMNS * index, COLUMNS * (index + 1))} mode={mode} key={index} />
     );

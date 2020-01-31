@@ -3,12 +3,10 @@ import capitalize from 'lodash/capitalize';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
 import View from 'react-flexview';
-import { skinnable } from '../utils';
 import { MomentDate, Mode } from '../utils/model';
 import { getWeekdaysMin } from '../utils/DateUtils.js';
 import PickerTop from '../PickerTop';
 
-@skinnable()
 @props({
   changeMonth: t.Function,
   visibleDate: MomentDate,
@@ -31,22 +29,12 @@ export default class DayPickerTop extends React.PureComponent {
 
   nextDate = () => this.props.changeMonth(this.getMonth() + 1)
 
-  getLocals({ visibleDate, fixedMode, prevIconClassName, nextIconClassName }) {
-    return {
-      fixed: !!fixedMode,
-      value: capitalize(visibleDate.format('MMMM YYYY')),
-      handleClick: this.onChangeMode,
-      previousDate: this.previousDate,
-      nextDate: this.nextDate,
-      weekDays: getWeekdaysMin(),
-      prevIconClassName,
-      nextIconClassName
-    };
-  }
+  render() {
+    const { visibleDate, fixedMode, prevIconClassName, nextIconClassName } = this.props;
 
-  templateWeekDays = ({ weekDays }) => (
-    <View className='week-days' shrink={false}>
-      {weekDays.map((dayMin, i) => (
+    const value = capitalize(visibleDate.format('MMMM YYYY'));
+    const weekDays = <View className='week-days' shrink={false}>
+      {getWeekdaysMin().map((dayMin, i) => (
         <View
           className='week-day' basis='100%' shrink
           hAlignContent='center' vAlignContent='center'
@@ -55,13 +43,17 @@ export default class DayPickerTop extends React.PureComponent {
           {dayMin}
         </View>
       ))}
-    </View>
-  )
+    </View>;
 
-  template({ weekDays, ...locales }) {
     return (
       <PickerTop
-        {...locales}
+        fixed={!!fixedMode}
+        value={value}
+        handleClick={this.onChangeMode}
+        previousDate={this.previousDate}
+        nextDate={this.nextDate}
+        prevIconClassName={prevIconClassName}
+        nextIconClassName={nextIconClassName}
         weekDays={this.templateWeekDays({ weekDays })}
       />
     );

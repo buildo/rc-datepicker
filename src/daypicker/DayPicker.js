@@ -2,12 +2,10 @@ import React from 'react';
 import t from 'tcomb';
 import { props } from 'tcomb-react';
 import View from 'react-flexview';
-import { skinnable } from '../utils';
 import { Value, Mode, MomentDate } from '../utils/model';
 import DayPickerTop from './DayPickerTop';
 import DayPickerBody from './DayPickerBody';
 
-@skinnable()
 @props({
   changeMonth: t.Function,
   visibleDate: MomentDate,
@@ -23,30 +21,28 @@ import DayPickerBody from './DayPickerBody';
 })
 export default class DayPicker extends React.PureComponent {
 
-  getLocals({
-    date, visibleDate, onSelectDate, minDate,
-    maxDate, changeMonth, onChangeMode, mode, fixedMode,
-    prevIconClassName, nextIconClassName
-  }) {
-    return {
-      dayPickerTopProps: {
-        visibleDate,
-        changeMonth,
-        onChangeMode,
-        fixedMode,
-        prevIconClassName,
-        nextIconClassName
-      },
-      dayPickerBodyProps: {
-        date, visibleDate,
-        minDate, maxDate,
-        onSelectDate,
-        mode
-      }
+  render() {
+    const {
+      date, visibleDate, onSelectDate, minDate,
+      maxDate, changeMonth, onChangeMode, mode, fixedMode,
+      prevIconClassName, nextIconClassName
+    } = this.props;
+    
+    const dayPickerTopProps = {
+      visibleDate,
+      changeMonth,
+      onChangeMode,
+      fixedMode,
+      prevIconClassName,
+      nextIconClassName
     };
-  }
+    const dayPickerBodyProps = {
+      date, visibleDate,
+      minDate, maxDate,
+      onSelectDate,
+      mode
+    }
 
-  template({ dayPickerTopProps, dayPickerBodyProps }) {
     return (
       <View column className='react-datepicker-container day'>
         <DayPickerTop {...dayPickerTopProps} />

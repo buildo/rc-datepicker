@@ -6,7 +6,7 @@ import { props } from 'tcomb-react';
 import omit from 'lodash/omit';
 import DatePicker from './DatePicker';
 import { Value } from './utils/model';
-import { format, valueLink, skinnable } from './utils';
+import { format, valueLink } from './utils';
 import cx from 'classnames';
 import Input from './Input';
 
@@ -85,7 +85,6 @@ export const Props = {
 
 @format
 @valueLink
-@skinnable()
 @props(Props, { strict: false })
 export default class DatePickerInput extends React.Component {
 
@@ -234,7 +233,7 @@ export default class DatePickerInput extends React.Component {
     }
   }
 
-  getLocals(props) {
+  render() {
     const {
       showInputButton,
       iconClassName,
@@ -255,45 +254,39 @@ export default class DatePickerInput extends React.Component {
       position,
       placeholder,
       style
-    } = props;
+    } = this.props;
     const { showing: active, hasValue, dateString: value, date } = this.state;
 
     const inputProps = omit(props, Object.keys(Props));
     const onInputClick = showOnInputClick ? this.show : undefined;
     const onButtonClick = showInputButton ? this.toggleDatePicker : undefined;
     const onInputClear = onClear ? this.onClear : undefined;
-
-    return {
-      style,
-      className: cx('react-datepicker-component', { 'is-disabled': disabled }, className),
-      inputProps: {
-        value,
-        small, active, hasValue,
-        iconClassName, iconClearClassName,
-        onInputClick, onButtonClick, onInputClear,
-        onInputChange: this.onChangeInput,
-        onInputKeyUp: this.hideOnEnterKey,
-        placeholder,
-        ...inputProps
-      },
-      datePickerProps: active && {
-        defaultValue,
-        minDate,
-        maxDate,
-        locale,
-        startMode,
-        startDate,
-        fixedMode,
-        floating,
-        position,
-        closeOnClickOutside,
-        value: date ? date.toDate() : undefined,
-        onChange: this._onChangeDate
-      }
+    const className = cx('react-datepicker-component', { 'is-disabled': disabled }, className);
+    const inputProps = {
+      value,
+      small, active, hasValue,
+      iconClassName, iconClearClassName,
+      onInputClick, onButtonClick, onInputClear,
+      onInputChange: this.onChangeInput,
+      onInputKeyUp: this.hideOnEnterKey,
+      placeholder,
+      ...inputProps
     };
-  }
-
-  template({ className, style, inputProps, datePickerProps }) {
+    const datePickerProps = active && {
+      defaultValue,
+      minDate,
+      maxDate,
+      locale,
+      startMode,
+      startDate,
+      fixedMode,
+      floating,
+      position,
+      closeOnClickOutside,
+      value: date ? date.toDate() : undefined,
+      onChange: this._onChangeDate
+    };
+    
     return (
       <div {...{ style, className }} ref={input => { this.datePickerInputRef = input; }}>
         <Input {...inputProps} />
