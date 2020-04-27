@@ -1,6 +1,6 @@
 {
   "name": "rc-datepicker",
-  "version": "5.0.15",
+  "version": "5.0.16",
   "description": "DatePicker and DatePickerInput to be used with React",
   "main": "index.js",
   "files": [

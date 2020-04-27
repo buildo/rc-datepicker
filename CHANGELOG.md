@@ -2,6 +2,19 @@
 
 
 
+## [v5.0.16](https://github.com/buildo/rc-datepicker/tree/v5.0.16) (2020-04-27)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.14...v5.0.16)
+
+#### New features:
+
+- Style.scss imports a file that does not exist in recent versions of react-flexview [#167](https://github.com/buildo/rc-datepicker/issues/167)
+- Placeholder not showing [#162](https://github.com/buildo/rc-datepicker/issues/162)
+- Disable user input? [#149](https://github.com/buildo/rc-datepicker/issues/149)
+
+#### Fixes (bugs & defects):
+
+- fix onChange typings for DatePickerInput: it should accept a second argument "formatteDate: string" [#159](https://github.com/buildo/rc-datepicker/issues/159)
+
 ## [v5.0.14](https://github.com/buildo/rc-datepicker/tree/v5.0.14) (2019-04-23)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.13...v5.0.14)
 
