@@ -1,11 +1,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
 
-export type Mode = {
-  'day': string,
-  'month': string,
-  'year': string
-};
+export type Mode =  'day' | 'month' | 'year';
 
 export type Position = 'top' | 'bottom';
 
