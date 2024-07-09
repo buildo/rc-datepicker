@@ -2,6 +2,13 @@
 
 
 
+## [v5.0.17](https://github.com/buildo/rc-datepicker/tree/v5.0.17) (2024-07-09)
+[Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.16...v5.0.17)
+
+#### New features:
+
+- Custom icon [#177](https://github.com/buildo/rc-datepicker/issues/177)
+
 ## [v5.0.16](https://github.com/buildo/rc-datepicker/tree/v5.0.16) (2020-04-27)
 [Full Changelog](https://github.com/buildo/rc-datepicker/compare/v5.0.14...v5.0.16)
 
